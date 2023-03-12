@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+
+    android:id="@+id/nag_graf"
+    app:startDestination="@id/navigation_home">
+
+
+    <fragment
+        android:id="@+id/navigation_home"
+        android:name="com.example.dbfordodo.fragments.HomeFragment"
+        android:label="@string/menu"
+        tools:layout="@layout/fragment_home" >
+        <argument android:name="dostavka_location"
+            app:argType="string"
+            app:nullable="true" />
+        <argument
+            android:name="zal_location"
+            app:argType="string"
+            app:nullable="true" />
+        <action
+            android:id="@+id/action_navigation_home_to_zalFragment2"
+            app:destination="@id/zalFragment2" />
+        <action
+            android:id="@+id/action_navigation_home_to_adressDostavkiFragment"
+            app:destination="@id/adressDostavkiFragment" />
+        <action
+            android:id="@+id/action_navigation_home_to_fragmentViewPager"
+            app:destination="@id/fragmentViewPager" />
+        <action
+            android:id="@+id/action_navigation_home_to_forCklick22"
+            app:destination="@id/forCklick2" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/zalFragment2"
+        android:name="com.example.dbfordodo.fragments.ZalFragment"
+        android:label="ZalFragment" >
+        <action
+            android:id="@+id/action_zalFragment2_to_navigation_home"
+            app:destination="@id/navigation_home" />
+    </fragment>
+    <fragment
+        android:id="@+id/splashFragment"
+        android:name="com.example.dbfordodo.fragments.SplashFragment"
+        android:label="fragment_splash"
+        tools:layout="@layout/fragment_splash" >
+        <action
+            android:id="@+id/action_splashFragment_to_navigation_home"
+            app:destination="@id/navigation_home" />
+    </fragment>
+    <fragment
+        android:id="@+id/adressDostavkiFragment"
+        android:name="com.example.dbfordodo.fragments.AdressDostavkiFragment"
+        android:label="AdressDostavkiFragment" >
+        <action
+            android:id="@+id/action_adressDostavkiFragment_to_navigation_home"
+            app:destination="@id/navigation_home" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentViewPager"
+        android:name="islom.din.dodo_ilmhona_proskills.view.ViewPager.FragmentViewPager"
+        android:label="FragmentViewPager" >
+        <action
+            android:id="@+id/action_fragmentViewPager_to_showFragment2"
+            app:destination="@id/showFragment2"
+            app:popUpTo="@id/navigation_home" />
+        <argument
+            android:name="pos"
+            app:argType="integer" />
+    </fragment>
+    <fragment
+        android:id="@+id/showFragment2"
+        android:name="com.example.dbfordodo.fragments.ShowFragment"
+        android:label="ShowFragment" >
+        <argument
+            android:name="pos"
+            app:argType="integer" />
+    </fragment>
+    <fragment
+        android:id="@+id/forCklick2"
+        android:name="com.example.dbfordodo.fragments.ForCklick"
+        android:label="fragment_for_cklick"
+        tools:layout="@layout/fragment_for_cklick" />
+
+</navigation>

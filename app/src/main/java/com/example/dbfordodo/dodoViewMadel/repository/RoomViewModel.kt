@@ -24,7 +24,7 @@ class RoomViewModel(private val ingredientsDao: IngredientsDao,
     }
 
     fun insertProducts(pizza : Pizza){
-        val products = Products(name = pizza.name, image = pizza.image, price = pizza.priceSmall, category = pizza.category, about = pizza.about)
+        val products = Products(name = pizza.name, image = pizza.image, price = pizza.price, category = pizza.category, about = pizza.about)
         viewModelScope.launch {
             productsDao.insertAll(products)
         }

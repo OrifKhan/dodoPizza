@@ -1,6 +1,15 @@
 package com.example.dbfordodo.db.data
 
 class Constants {
+    /*fun formatPriceSmall(): String {
+        return "$price  TJS"
+    }
+
+
+    fun formatLitr1() : String {
+        return "$size л"
+    }*/
+
     companion object {
         const val PIZZA = "Пицца"
         const val COMBO = "Комбо"

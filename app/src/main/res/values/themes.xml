@@ -12,6 +12,7 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor">?attr/colorPrimary</item>
         <item name="android:windowLightStatusBar">true</item>
+        <item name="windowNoTitle">true</item>
         <!-- Customize your theme here. -->
         <item name="android:forceDarkAllowed" tools:targetApi="q">true</item>
         <item name="android:windowTranslucentStatus">true</item>

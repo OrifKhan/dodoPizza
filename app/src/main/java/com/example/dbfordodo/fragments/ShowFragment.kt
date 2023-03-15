@@ -9,6 +9,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.view.contains
 import androidx.core.view.isGone
@@ -38,10 +39,11 @@ import islom.din.dodo_ilmhona_proskills.db.data.Vkus
 
 
 private const val ARG_PARAM1: String = "param1"
-
+ private const val ARG_PARAM2 = "param2"
 
 class ShowFragment : Fragment() {
-
+    private var _pos:Int?=null
+    private val pos get()=_pos!!
     private var _pizza : Pizza? = null
     private val pizza get() = _pizza!!
 
@@ -63,6 +65,7 @@ class ShowFragment : Fragment() {
         super.onCreate(savedInstanceState)
         arguments?.let {
             _pizza = it.getParcelable(ARG_PARAM1)
+            _pos=it.getInt(ARG_PARAM2)
         }
 
     }
@@ -135,6 +138,7 @@ class ShowFragment : Fragment() {
                 }
             }
         }
+
         Glide
             .with(this)
             .load(pizza.image)
@@ -143,11 +147,11 @@ class ShowFragment : Fragment() {
         binding.description.text = pizza.name
 
 
+    }
 
 
 
 
-     }
 
 
 
@@ -160,7 +164,10 @@ class ShowFragment : Fragment() {
             recycler.adapter = adapter
             recycler.layoutManager = StaggeredGridLayoutManager(3, LinearLayoutManager.VERTICAL)
             adapter.sizeType = Constants.SREDNAYA
-            adapter.submitList(dodoViewMadel.getVkus().value)
+            dodoViewMadel.getVkus(2).observe(viewLifecycleOwner){
+                adapter.submitList(it)
+            }
+
         }
 
     override fun onDestroyView() {
@@ -176,6 +183,15 @@ class ShowFragment : Fragment() {
 
     fun onClickSmail() {
         binding.small.setOnClickListener {
+
+        dodoViewMadel.getPizza().observe(viewLifecycleOwner){
+
+                binding.imageShowOder.setImageResource(it[pos-1].image)
+            binding.imageShowOder.scaleType=ImageView.ScaleType.CENTER_CROP
+
+
+
+        }
             binding.small.setBackgroundResource(R.drawable.backround_select)
             binding.big.setBackgroundResource(R.drawable.back_selcted)
             binding.normal.setBackgroundResource(R.drawable.back_selcted)
@@ -185,7 +201,7 @@ class ShowFragment : Fragment() {
             binding.tonciy.isGone = true
             binding.classic.width = ViewGroup.LayoutParams.MATCH_PARENT
             adapter.sizeType = Constants.MALENKAYA
-            dodoViewMadel.getVkus().observe(viewLifecycleOwner){
+            dodoViewMadel.getVkus(1).observe(viewLifecycleOwner) {
                 adapter.submitList(it)
             }
             seleltList()
@@ -195,6 +211,14 @@ class ShowFragment : Fragment() {
 
     fun onClickBig() {
         binding.big.setOnClickListener {
+            dodoViewMadel.getPizza().observe(viewLifecycleOwner){
+
+                binding.imageShowOder.setImageResource(it[pos+1].image)
+                binding.imageShowOder.scaleType=ImageView.ScaleType.CENTER_CROP
+
+
+
+            }
             binding.small.setBackgroundResource(R.drawable.back_selcted)
             binding.big.setBackgroundResource(R.drawable.backround_select)
             binding.normal.setBackgroundResource(R.drawable.back_selcted)
@@ -202,10 +226,9 @@ class ShowFragment : Fragment() {
            // binding.imageShowOder.setImageResource(R.drawable.ingridient_1)
 
             adapter.sizeType = Constants.BOLSHAYA
-            dodoViewMadel.getVkus().observe(viewLifecycleOwner){
+            dodoViewMadel.getVkus(3).observe(viewLifecycleOwner){
                 adapter.submitList(it)
             }
-
             binding.tonciy.isGone = false
 
         }
@@ -213,6 +236,14 @@ class ShowFragment : Fragment() {
 
     fun onClickNormal() {
         binding.normal.setOnClickListener {
+            dodoViewMadel.getPizza().observe(viewLifecycleOwner){
+
+                binding.imageShowOder.setImageResource(it[pos].image)
+                binding.imageShowOder.scaleType=ImageView.ScaleType.CENTER_CROP
+
+
+
+            }
             binding.small.setBackgroundResource(R.drawable.back_selcted)
             binding.big.setBackgroundResource(R.drawable.back_selcted)
             binding.normal.setBackgroundResource(R.drawable.backround_select)
@@ -220,7 +251,7 @@ class ShowFragment : Fragment() {
            // binding.imageShowOder.setImageResource(R.drawable.ingridient_12)
 
             adapter.sizeType = Constants.SREDNAYA
-            dodoViewMadel.getVkus().observe(viewLifecycleOwner){
+            dodoViewMadel.getVkus(2).observe(viewLifecycleOwner){
                 adapter.submitList(it)
             }
 
@@ -233,7 +264,7 @@ class ShowFragment : Fragment() {
         binding.tonciy.setOnClickListener {
             binding.tonciy.setBackgroundResource(R.drawable.backround_select)
             binding.classic.setBackgroundResource(R.drawable.back_selcted)
-           dodoViewMadel.getVkus().observe(viewLifecycleOwner) {
+           dodoViewMadel.getVkus(2).observe(viewLifecycleOwner) {
 
 
                 adapter.submitList(it)
@@ -345,7 +376,7 @@ class ShowFragment : Fragment() {
     fun seleltList() {
 
         var newList = mutableListOf<Vkus>()
-        dodoViewMadel.getVkus().observe(viewLifecycleOwner) {
+        dodoViewMadel.getVkus(3).observe(viewLifecycleOwner) {
 
 
             for (item in it) {
@@ -357,10 +388,11 @@ class ShowFragment : Fragment() {
     }
     companion object {
 
-        fun newInstance(param1: islom.din.dodo_ilmhona_proskills.db.data.Pizza) =
+        fun newInstance(param1: islom.din.dodo_ilmhona_proskills.db.data.Pizza,pos:Int) =
             ShowFragment().apply {
                 arguments = Bundle().apply {
                     putParcelable(ARG_PARAM1, param1)
+                    putInt(ARG_PARAM2,pos)
 
 
                 }

@@ -66,7 +66,7 @@ open class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         //Room View Model
-        dodoViewModel.insertViewMadel()
+    // dodoViewModel.insertViewMadel()
 
 
 
@@ -104,7 +104,9 @@ if (!viewModel.hideBottomNavView)
 
     private fun setupInterestingRecyclerView() {
         val adapter = InterestingAdapter()
-        adapter.submitList(viewModel.interestingList())
+        dodoViewModel.getAllSizeNormal(2).observe(viewLifecycleOwner) {
+            adapter.submitList(it)
+        }
         binding.interestingRV.adapter = adapter
     }
 
@@ -179,7 +181,7 @@ if (!viewModel.hideBottomNavView)
 
     private fun settingPizzaRecyclerView() {
         // Pizza recycler view initialising and setting adapter and list for it
-        viewModel.pizzaList.observe(viewLifecycleOwner) {
+        dodoViewModel.getAllSizeNormal(2).observe(viewLifecycleOwner) {
             adapterForPizza.submitList(it)
         }
 
@@ -194,8 +196,12 @@ if (!viewModel.hideBottomNavView)
             Toast.makeText(requireContext(),"Added to busket",Toast.LENGTH_SHORT).show()
         }
         binding.pizzaRv.adapter = adapterForPizza
-        adapterForPizza.onClick={
-            val action = HomeFragmentDirections.actionNavigationHomeToFragmentViewPager(it)
+        adapterForPizza.onClick={pos,category->
+            val action = if (category==Constants.COMBO) {
+                HomeFragmentDirections.actionNavigationHomeToComboFragment()
+            }else{
+                HomeFragmentDirections.actionNavigationHomeToFragmentViewPager(pos)
+            }
             findNavController().navigate(action)
         }
     }

@@ -43,7 +43,7 @@ class FragmentViewPager : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        dodoViewMadel.getPizza().observe(viewLifecycleOwner,) {
+        dodoViewMadel.getAllSizeNormal(2).observe(viewLifecycleOwner,) {
 
 HomeFragment().arguments
             val adapter = ViewPagerAdapter(this,it)

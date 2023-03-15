@@ -5,6 +5,7 @@
     import androidx.room.Insert
     import androidx.room.OnConflictStrategy
     import androidx.room.Query
+    import com.example.dbfordodo.db.data.Constants
     import islom.din.dodo_ilmhona_proskills.db.data.*
 
     @Dao
@@ -13,7 +14,7 @@
         suspend fun insertPizza(pizza: Pizza)
 
         @Query("SELECT * FROM pizzaAll")
-        fun getAllPizza():LiveData<List<Pizza>>
+        fun getAllPizza(): LiveData<List<Pizza>>
 
         //cotegory dao
         @Insert(onConflict = OnConflictStrategy.IGNORE)
@@ -40,10 +41,11 @@
         @Insert(onConflict = OnConflictStrategy.IGNORE)
         suspend fun insertVkus(vkus: Vkus)
 
-        @Query("SELECT * FROM vkus")
-        fun getAllVkus(): LiveData<List<Vkus>>
+        @Query("SELECT * FROM vkus WHERE size = :size")
+        fun getAllVkus(size: Int): LiveData<List<Vkus>>
+
+        @Query("SELECT * FROM pizzaAll WHERE size = :size")
+        fun getAllSizeNormal(size: Int): LiveData<List<Pizza>>
 
 
-       /* @Query("SELECT * FROM category WHERE category= :category")
-        fun searchCategory(category: String ):LiveData<List<String>>
-   */ }
+    }

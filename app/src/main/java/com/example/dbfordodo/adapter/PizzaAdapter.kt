@@ -13,7 +13,7 @@ import islom.din.dodo_ilmhona_proskills.db.data.Pizza
 
 class PizzaAdapter() : ListAdapter<Pizza,ViewHolder>(PizzaDiffUtls()) {
 
-    var onClick : ((Int) -> Unit)? = null
+    var onClick : ((Int, String) -> Unit)? = null
     var order : ((Pizza) -> Unit)? = null
 
     inner class PizzaMainViewHolder(itemView: View)  : ViewHolder(itemView) {
@@ -29,7 +29,7 @@ class PizzaAdapter() : ListAdapter<Pizza,ViewHolder>(PizzaDiffUtls()) {
                 order?.invoke(pizzaData)
             }
             binding.root.setOnClickListener {
-                onClick?.invoke(adapterPosition)
+                onClick?.invoke(adapterPosition, pizzaData.category)
             }
 
         }
@@ -47,7 +47,7 @@ class PizzaAdapter() : ListAdapter<Pizza,ViewHolder>(PizzaDiffUtls()) {
                 order?.invoke(pizzaData)
             }
             binding.root.setOnClickListener {
-                onClick?.invoke(adapterPosition)
+                onClick?.invoke(adapterPosition,pizzaData.category)
             }
         }
     }

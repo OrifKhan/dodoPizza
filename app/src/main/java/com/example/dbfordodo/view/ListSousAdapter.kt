@@ -62,19 +62,11 @@ class ListSousAdapter() : ListAdapter<Vkus, ListSousAdapter.SousViewHolder>(MyDi
         }
 
         fun bindSena(vkus: Vkus) {
-            when (sizeType) {
-                Constants.MALENKAYA -> {
+
                     binding.sena.text = vkus.priceSmall.toString()
-                }
-                Constants.SREDNAYA -> {
-                    vkus.priceNormal.toString()
-                }
 
-                Constants.BOLSHAYA -> {
-                    vkus.priceBig.toString()
-                }
 
-            }
+
         }
 
         fun showHide(view: View) {

@@ -15,11 +15,12 @@ class ViewPagerAdapter(fa: FragmentViewPager,lists: List<Pizza>) : FragmentState
 
     init {
         list = mutableListOf()
-
+         var pos=0
        /* DodoDataBase.getInstance(fa.requireContext()).pizzaDao().getAllPizza()
             .observe(fa.viewLifecycleOwner) {
         */        for (i in lists) {
-                    list.add(ShowFragment.newInstance(i))
+            pos++
+                    list.add(ShowFragment.newInstance(i,pos))
 
 
 

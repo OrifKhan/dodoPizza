@@ -9,8 +9,7 @@ data class Vkus(
     val image : Int,
     val name : String,
     val priceSmall :Int,
-    val priceNormal :Int,
-    val priceBig :Int,
+    val size:Int,
     val available : Boolean? = true,
     var select : Boolean? = false,
 )

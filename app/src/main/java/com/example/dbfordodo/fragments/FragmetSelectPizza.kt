@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -45,17 +46,19 @@ class FragmetSelectPizza : Fragment() {
         }
        binding.recyaclePager.layoutManager = LinearLayoutManager(context,LinearLayoutManager.HORIZONTAL,false)
         binding.recyaclePager.adapter = adapter
+         adapter.list=args.listOfPizza.toMutableList()
 
 
+      adapter.onSelectItem = {
+      val action=FragmetSelectPizzaDirections.actionFragmetSelectPizzaToComboFragment(it.id)
+      findNavController().navigate(action)
+      /*  viewModel.pizzaChanged(it)
+            (requireActivity().supportFragmentManager.findFragmentById(R.id.fragmetSelectPizza) as NavHostFragment)
+                .navController.navigateUp()*/
+        }
 
-     /* adapter.onSelectItem = {
-            viewModel.pizzaChanged(it)
-            (requireActivity().supportFragmentManager.findFragmentById(R.id.nav) as NavHostFragment)
-                .navController.navigateUp()
-        }*/
 
-
-        val category = args.pizaa
+        val category = args.pizza
 
         when(category.category) {
             Constants.PIZZA ->
@@ -72,14 +75,7 @@ class FragmetSelectPizza : Fragment() {
         dodoViewMadel.getChoicePizza(40,2).observe(viewLifecycleOwner){it.forEach { list.add(it) }}
 
 
-        list.add(Pizza(0, R.raw.img_29,"2 стартера","2 стартера",
-            45, category = Constants.COMBO, things = 25, size = 2))
 
-
-        list.add(
-        Pizza(0, R.raw.img_31,"Две Кока-Колы Zero по суперцене","Две Кока-Колы Zero 0,5 по суперцене",
-            10, category = Constants.COMBO, size = 1
-        ))
         adapter.submitList(list)
 
         binding.root.setOnClickListener {

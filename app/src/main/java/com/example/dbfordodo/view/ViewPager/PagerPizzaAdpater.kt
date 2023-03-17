@@ -22,7 +22,8 @@ class PagerPizzaAdpater : ListAdapter<Pizza, PagerPizzaAdpater.PagerViewHolder>(
             oldItem == newItem
     }
 ) {
-
+    var list= mutableListOf<Pizza>()
+var pos:Int=0
     var onSelectItem: ((Pizza) -> (Unit))? = null
 
     inner class PagerViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -31,11 +32,13 @@ class PagerPizzaAdpater : ListAdapter<Pizza, PagerPizzaAdpater.PagerViewHolder>(
             binding.description.text = changeData.about
             binding.image.setImageResource(changeData.image)
             binding.name.text = changeData.name
-        }
 
-        init {
-            binding.root.setOnClickListener {
-                onSelectItem?.invoke(getItem(adapterPosition))
+
+
+            binding.choosePizza.setOnClickListener {
+                onSelectItem?.invoke(changeData)
+                binding.choosePizza.setBackgroundResource(R.drawable.back_selcted)
+                list[pos]=changeData
             }
         }
     }

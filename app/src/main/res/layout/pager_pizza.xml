@@ -7,7 +7,7 @@
     android:layout_height="480dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     app:cardCornerRadius="20dp"
-    tools:context=".FragmetSelectPizza">
+    tools:context=".fragments.FragmetSelectPizza">
 
 
 <androidx.constraintlayout.widget.ConstraintLayout
@@ -61,19 +61,19 @@
             android:text="asdasdasd"/>
 
 
-
         <TextView
-            android:layout_marginTop="32dp"
+            android:id="@+id/choosePizza"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textAlignment="center"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginHorizontal="48dp"
-            android:paddingVertical="6dp"
-            app:layout_constraintTop_toBottomOf="@id/widthPizza"
+            android:layout_marginTop="32dp"
             android:background="@drawable/change_button"
-            android:text="Выбрат"/>
+            android:paddingVertical="6dp"
+            android:text="Выбрат"
+            android:textAlignment="center"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/widthPizza" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 

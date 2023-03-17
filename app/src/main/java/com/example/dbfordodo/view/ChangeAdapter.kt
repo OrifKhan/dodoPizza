@@ -12,7 +12,8 @@ import com.example.dbfordodo.databinding.ComboDezignBinding
 import islom.din.dodo_ilmhona_proskills.db.data.Pizza
 
 class ChangeAdapter:ListAdapter<Pizza,ChangeAdapter.ChangeViewHolder>(ChangDiffutils()) {
-    var onClickItem:((Pizza, Int)->Unit)? = null
+    var onClickItem:((Pizza, Int,MutableList<Pizza>)->Unit)? = null
+    var list= mutableListOf<Pizza>()
 
     inner class ChangeViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val binding = ComboDezignBinding.bind(itemView)
@@ -23,7 +24,7 @@ class ChangeAdapter:ListAdapter<Pizza,ChangeAdapter.ChangeViewHolder>(ChangDiffu
             binding.descriptionComboDezig.text = pizza.name
 
             binding.root.setOnClickListener {
-                onClickItem?.invoke(pizza,adapterPosition)
+                onClickItem?.invoke(pizza,adapterPosition,list)
             }
         }
     }

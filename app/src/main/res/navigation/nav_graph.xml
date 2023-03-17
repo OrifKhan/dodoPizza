@@ -28,9 +28,7 @@
         <action
             android:id="@+id/action_navigation_home_to_fragmentViewPager"
             app:destination="@id/fragmentViewPager" />
-        <action
-            android:id="@+id/action_navigation_home_to_forCklick22"
-            app:destination="@id/forCklick2" />
+
         <action
             android:id="@+id/action_navigation_home_to_comboFragment"
             app:destination="@id/comboFragment" />
@@ -81,11 +79,7 @@
             android:name="pos"
             app:argType="integer" />
     </fragment>
-    <fragment
-        android:id="@+id/forCklick2"
-        android:name="com.example.dbfordodo.fragments.ForCklick"
-        android:label="fragment_for_cklick"
-        tools:layout="@layout/fragment_for_cklick" />
+
     <fragment
         android:id="@+id/comboFragment"
         android:name="com.example.dbfordodo.fragments.ComboFragment"
@@ -105,8 +99,14 @@
             android:id="@+id/action_fragmetSelectPizza_to_comboFragment"
             app:destination="@id/comboFragment" />
         <argument
-            android:name="pizaa"
+            android:name="pizza"
             app:argType="islom.din.dodo_ilmhona_proskills.db.data.Pizza" />
+        <argument
+            android:name="listOfPizza"
+            app:argType="islom.din.dodo_ilmhona_proskills.db.data.Pizza[]" />
+        <argument
+            android:name="posItemCombo"
+            app:argType="integer" />
     </fragment>
 
 </navigation>

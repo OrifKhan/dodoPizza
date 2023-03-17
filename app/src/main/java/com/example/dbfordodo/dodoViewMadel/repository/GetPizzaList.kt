@@ -221,7 +221,7 @@ class GetPizzaList {
 
 
         list.add(
-            Pizza(0, R.raw.img_21,"3 пиццы","Комбо 2 пиццы 30см на любой вкус",
+            Pizza(0, R.raw.img_21,"3 пиццы","Комбо 3 пиццы 30см на любой вкус",
                 price = 225, category = Constants.COMBO, things = 30, size = 2)
             )
 
@@ -284,77 +284,77 @@ class GetPizzaList {
         )
 
         list.add(
-            Pizza(id = 31, image = R.raw.img_33 , name = "Острый Додстер", about = "Горячая закуска с цыплёнком, перцем халапенью, солеными огурчиками, томатами, моцареллой, и соусом барбекю в тонкой пшеничной лепешке",
+            Pizza(id = 0, image = R.raw.img_33 , name = "Острый Додстер", about = "Горячая закуска с цыплёнком, перцем халапенью, солеными огурчиками, томатами, моцареллой, и соусом барбекю в тонкой пшеничной лепешке",
                 price = 25, category = Constants.ZAKUSKI, things = 1, size = 2)
         )
 
         list.add(
-            Pizza(id = 32, image = R.raw.img_34 , name = "Рулетики с сыром", about = "Сытные рулетики с моцареллой и сырным соусом",
+            Pizza(id = 0, image = R.raw.img_34 , name = "Рулетики с сыром", about = "Сытные рулетики с моцареллой и сырным соусом",
                 price = 27, category = Constants.ZAKUSKI, things = 1, size = 2)
         )
 
         list.add(
-            Pizza(id = 33, image = R.raw.img_35 , name = "Рулетики с пепперони, 16 шт.", about = "Горячие рулетики с колбасками пепперони, моцареллой и сырнымм соусом",
+            Pizza(id = 0, image = R.raw.img_35 , name = "Рулетики с пепперони, 16 шт.", about = "Горячие рулетики с колбасками пепперони, моцареллой и сырнымм соусом",
                 price = 27, category = Constants.ZAKUSKI, things = 16, size = 2)
         )
 
         list.add(
-            Pizza(id = 34, image = R.raw.img_36, name = "Рулетики с пепперони + Рулетики с сыром, 16 шт.", about = "Микс горячих рулетиков с сырным соусом, 8 штук с пепперони и моцареллой, 8 штук с моцареллой",
+            Pizza(id = 0, image = R.raw.img_36, name = "Рулетики с пепперони + Рулетики с сыром, 16 шт.", about = "Микс горячих рулетиков с сырным соусом, 8 штук с пепперони и моцареллой, 8 штук с моцареллой",
                 price = 27, category = Constants.ZAKUSKI, things = 16, size = 2)
         )
 
         list.add(
-            Pizza(id = 35, image = R.raw.img_37 , name = "Картофель из печи", about = "Ароматный запеченный картофель с итальянскими травами",
+            Pizza(id = 0, image = R.raw.img_37 , name = "Картофель из печи", about = "Ароматный запеченный картофель с итальянскими травами",
                 price = 28, category = Constants.ZAKUSKI, things = 1, size = 2)
         )
 
         list.add(
-            Pizza(id = 36, image = R.raw.img_38, name = "Стартер Грибной", about = "Горячая закуска с шампиньонами, моцареллой и соусом ранч в тонкой пшеничной лепешке",
+            Pizza(id = 0, image = R.raw.img_38, name = "Стартер Грибной", about = "Горячая закуска с шампиньонами, моцареллой и соусом ранч в тонкой пшеничной лепешке",
                 price = 25, category = Constants.ZAKUSKI, things = 1, size = 2)
         )
 
         list.add(
-            Pizza(id = 37, image = R.raw.img_39, name = "Мясной Стартер", about = "Горячая закуска с митболами из говядины, томатами, моцареллой, и пикатным соусом бурегер в тонкой пшеничной лепешке",
+            Pizza(id = 0, image = R.raw.img_39, name = "Мясной Стартер", about = "Горячая закуска с митболами из говядины, томатами, моцареллой, и пикатным соусом бурегер в тонкой пшеничной лепешке",
                 price = 25, category = Constants.ZAKUSKI, things = 1, size = 2)
         )
 
         list.add(
-            Pizza(id = 38, image = R.raw.img_40, name = "Сырныр стартер", about = "Гораячая закуска с очень сырной начинкой. Моцарелла, пармезан, чеддери соус в тонкой пшеничной лепешке",
+            Pizza(id = 0, image = R.raw.img_40, name = "Сырныр стартер", about = "Гораячая закуска с очень сырной начинкой. Моцарелла, пармезан, чеддери соус в тонкой пшеничной лепешке",
                 price = 25, category = Constants.ZAKUSKI, things = 1, size = 2)
         )
 
         list.add(
-            Pizza(id = 39, image = R.raw.img_41, name = "Куриные кусочки", about = "Кусочки куриного филе в хрустящей панировке",
+            Pizza(id = 0, image = R.raw.img_41, name = "Куриные кусочки", about = "Кусочки куриного филе в хрустящей панировке",
                 price = 48, category = Constants.ZAKUSKI, size = 2)
         )
 
         list.add(
-            Pizza(id = 40, image = R.raw.img_42, name = "Салаь Греческой с соусом бальзамик", about = "Салат айсберг, томаты черри, маслины, свежий огурец, кубики брынзы, соус бальзамик",
+            Pizza(id = 0, image = R.raw.img_42, name = "Салаь Греческой с соусом бальзамик", about = "Салат айсберг, томаты черри, маслины, свежий огурец, кубики брынзы, соус бальзамик",
                 price = 27, category = Constants.ZAKUSKI, things = 1,size = 2)
         )
 
         list.add(
-            Pizza(id = 41, image = R.raw.img_43, name = "Салат Цезарь", about = "Цыплёнок, свежие листья салата айсберг, томаты черри, сыры чеддер и пармезан, соус цезарь, пшеничные гренки, итальяские травы",
+            Pizza(id = 0, image = R.raw.img_43, name = "Салат Цезарь", about = "Цыплёнок, свежие листья салата айсберг, томаты черри, сыры чеддер и пармезан, соус цезарь, пшеничные гренки, итальяские травы",
                 price = 28, category = Constants.ZAKUSKI, size = 2)
         )
 
         list.add(
-            Pizza(id = 42, image = R.raw.img_44, name = "Рулетки с корицей", about = "Сытные сладкие рулетки с корицей",
+            Pizza(id = 0, image = R.raw.img_44, name = "Рулетки с корицей", about = "Сытные сладкие рулетки с корицей",
                 price= 22, category = Constants.DESERTI,16, size = 2)
         )
 
         list.add(
-            Pizza(id = 43, image = R.raw.img_45, name = "Чизкейк Нюь-Йорк", about = "Классические американские творожный десерт",
+            Pizza(id = 0, image = R.raw.img_45, name = "Чизкейк Нюь-Йорк", about = "Классические американские творожный десерт",
                 price = 23, category = Constants.DESERTI, size = 2)
         )
 
         list.add(
-            Pizza(id = 44, image = R.raw.img_46, name = "Маффин Три шоколада", about = "Десерт из натурального какао, нежной начинки на основе шоколада и кубиков белого и молочного шоколада",
+            Pizza(id = 0, image = R.raw.img_46, name = "Маффин Три шоколада", about = "Десерт из натурального какао, нежной начинки на основе шоколада и кубиков белого и молочного шоколада",
                 price = 12, category = Constants.DESERTI,size = 2 )
         )
 
         list.add(
-            Pizza(id = 45, image = R.raw.img_47, name = "Кукис Три шоколада", about = "Большое нежное печенье с кусочками бельгийского молочного, тёмного и белого шоколада",
+            Pizza(id = 0, image = R.raw.img_47, name = "Кукис Три шоколада", about = "Большое нежное печенье с кусочками бельгийского молочного, тёмного и белого шоколада",
                 price= 11, category = Constants.DESERTI,size = 2 )
         )
 
@@ -370,7 +370,7 @@ class GetPizzaList {
 
 
         list.add(
-            Pizza(id = 47, image = R.raw.img_48, name = "Coca-Cola Zero",
+            Pizza(id = 0, image = R.raw.img_48, name = "Coca-Cola Zero",
                 price = 8, category = Constants.NAPITKI, size = 2) )
 
 
@@ -412,22 +412,22 @@ list.add(
         )
 
         list.add(
-            Pizza(id = 54, image = R.raw.img_56, name = "Барбекю",
+            Pizza(id = 0, image = R.raw.img_56, name = "Барбекю",
                 price = 5, category = Constants.SOUSI, size = 2 )
         )
 
         list.add(
-            Pizza(id = 55, image = R.raw.img_57, name = "Чесночный",
+            Pizza(id = 0, image = R.raw.img_57, name = "Чесночный",
                 price = 5, category = Constants.SOUSI, size = 2 )
         )
 
         list.add(
-            Pizza(id = 56, image = R.raw.img_58, name = "Додо Раскарска",
+            Pizza(id = 0, image = R.raw.img_58, name = "Додо Раскарска",
                 price = 2, category = Constants.DRUGIE, size = 2 )
         )
 
         list.add(
-            Pizza(id = 57, image = R.raw.img_59, name = "Додо книги 1+2", about = "Набор из двух книг - \"Додо Книга 1\" и  \"Додо Книга 2\". Рассказываем об истории, ценностях и развитии компании ",
+            Pizza(id = 0, image = R.raw.img_59, name = "Додо книги 1+2", about = "Набор из двух книг - \"Додо Книга 1\" и  \"Додо Книга 2\". Рассказываем об истории, ценностях и развитии компании ",
                 price = 49, category = Constants.DRUGIE, things = 2, size = 2)
         )
         return list

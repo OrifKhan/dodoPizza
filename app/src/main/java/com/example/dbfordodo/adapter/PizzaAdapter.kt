@@ -3,20 +3,22 @@ package islom.din.dodo_ilmhona_proskills.QA.adapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.constraintlayout.widget.ConstraintSet.Constraint
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.example.dbfordodo.R
 import com.example.dbfordodo.databinding.PizzaItemBinding
 import com.example.dbfordodo.databinding.PizzaItemMainBinding
+import com.example.dbfordodo.db.data.Constants
 import islom.din.dodo_ilmhona_proskills.QA.diffUtils.PizzaDiffUtls
 import islom.din.dodo_ilmhona_proskills.db.data.Pizza
 
-class PizzaAdapter() : ListAdapter<Pizza,ViewHolder>(PizzaDiffUtls()) {
+class PizzaAdapter() : ListAdapter<Pizza, ViewHolder>(PizzaDiffUtls()) {
 
-    var onClick : ((Int, String) -> Unit)? = null
-    var order : ((Pizza) -> Unit)? = null
+    var onClick: ((Int, String) -> Unit)? = null
+    var order: ((Pizza) -> Unit)? = null
 
-    inner class PizzaMainViewHolder(itemView: View)  : ViewHolder(itemView) {
+    inner class PizzaMainViewHolder(itemView: View) : ViewHolder(itemView) {
         private var binding = PizzaItemMainBinding.bind(itemView)
 
         fun bind(pizzaData: Pizza) {
@@ -28,17 +30,23 @@ class PizzaAdapter() : ListAdapter<Pizza,ViewHolder>(PizzaDiffUtls()) {
             binding.piccaPrice.setOnClickListener {
                 order?.invoke(pizzaData)
             }
-            binding.root.setOnClickListener {
-                onClick?.invoke(adapterPosition, pizzaData.category)
-            }
+            if (pizzaData.category == Constants.COMBO) {
+                binding.root.setOnClickListener {
+                    onClick?.invoke(pizzaData.id, pizzaData.category)
+                }
+            } else {
+                binding.root.setOnClickListener {
+                    onClick?.invoke(pizzaData.id, pizzaData.category)
+                }
 
+            }
         }
     }
 
     inner class PizzaViewHolder(itemView: View) : ViewHolder(itemView) {
         private var binding = PizzaItemBinding.bind(itemView)
 
-        fun bind(pizzaData: Pizza){
+        fun bind(pizzaData: Pizza) {
             binding.pizzaImage.setImageResource(pizzaData.image)
             binding.pizzaName.text = pizzaData.name
             binding.pizzaAbout.text = pizzaData.about
@@ -46,19 +54,34 @@ class PizzaAdapter() : ListAdapter<Pizza,ViewHolder>(PizzaDiffUtls()) {
             binding.piccaPrice.setOnClickListener {
                 order?.invoke(pizzaData)
             }
-            binding.root.setOnClickListener {
-                onClick?.invoke(adapterPosition,pizzaData.category)
+            if (pizzaData.category == Constants.COMBO) {
+                binding.root.setOnClickListener {
+                    onClick?.invoke(pizzaData.id, pizzaData.category)
+                }
+            } else {
+                binding.root.setOnClickListener {
+                    onClick?.invoke(pizzaData.id, pizzaData.category)
+                }
             }
         }
     }
 
     override fun getItemViewType(position: Int): Int {
-        return if (getItem(position).id==1) PIZZAMAIN else PIZZA
+        return when (getItem(position).id){
+            1-> {     PIZZAMAIN}
+           63-> {PIZZAMAIN}
+            else-> {PIZZA}
+    }
+
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        return if (viewType == PIZZA) PizzaViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.pizza_item,parent,false))
-        else PizzaMainViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.pizza_item_main,parent,false))
+        return if (viewType == PIZZA) PizzaViewHolder(
+            LayoutInflater.from(parent.context).inflate(R.layout.pizza_item, parent, false)
+        )
+        else PizzaMainViewHolder(
+            LayoutInflater.from(parent.context).inflate(R.layout.pizza_item_main, parent, false)
+        )
     }
 
 
@@ -68,6 +91,7 @@ class PizzaAdapter() : ListAdapter<Pizza,ViewHolder>(PizzaDiffUtls()) {
         else if (holder is PizzaViewHolder)
             holder.bind(getItem(position))
     }
+
     companion object {
         const val PIZZAMAIN = 0
         const val PIZZA = 1

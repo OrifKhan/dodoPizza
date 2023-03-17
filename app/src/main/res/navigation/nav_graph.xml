@@ -93,6 +93,9 @@
         <action
             android:id="@+id/action_comboFragment_to_fragmetSelectPizza"
             app:destination="@id/fragmetSelectPizza" />
+        <argument
+            android:name="pos"
+            app:argType="integer" />
     </fragment>
     <fragment
         android:id="@+id/fragmetSelectPizza"

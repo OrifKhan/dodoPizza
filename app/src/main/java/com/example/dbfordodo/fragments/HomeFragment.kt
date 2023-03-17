@@ -27,6 +27,7 @@ import com.google.android.material.chip.Chip
 import islom.din.dodo_ilmhona_proskills.QA.adapter.InterestingAdapter
 import islom.din.dodo_ilmhona_proskills.QA.adapter.PizzaAdapter
 
+@Suppress("IMPLICIT_CAST_TO_ANY")
 open class HomeFragment : Fragment() {
     //binding
     private var _binding: FragmentHomeBinding? = null
@@ -66,7 +67,7 @@ open class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         //Room View Model
-    // dodoViewModel.insertViewMadel()
+     dodoViewModel.insertViewMadel()
 
 
 
@@ -197,10 +198,13 @@ if (!viewModel.hideBottomNavView)
         }
         binding.pizzaRv.adapter = adapterForPizza
         adapterForPizza.onClick={pos,category->
+            Toast.makeText(requireContext(),"$pos",Toast.LENGTH_SHORT).show()
             val action = if (category==Constants.COMBO) {
-                HomeFragmentDirections.actionNavigationHomeToComboFragment()
+                HomeFragmentDirections.actionNavigationHomeToComboFragment(pos)
             }else{
                 HomeFragmentDirections.actionNavigationHomeToFragmentViewPager(pos)
+
+
             }
             findNavController().navigate(action)
         }

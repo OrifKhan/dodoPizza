@@ -46,16 +46,11 @@ class ShowFragment : Fragment() {
     private val pos get()=_pos!!
     private var _pizza : Pizza? = null
     private val pizza get() = _pizza!!
-
     lateinit var view:DeleteIngridientItemBinding
-    lateinit var observerPizza: Observer<Pizza>
-
-  //  private var ingridientList:MutableList<Pizza> = mutableListOf()
-    //lateinit var catrgoty:Constants
     private var _binding: ViewShowFragmentBinding? = null
     lateinit var recycler: RecyclerView
     lateinit var adapter: ListSousAdapter
-  // private var pizza= mutableListOf<Any>()
+
     private val dodoViewMadel: DodoViewMadel by activityViewModels {
         DodoMadelFactory(Application(),(requireActivity().application as DataBaseApplication).database.pizzaDao())
     }

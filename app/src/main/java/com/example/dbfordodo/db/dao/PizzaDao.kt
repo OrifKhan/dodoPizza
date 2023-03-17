@@ -46,6 +46,11 @@
 
         @Query("SELECT * FROM pizzaAll WHERE size = :size")
         fun getAllSizeNormal(size: Int): LiveData<List<Pizza>>
+        @Query("SELECT * FROM pizzaAll WHERE  id < :things AND size = :siz")
+        fun getThreePizza(things: Int,siz: Int): LiveData<List<Pizza>>
+        @Query("SELECT * FROM pizzaAll WHERE  category = :category")
+        fun getDrinks(category: String): LiveData<List<Pizza>>
+
 
 
     }

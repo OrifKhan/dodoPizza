@@ -4,10 +4,8 @@ import android.app.Application
 import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.dbfordodo.db.dao.dbMain.DodoDataBase
-import com.example.dbfordodo.db.data.Constants
 import com.example.dbfordodo.dodoViewMadel.repository.*
 import islom.din.dodo_ilmhona_proskills.db.dao.PizzaDao
 import islom.din.dodo_ilmhona_proskills.db.data.Category
@@ -15,7 +13,6 @@ import islom.din.dodo_ilmhona_proskills.db.data.Ingridients
 import islom.din.dodo_ilmhona_proskills.db.data.Pizza
 import islom.din.dodo_ilmhona_proskills.db.data.Vkus
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 class DodoViewMadel(app:Application,pizzaDao:PizzaDao): AndroidViewModel(app) {
@@ -62,6 +59,12 @@ class DodoViewMadel(app:Application,pizzaDao:PizzaDao): AndroidViewModel(app) {
     }
     fun getAllSizeNormal(size:Int): LiveData<List<Pizza>> {
         return db.getAllSizeNormal(size)
+    }
+    fun getChoicePizza(things:Int,size:Int): LiveData<List<Pizza>> {
+        return db.getThreePizza(things,size)
+    }
+    fun getCategory(category:String): LiveData<List<Pizza>> {
+        return db.getDrinks(category)
     }
 
 }

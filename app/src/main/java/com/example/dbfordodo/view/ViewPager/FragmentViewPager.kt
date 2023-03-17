@@ -21,15 +21,18 @@ import com.example.dbfordodo.view.DataBaseApplication
 import kotlin.math.abs
 
 class FragmentViewPager : Fragment() {
-    private var _binding:ViewpagerLayoutBinding ? = null
+    private var _binding: ViewpagerLayoutBinding? = null
     private val binding get() = _binding!!
 
     //Room View Model
     private val dodoViewMadel: DodoViewMadel by activityViewModels {
-        DodoMadelFactory(Application(),(requireActivity().application as DataBaseApplication).database.pizzaDao())
+        DodoMadelFactory(
+            Application(),
+            (requireActivity().application as DataBaseApplication).database.pizzaDao()
+        )
     }
 
-    private val args : FragmentViewPagerArgs by navArgs()
+    private val args: FragmentViewPagerArgs by navArgs()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -43,14 +46,14 @@ class FragmentViewPager : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        dodoViewMadel.getAllSizeNormal(2).observe(viewLifecycleOwner,) {
+        dodoViewMadel.getAllSizeNormal(2).observe(viewLifecycleOwner) {
 
-HomeFragment().arguments
-            val adapter = ViewPagerAdapter(this,it)
-   Log.d("tet","$adapter.itemCount")
+
+            val adapter = ViewPagerAdapter(this, it,args.pos)
+            Log.d("tet", "$adapter.itemCount")
             binding.viewPagerLayout.adapter = adapter
             binding.viewPagerLayout.setPageTransformer(getTransformation())
-            binding.viewPagerLayout.currentItem = args.pos
+          //  binding.viewPagerLayout.currentItem = args.pos
         }
     }
 

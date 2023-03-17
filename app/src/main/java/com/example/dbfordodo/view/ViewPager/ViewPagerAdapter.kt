@@ -10,21 +10,19 @@ import com.example.dbfordodo.fragments.ShowFragment
 import islom.din.dodo_ilmhona_proskills.db.data.Pizza
 import kotlin.coroutines.coroutineContext
 
-class ViewPagerAdapter(fa: FragmentViewPager,lists: List<Pizza>) : FragmentStateAdapter(fa) {
+class ViewPagerAdapter(fa: FragmentViewPager, lists: List<Pizza>, pos: Int) :
+    FragmentStateAdapter(fa) {
     private val list: List<Fragment>
 
     init {
         list = mutableListOf()
-         var pos=0
-       /* DodoDataBase.getInstance(fa.requireContext()).pizzaDao().getAllPizza()
-            .observe(fa.viewLifecycleOwner) {
-        */        for (i in lists) {
-            pos++
-                    list.add(ShowFragment.newInstance(i,pos))
+
+        for (i in lists) {
+            pos + 1
+            list.add(ShowFragment.newInstance(i, pos))
 
 
-
-            }
+        }
     }
 
     override fun getItemCount(): Int {

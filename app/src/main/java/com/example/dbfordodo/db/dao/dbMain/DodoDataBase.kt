@@ -18,7 +18,6 @@ import islom.din.dodo_ilmhona_proskills.khq.dbMain.*
 )
 
 abstract class DodoDataBase: RoomDatabase() {
-
     abstract fun pizzaDao():PizzaDao
 
     abstract fun ingredientsDao() : IngredientsDao

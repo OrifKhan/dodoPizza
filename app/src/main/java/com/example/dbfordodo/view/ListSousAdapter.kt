@@ -16,7 +16,7 @@ import islom.din.dodo_ilmhona_proskills.db.data.Vkus
 
 class ListSousAdapter() : ListAdapter<Vkus, ListSousAdapter.SousViewHolder>(MyDiffUtil()) {
     var onClick: ((Int) -> Unit) = {}
-    var sizeType = Constants.MALENKAYA
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SousViewHolder {
         return SousViewHolder(

@@ -305,7 +305,7 @@ class GetPizzaList {
 
         list.add(
             Pizza(id = 0, image = R.raw.img_37 , name = "Картофель из печи", about = "Ароматный запеченный картофель с итальянскими травами",
-                price = 28, category = Constants.ZAKUSKI, things = 1, size = 2)
+                price = 28, category = Constants.ZAKUSKI, things = 0, size = 2)
         )
 
         list.add(
@@ -325,7 +325,7 @@ class GetPizzaList {
 
         list.add(
             Pizza(id = 0, image = R.raw.img_41, name = "Куриные кусочки", about = "Кусочки куриного филе в хрустящей панировке",
-                price = 48, category = Constants.ZAKUSKI, size = 2)
+                price = 48, category = Constants.ZAKUSKI, size = 2, things = 0)
         )
 
         list.add(

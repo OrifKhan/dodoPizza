@@ -50,8 +50,8 @@ class DodoViewMadel(app:Application,pizzaDao:PizzaDao): AndroidViewModel(app) {
         return db.getAllVkus(size)
     }
 
-    fun getIngridient(): LiveData<List<Ingridients>> {
-        return db.getIngredient()
+    fun getIngridient(id:Int): LiveData<List<Ingridients>> {
+        return db.getIngredient(id)
     }
 
     fun getAllCotegory(): LiveData<List<Category>> {
@@ -64,7 +64,16 @@ class DodoViewMadel(app:Application,pizzaDao:PizzaDao): AndroidViewModel(app) {
         return db.getThreePizza(things,size)
     }
     fun getCategory(category:String): LiveData<List<Pizza>> {
-        return db.getDrinks(category)
+        return db.getCatedory(category)
+    }
+    fun getCategoryWithSize(category:String,size: Int): LiveData<List<Pizza>> {
+        return db.getCatedoryWithSize(category,size)
+    }
+    fun getPizzaNameWithSize(name:String, size:Int): LiveData<List<Pizza>> {
+        return db.getPizzaNameWithSize(name,size)
+    }
+    fun getPizzaName(name:String): LiveData<List<Pizza>> {
+        return db.getPizzaName(name)
     }
 
 }

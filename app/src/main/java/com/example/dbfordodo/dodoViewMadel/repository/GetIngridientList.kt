@@ -8,9 +8,49 @@ class GetIngridientList()  {
 
         val list = mutableListOf<Ingridients>()
 
-        list.add(Ingridients(id = 0, name = "NOTHING"))
-        list.add(Ingridients(id = 0, name = "Соус альфредо",false))
-        list.add(Ingridients(id = 0, name = "Мандарины"))
+        list.add(Ingridients(id=0,2,"Сыр моцарелла",false))
+        list.add(Ingridients(id=0,2,"салат свежий",false))
+        list.add(Ingridients(id=0,2,"соус цезеарь",false))
+        list.add(Ingridients(id=0,2,"томаты",))
+        list.add(Ingridients(id=0,2,"смесь сыров чеддер и пармезан"))
+
+        list.add(Ingridients(id=0,5,"Сыр моцарелла",false))
+        list.add(Ingridients(id=0,5,"томатный соус",false))
+        list.add(Ingridients(id=0,5,"слаткий перец"))
+        list.add(Ingridients(id=0,5,"острая чоризо из цыпленка"))
+
+        list.add(Ingridients(id=0,8,"Сыр моцарелла",false))
+        list.add(Ingridients(id=0,8,"соус бургер",false))
+        list.add(Ingridients(id=0,8,"ветчина хальяль",))
+        list.add(Ingridients(id=0,8,"маринованные огурчики",))
+        list.add(Ingridients(id=0,8,"красный лук",))
+        list.add(Ingridients(id=0,8,"томаты",))
+
+        list.add(Ingridients(id=0,11,"Сыр моцарелла",false))
+        list.add(Ingridients(id=0,11,"соус ранч",false))
+        list.add(Ingridients(id=0,11,"соус бургер",false))
+        list.add(Ingridients(id=0,11,"цыпленок"))
+        list.add(Ingridients(id=0,11,"острая чоризо из цыпленка"))
+        list.add(Ingridients(id=0,11,"сладкий перец"))
+        list.add(Ingridients(id=0,11,"красный лук"))
+        list.add(Ingridients(id=0,11,"томаты "))
+        list.add(Ingridients(id=0,11,"чеснок "))
+
+        list.add(Ingridients(id=0,14,"Увеличенная порция моцареллы",false))
+        list.add(Ingridients(id=0,14,"томатный соус",false))
+        list.add(Ingridients(id=0,14,"пепперони из цыпленка "))
+
+        list.add(Ingridients(id=0,17,"Сыр моцарелла",false))
+        list.add(Ingridients(id=0,17,"томатный соус",false))
+        list.add(Ingridients(id=0,17,"пикантная пепперони из цыпленка"))
+        list.add(Ingridients(id=0,17,"ветчина из цыпленка"))
+        list.add(Ingridients(id=0,17,"митболы из говядины"))
+
+
+
+    /*    list.add(Ingridients(id_pizza = 0, name = "NOTHING"))
+        list.add(Ingridients(id_pizza = 2, name = "Соус альфредо",false))
+        list.add(Ingridients(id_pizza = 2, name = "Мандарины"))
         list.add(Ingridients(id = 0 , name = "Цитровый соус",false))
         list.add(Ingridients(id = 0 , name = "Новогодгый соус",))
         list.add(Ingridients(id = 0 , name = "Cыр моцарелла",false))
@@ -19,7 +59,7 @@ class GetIngridientList()  {
         list.add(Ingridients(id = 0 , name = "Томаты"))
         list.add(Ingridients(id = 0 , name = "Соус бургер",false))
         list.add(Ingridients(id = 0 , name = "Ветчина халяль",false))
-        list.add(Ingridients(id = 0 , name = "Сыр моцарелла",false))
+        list.add(Ingridients(id = 2 , name = "Сыр моцарелла",false))
         list.add(Ingridients(id = 0 , name = "Цыплёнок"))
         list.add(Ingridients(id = 0 , name = "Соус ранч"))
         list.add(Ingridients(id = 0 , name = "Острая чоризо из цыплёнка"))
@@ -118,7 +158,7 @@ class GetIngridientList()  {
         for (i in text){
             list.add(Ingridients(id = couter, name = i))
 
-        }
+        }*/
 
 
 

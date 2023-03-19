@@ -15,7 +15,7 @@ import islom.din.dodo_ilmhona_proskills.db.data.Pizza
 
 class PizzaAdapter() : ListAdapter<Pizza, ViewHolder>(PizzaDiffUtls()) {
 
-    var onClick: ((Int, String) -> Unit)? = null
+    var onClick: ((Int, Pizza) -> Unit)? = null
     var order: ((Pizza) -> Unit)? = null
 
     inner class PizzaMainViewHolder(itemView: View) : ViewHolder(itemView) {
@@ -32,11 +32,11 @@ class PizzaAdapter() : ListAdapter<Pizza, ViewHolder>(PizzaDiffUtls()) {
             }
             if (pizzaData.category == Constants.COMBO) {
                 binding.root.setOnClickListener {
-                    onClick?.invoke(pizzaData.id, pizzaData.category)
+                    onClick?.invoke(pizzaData.id, pizzaData)
                 }
             } else {
                 binding.root.setOnClickListener {
-                    onClick?.invoke(pizzaData.id, pizzaData.category)
+                    onClick?.invoke(adapterPosition, pizzaData)
                 }
 
             }
@@ -56,11 +56,11 @@ class PizzaAdapter() : ListAdapter<Pizza, ViewHolder>(PizzaDiffUtls()) {
             }
             if (pizzaData.category == Constants.COMBO) {
                 binding.root.setOnClickListener {
-                    onClick?.invoke(pizzaData.id, pizzaData.category)
+                    onClick?.invoke(pizzaData.id, pizzaData)
                 }
             } else {
                 binding.root.setOnClickListener {
-                    onClick?.invoke(pizzaData.id, pizzaData.category)
+                    onClick?.invoke(adapterPosition, pizzaData)
                 }
             }
         }

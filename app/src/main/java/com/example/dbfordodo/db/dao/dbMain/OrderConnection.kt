@@ -6,8 +6,19 @@ import androidx.room.ForeignKey
 import androidx.room.PrimaryKey
 import com.example.dbfordodo.db.data.Constants
 
-@Entity(tableName = "order_connection", foreignKeys = [ForeignKey(Order::class,["user_id"],["user_id"], onDelete = ForeignKey.CASCADE),
-    ForeignKey(Products::class,["id"],["product_id"], onDelete = ForeignKey.CASCADE)])
+@Entity(
+    tableName = "order_connection",
+    foreignKeys = [ForeignKey(
+        Order::class,
+        ["user_id"], ["user_id"],
+        onDelete = ForeignKey.CASCADE
+    ),
+        ForeignKey(
+            Products::class,
+            ["id"], ["product_id"],
+            onDelete = ForeignKey.CASCADE
+        )]
+)
 data class OrderConnection (
     @PrimaryKey(autoGenerate = true) @ColumnInfo("order_id") val orderId : Int = 0,
     @ColumnInfo("user_id") val userId : Int = Constants.USER_ID,

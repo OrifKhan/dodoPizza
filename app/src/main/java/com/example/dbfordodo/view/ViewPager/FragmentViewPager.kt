@@ -10,13 +10,16 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.viewpager2.widget.CompositePageTransformer
 import androidx.viewpager2.widget.MarginPageTransformer
 import com.example.dbfordodo.databinding.ViewpagerLayoutBinding
+import com.example.dbfordodo.db.data.Constants
 import com.example.dbfordodo.dodoViewMadel.DodoViewMadel
 import com.example.dbfordodo.dodoViewMadel.repository.DodoMadelFactory
 import com.example.dbfordodo.fragments.HomeFragment
+import com.example.dbfordodo.fragments.ShowFragment
 import com.example.dbfordodo.view.DataBaseApplication
 import kotlin.math.abs
 
@@ -32,7 +35,7 @@ class FragmentViewPager : Fragment() {
         )
     }
 
-    private val args: FragmentViewPagerArgs by navArgs()
+    private val args:FragmentViewPagerArgs by navArgs()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -46,15 +49,28 @@ class FragmentViewPager : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        dodoViewMadel.getAllSizeNormal(2).observe(viewLifecycleOwner) {
 
 
-            val adapter = ViewPagerAdapter(this, it,args.pos)
-            Log.d("tet", "$adapter.itemCount")
-            binding.viewPagerLayout.adapter = adapter
-            binding.viewPagerLayout.setPageTransformer(getTransformation())
-          //  binding.viewPagerLayout.currentItem = args.pos
-        }
+                dodoViewMadel.getAllSizeNormal( 2).observe(viewLifecycleOwner) {
+
+                    val adapter = ViewPagerAdapter(this, it, args.pos)
+
+                    Log.d("tet", "$adapter.itemCount")
+                    binding.viewPagerLayout.adapter = adapter
+                    binding.viewPagerLayout.setPageTransformer(getTransformation())
+                    binding.viewPagerLayout.currentItem = args.pos
+
+
+                }
+            /*  }else{
+                  val action=FragmentViewPagerDirections.actionFragmentViewPagerToShowFragment2()
+                  findNavController().navigate(action)
+                  ShowFragment.newInstance(args.pizza)
+              }*/
+
+
+
+
     }
 
     override fun onDestroy() {

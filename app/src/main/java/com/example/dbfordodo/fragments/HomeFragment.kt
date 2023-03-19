@@ -67,23 +67,23 @@ open class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         //Room View Model
-     dodoViewModel.insertViewMadel()
+   //  dodoViewModel.insertViewMadel()
 
 
 
 
         // Making Bottom Nav View Visible
-/* var bottomNavigationView = requireActivity().findViewById<BottomNavigationView>(R.id.bottom_nav_view)
+ /*var bottomNavigationView = requireActivity().findViewById<BottomNavigationView>(R.id.bottom_nav_view)
        bottomNavigationView.setOnItemSelectedListener{
            when(it.itemId){
-               R.id.-> {navigateToMeetFragment()
+               -> {navigateToMeetFragment()
                if (!viewModel.hideBottomNavView) {
                    bottomNavigationView.visibility = View.VISIBLE
                }
                }
            }
            true
-       }
+       }*//*
 
 if (!viewModel.hideBottomNavView)
             bottomNavigationView.visibility = View.VISIBLE*/
@@ -197,15 +197,15 @@ if (!viewModel.hideBottomNavView)
             Toast.makeText(requireContext(),"Added to busket",Toast.LENGTH_SHORT).show()
         }
         binding.pizzaRv.adapter = adapterForPizza
-        adapterForPizza.onClick={pos,category->
+        adapterForPizza.onClick={pos,pizza->
             Toast.makeText(requireContext(),"$pos",Toast.LENGTH_SHORT).show()
-            val action = if (category==Constants.COMBO) {
+            val action = if (pizza.category==Constants.COMBO) {
                 HomeFragmentDirections.actionNavigationHomeToComboFragment(pos)
             }else{
-                HomeFragmentDirections.actionNavigationHomeToFragmentViewPager(pos)
+               HomeFragmentDirections.actionNavigationHomeToFragmentViewPager(pos,pizza)
 
 
-            }
+        }
             findNavController().navigate(action)
         }
     }

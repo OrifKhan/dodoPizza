@@ -25,13 +25,17 @@
         <action
             android:id="@+id/action_navigation_home_to_adressDostavkiFragment"
             app:destination="@id/adressDostavkiFragment" />
+
+        <action
+            android:id="@+id/action_navigation_home_to_korzinaFragment"
+            app:destination="@id/basketFragment" />
         <action
             android:id="@+id/action_navigation_home_to_fragmentViewPager"
             app:destination="@id/fragmentViewPager" />
-
         <action
             android:id="@+id/action_navigation_home_to_comboFragment"
             app:destination="@id/comboFragment" />
+
     </fragment>
 
     <fragment
@@ -60,24 +64,12 @@
             app:destination="@id/navigation_home" />
     </fragment>
     <fragment
-        android:id="@+id/fragmentViewPager"
-        android:name="islom.din.dodo_ilmhona_proskills.view.ViewPager.FragmentViewPager"
-        android:label="FragmentViewPager" >
-        <action
-            android:id="@+id/action_fragmentViewPager_to_showFragment2"
-            app:destination="@id/showFragment2"
-            app:popUpTo="@id/navigation_home" />
-        <argument
-            android:name="pos"
-            app:argType="integer" />
-    </fragment>
-    <fragment
         android:id="@+id/showFragment2"
         android:name="com.example.dbfordodo.fragments.ShowFragment"
         android:label="ShowFragment" >
-        <argument
-            android:name="pos"
-            app:argType="integer" />
+        <action
+            android:id="@+id/action_showFragment2_to_comboFragment"
+            app:destination="@id/comboFragment" />
     </fragment>
 
     <fragment
@@ -108,5 +100,24 @@
             android:name="posItemCombo"
             app:argType="integer" />
     </fragment>
+    <fragment
+        android:id="@+id/basketFragment"
+        android:name="com.example.dbfordodo.fragments.KorzinaFragment"
+        android:label="KorzinaFragment" />
+    <fragment
+        android:id="@+id/fragmentViewPager"
+        android:name="islom.din.dodo_ilmhona_proskills.view.ViewPager.FragmentViewPager"
+        android:label="FragmentViewPager" >
+        <action
+            android:id="@+id/action_fragmentViewPager_to_showFragment2"
+            app:destination="@id/showFragment2" />
+        <argument
+            android:name="pos"
+            app:argType="integer" />
+        <argument
+            android:name="pizza"
+            app:argType="islom.din.dodo_ilmhona_proskills.db.data.Pizza" />
+    </fragment>
+
 
 </navigation>

@@ -23,8 +23,8 @@ class ComboFragment : Fragment() {
     lateinit var adapter: ChangeAdapter
     lateinit var rcView: RecyclerView
     private var fragmentComboBinding: FragmentComboBinding? = null
-    private  var combo= mutableListOf<Pizza>()
-     var position: Int =0
+    private var combo = mutableListOf<Pizza>()
+    var position: Int = 0
     private val args: ComboFragmentArgs by navArgs()
 
     override fun onCreateView(
@@ -42,16 +42,20 @@ class ComboFragment : Fragment() {
         adapter = ChangeAdapter()
         rcView.adapter = adapter
         rcView.layoutManager = LinearLayoutManager(context)
-        adapter.list=combo
-        adapter.onClickItem = { pizza,pos,combo->
+        adapter.list = combo
+        adapter.onClickItem = { pizza, pos, combo ->
 
-            val action = ComboFragmentDirections.actionComboFragmentToFragmetSelectPizza(pizza,combo.toTypedArray(),pos)
+            val action = ComboFragmentDirections.actionComboFragmentToFragmetSelectPizza(
+                pizza,
+                combo.toTypedArray(),
+                pos
+            )
             findNavController().navigate(action)
         }
         val viewModel = ViewModelProvider(requireActivity())[DodoViewMadel::class.java]
 
         viewModel.getPizza().observe(viewLifecycleOwner) {
-     position=args.pos-1
+            position = args.pos - 1
             with(binding) {
                 imageComboFragment.setImageResource(it[position].image)
                 descriptionComboFragment.text = it[position].about
@@ -148,7 +152,7 @@ class ComboFragment : Fragment() {
                     viewModel.getCategory(Constants.PIZZA).observe(viewLifecycleOwner) {
                         var cont = 0
                         it.forEach {
-                            if (cont< 1) {
+                            if (cont < 1) {
                                 combo.add(it)
                                 cont++
                             }
@@ -180,20 +184,20 @@ class ComboFragment : Fragment() {
                                 cont++
                             }
                         }
-adapter.submitList(combo)
+                        adapter.submitList(combo)
                     }
                 }
-                "2 стартера"->{
+                "2 стартера" -> {
 
-                    viewModel.getCategory(Constants.ZAKUSKI).observe(viewLifecycleOwner){
-                        var cont =0
+                    viewModel.getCategory(Constants.ZAKUSKI).observe(viewLifecycleOwner) {
+                        var cont = 0
                         it.forEach {
-                            if (cont<2){
+                            if (cont < 2) {
                                 combo.add(it)
                                 cont++
                             }
                         }
-                    adapter.submitList(combo)
+                        adapter.submitList(combo)
                     }
                 }
             }

@@ -9,15 +9,15 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
+import android.view.ViewGroup.LayoutParams.MATCH_PARENT
 import android.widget.TextView
+import android.widget.Toast
 import androidx.core.view.contains
 import androidx.core.view.isGone
 import androidx.core.view.size
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
@@ -42,14 +42,17 @@ private const val ARG_PARAM1: String = "param1"
  private const val ARG_PARAM2 = "param2"
 
 class ShowFragment : Fragment() {
-    private var _pos:Int?=null
-    private val pos get()=_pos!!
+   private var _pos:Int?=null
+   private val pos get()=_pos!!
+
     private var _pizza : Pizza? = null
     private val pizza get() = _pizza!!
-    lateinit var view:DeleteIngridientItemBinding
+//    lateinit var view:DeleteIngridientItemBinding
     private var _binding: ViewShowFragmentBinding? = null
     lateinit var recycler: RecyclerView
     lateinit var adapter: ListSousAdapter
+
+    private var listOfSize= mutableListOf<Pizza>()
 
     private val dodoViewMadel: DodoViewMadel by activityViewModels {
         DodoMadelFactory(Application(),(requireActivity().application as DataBaseApplication).database.pizzaDao())
@@ -60,7 +63,7 @@ class ShowFragment : Fragment() {
         super.onCreate(savedInstanceState)
         arguments?.let {
             _pizza = it.getParcelable(ARG_PARAM1)
-            _pos=it.getInt(ARG_PARAM2)
+           _pos=it.getInt(ARG_PARAM2)
         }
 
     }
@@ -86,7 +89,7 @@ class ShowFragment : Fragment() {
                     val view = setupChip(pizza)
                     MaterialAlertDialogBuilder(requireContext())
                         .setPositiveButton("DONE") { dialog, which: Int ->
-                            dodoViewMadel.getIngridient().observe(viewLifecycleOwner) {
+                            dodoViewMadel.getIngridient(pizza.id).observe(viewLifecycleOwner) {
                                 for (ingrident in it.withIndex())
                                     if (ingrident.index !in view.chipGroup.checkedChipIds)
                                         it[ingrident.index].delete = true
@@ -123,6 +126,83 @@ class ShowFragment : Fragment() {
                 onClickNormal()
                 onClickType()
             }
+            Constants.DESERTI->{
+                binding.apply {
+                    recSous.visibility = View.INVISIBLE
+                    linearLayout.visibility = View.INVISIBLE
+                    removeIngrelienites.visibility = View.INVISIBLE
+                    if (pizza.category == Constants.DESERTI)
+                        linearLayout2.visibility = View.INVISIBLE
+                    classic.text=pizza.things.toString()
+                }
+            }
+            Constants.NAPITKI->{
+
+                     binding.apply {
+                         dodoViewMadel.getPizzaName(pizza.name).observe(viewLifecycleOwner) {
+
+                              when(it.size){
+                                  1->{normal.width = MATCH_PARENT
+                                      linearLayout2.visibility = View.INVISIBLE
+                                      normal.text = "0.5"
+                                      removeIngrelienites.visibility = View.INVISIBLE
+                                      small.isGone=true
+                                      big.isGone=true
+                                     }
+                                  2->{
+                                      normal.text = "0.5"
+                                      small.isGone=true
+                                      removeIngrelienites.visibility = View.INVISIBLE
+                                      linearLayout2.visibility = View.INVISIBLE
+                                      big.text="1"
+                                      onClickBig()
+                                      onClickNormal()
+                                  }
+                                  3->{
+                                  small.text = "0.33"
+                                  normal.text = "0.5"
+                                  big.text = "1"
+                                      removeIngrelienites.visibility = View.INVISIBLE
+                                  linearLayout2.visibility = View.INVISIBLE
+                                  recSous.visibility = View.INVISIBLE
+                                  onClickSmail()
+                                  onClickBig()
+                                  onClickNormal()
+                                  }
+                              }
+
+
+
+
+
+                         }
+                }
+            }
+            Constants.ZAKUSKI->{
+                binding.apply {
+                    when(pizza.things){
+                     0->{
+                normal.width = MATCH_PARENT
+                linearLayout2.visibility = View.INVISIBLE
+                normal.text = "Большая"
+                removeIngrelienites.visibility = View.INVISIBLE
+                small.isGone=true
+                big.isGone=true
+            }
+                    else->{
+                        normal.width = MATCH_PARENT
+                        linearLayout2.visibility = View.INVISIBLE
+                        normal.text = pizza.things.toString()+" шт"
+                        removeIngrelienites.visibility = View.INVISIBLE
+                        small.isGone=true
+                        big.isGone=true
+                }
+                    }
+                }
+            }
+            Constants.COMBO->{
+
+            }
             else -> {
                 binding.apply {
                     recSous.visibility = View.INVISIBLE
@@ -130,6 +210,7 @@ class ShowFragment : Fragment() {
                     removeIngrelienites.visibility = View.INVISIBLE
                     if (pizza.category == Constants.DESERTI)
                         linearLayout2.visibility = View.INVISIBLE
+                    binding.classic
                 }
             }
         }
@@ -158,7 +239,7 @@ class ShowFragment : Fragment() {
             adapter = ListSousAdapter()
             recycler.adapter = adapter
             recycler.layoutManager = StaggeredGridLayoutManager(3, LinearLayoutManager.VERTICAL)
-            adapter.sizeType = Constants.SREDNAYA
+
             dodoViewMadel.getVkus(2).observe(viewLifecycleOwner){
                 adapter.submitList(it)
             }
@@ -168,7 +249,10 @@ class ShowFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+
+
     }
+
 
 
 
@@ -179,80 +263,95 @@ class ShowFragment : Fragment() {
     fun onClickSmail() {
         binding.small.setOnClickListener {
 
-        dodoViewMadel.getPizza().observe(viewLifecycleOwner){
+            dodoViewMadel.getPizzaNameWithSize(pizza.name, 1).observe(viewLifecycleOwner) {
+                it.forEach {
 
-                binding.imageShowOder.setImageResource(it[pos-1].image)
-            binding.imageShowOder.scaleType=ImageView.ScaleType.CENTER_CROP
+                    Glide
+                        .with(this)
+                        .load(it.image)
+                        .into(binding.imageShowOder)
+                  //  binding.imageShowOder.scaleType = ImageView.ScaleType.CENTER_CROP
 
 
+                with(binding){
+                small.setBackgroundResource(R.drawable.backround_select)
+                big.setBackgroundResource(R.drawable.back_selcted)
+                normal.setBackgroundResource(R.drawable.back_selcted)
+                    if (it.category==Constants.PIZZA){
+                classic.setBackgroundResource(R.drawable.backround_select)
+                tonciy.setBackgroundResource(R.drawable.back_selcted)
+                tonciy.isGone = true
+                classic.width = ViewGroup.LayoutParams.MATCH_PARENT
+                dodoViewMadel.getVkus(1).observe(viewLifecycleOwner) {
+                    adapter.submitList(it)
+                    seleltList(1)
 
-        }
-            binding.small.setBackgroundResource(R.drawable.backround_select)
-            binding.big.setBackgroundResource(R.drawable.back_selcted)
-            binding.normal.setBackgroundResource(R.drawable.back_selcted)
-            binding.classic.setBackgroundResource(R.drawable.backround_select)
-            binding.tonciy.setBackgroundResource(R.drawable.back_selcted)
-            binding.imageShowOder.setImageResource(R.drawable.back_selcted)
-            binding.tonciy.isGone = true
-            binding.classic.width = ViewGroup.LayoutParams.MATCH_PARENT
-            adapter.sizeType = Constants.MALENKAYA
-            dodoViewMadel.getVkus(1).observe(viewLifecycleOwner) {
-                adapter.submitList(it)
+                }}}
+                }
             }
-            seleltList()
 
         }
+
+
     }
 
     fun onClickBig() {
         binding.big.setOnClickListener {
-            dodoViewMadel.getPizza().observe(viewLifecycleOwner){
+            dodoViewMadel.getPizzaNameWithSize(pizza.name, 3).observe(viewLifecycleOwner) {
+                it.forEach {
+                    Glide
+                        .with(this)
+                        .load(it.image)
+                        .into(binding.imageShowOder)
+                  //  binding.imageShowOder.scaleType = ImageView.ScaleType.CENTER_CROP
 
-                binding.imageShowOder.setImageResource(it[pos+1].image)
-                binding.imageShowOder.scaleType=ImageView.ScaleType.CENTER_CROP
+                with(binding) {
+                    small.setBackgroundResource(R.drawable.back_selcted)
+                    big.setBackgroundResource(R.drawable.backround_select)
+                    normal.setBackgroundResource(R.drawable.back_selcted)
+                    if (it.category==Constants.PIZZA) {
+                        tonciy.setBackgroundResource(R.drawable.back_selcted)
+                        // binding.imageShowOder.setImageResource(R.drawable.ingridient_1)
 
 
-
+                        dodoViewMadel.getVkus(3).observe(viewLifecycleOwner) {
+                            adapter.submitList(it)
+                        }
+                        binding.tonciy.isGone = false
+                        seleltList(3)
+                    }}
+                }
             }
-            binding.small.setBackgroundResource(R.drawable.back_selcted)
-            binding.big.setBackgroundResource(R.drawable.backround_select)
-            binding.normal.setBackgroundResource(R.drawable.back_selcted)
-            binding.tonciy.setBackgroundResource(R.drawable.back_selcted)
-           // binding.imageShowOder.setImageResource(R.drawable.ingridient_1)
-
-            adapter.sizeType = Constants.BOLSHAYA
-            dodoViewMadel.getVkus(3).observe(viewLifecycleOwner){
-                adapter.submitList(it)
-            }
-            binding.tonciy.isGone = false
-
         }
     }
 
     fun onClickNormal() {
         binding.normal.setOnClickListener {
-            dodoViewMadel.getPizza().observe(viewLifecycleOwner){
 
-                binding.imageShowOder.setImageResource(it[pos].image)
-                binding.imageShowOder.scaleType=ImageView.ScaleType.CENTER_CROP
+            dodoViewMadel.getPizzaNameWithSize(pizza.name,2).observe(viewLifecycleOwner){
+              it.forEach {
+                  Glide
+                      .with(this)
+                      .load(it.image)
+                      .into(binding.imageShowOder)
+                  //  binding.imageShowOder.scaleType = ImageView.ScaleType.CENTER_CROP
 
-
-
-            }
-            binding.small.setBackgroundResource(R.drawable.back_selcted)
-            binding.big.setBackgroundResource(R.drawable.back_selcted)
-            binding.normal.setBackgroundResource(R.drawable.backround_select)
-            binding.tonciy.setBackgroundResource(R.drawable.back_selcted)
-           // binding.imageShowOder.setImageResource(R.drawable.ingridient_12)
-
-            adapter.sizeType = Constants.SREDNAYA
-            dodoViewMadel.getVkus(2).observe(viewLifecycleOwner){
-                adapter.submitList(it)
-            }
-
-            binding.tonciy.isGone = false
-
-        }
+                  with(binding) {
+                      small.setBackgroundResource(R.drawable.back_selcted)
+                      big.setBackgroundResource(R.drawable.back_selcted)
+                      normal.setBackgroundResource(R.drawable.backround_select)
+                      if (it.category == Constants.PIZZA) {
+                          tonciy.setBackgroundResource(R.drawable.back_selcted)
+                          // binding.imageShowOder.setImageResource(R.drawable.ingridient_12)
+                          dodoViewMadel.getVkus(2).observe(viewLifecycleOwner) {
+                              adapter.submitList(it)
+                          }
+                          seleltList(2)
+                          tonciy.isGone = false
+                      }
+                  }
+              }}
+    }
     }
 
     fun onClickType() {
@@ -291,22 +390,22 @@ class ShowFragment : Fragment() {
     }
 
     private fun setupChip(pizza: Pizza): DeleteIngridientItemBinding {
+        val view = DeleteIngridientItemBinding.inflate(layoutInflater)
+      dodoViewMadel.getIngridient(pizza.id).observe(viewLifecycleOwner){ingridients->
 
-      dodoViewMadel.getIngridient().observe(viewLifecycleOwner){ingridients->
 
 
 
-        var view = DeleteIngridientItemBinding.inflate(layoutInflater)
         for (item in ingridients.withIndex()) {
-            val chip = createChp(item.value.name)
-            chip.id = item.index
-            chip.setOnClickListener() {
+            if (item.value.available) {
+                val chip = createChp(item.value.name)
+                chip.id = item.index
 
-            }
-            if (view.chipGroup.contains(chip))
-                view.chipGroup.removeAllViews()
-            view.chipGroup.addView(chip)
-            chip.isChecked = !item.value.delete
+                if (view.chipGroup.contains(chip))
+                    view.chipGroup.removeAllViews()
+                view.chipGroup.addView(chip)
+                chip.isChecked = !item.value.delete
+
             ingridients.map {
                 if (!it.delete) {
                     chip.isGone
@@ -314,7 +413,7 @@ class ShowFragment : Fragment() {
             }
 
             Log.d("MyERROR", "${chip.isChecked}")
-        }
+        }}
 
         view.chipGroup.setOnCheckedStateChangeListener { _, checkedIds ->
             val size = binding.descriptionShowder.size
@@ -323,7 +422,7 @@ class ShowFragment : Fragment() {
                 val chip = createChiptext(ingridients[i].name)
                 chip.id = i
 
-                if (i !in checkedIds) {
+                if (i !in checkedIds  ) {
                     val spannable = SpannableString(chip.text)
                     spannable.setSpan(
                         StrikethroughSpan(),
@@ -338,22 +437,25 @@ class ShowFragment : Fragment() {
             }
 
         }
-           view =view
+
     }
         return view
     }
 
     private fun setupChipFurst(pizza: Pizza) {
-        val it= mutableListOf<String>()
-        pizza.category.split(",").forEach {
-            mutableListOf(it)
+
+        dodoViewMadel.getIngridient(pizza.id).observe(viewLifecycleOwner){
+
+            for (item in it.withIndex()) {
+
+                val chip = createChiptext(item.value.name)
+                chip.id = item.index
+Toast.makeText(requireContext(),"${it.size } ddfdfdfd",Toast.LENGTH_SHORT).show()
+                binding.descriptionShowder.addView(chip)
+            }
         }
 
-        for ((count, item) in it.withIndex()) {
-            val chip = createChiptext(item)
-            chip.id = count
-            binding.descriptionShowder.addView(chip)
-        }
+
     }
 
     private fun createChiptext(category: String): TextView {
@@ -368,10 +470,10 @@ class ShowFragment : Fragment() {
         return chip
     }
 
-    fun seleltList() {
+    fun seleltList(size:Int) {
 
         var newList = mutableListOf<Vkus>()
-        dodoViewMadel.getVkus(3).observe(viewLifecycleOwner) {
+        dodoViewMadel.getVkus(size).observe(viewLifecycleOwner) {
 
 
             for (item in it) {
@@ -383,11 +485,12 @@ class ShowFragment : Fragment() {
     }
     companion object {
 
-        fun newInstance(param1: islom.din.dodo_ilmhona_proskills.db.data.Pizza,pos:Int) =
+        fun newInstance(param1: islom.din.dodo_ilmhona_proskills.db.data.Pizza,pos: Int) =
             ShowFragment().apply {
                 arguments = Bundle().apply {
                     putParcelable(ARG_PARAM1, param1)
                     putInt(ARG_PARAM2,pos)
+
 
 
                 }

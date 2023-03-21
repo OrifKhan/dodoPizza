@@ -25,7 +25,7 @@ class RoomViewModel(private val ingredientsDao: IngredientsDao,
 
 
     fun insertProducts(pizza : Pizza){
-        val products = Products(name = pizza.name, image = pizza.image, price = pizza.price, category = pizza.category, about = pizza.about)
+        val products = Pizza(id=pizza.id,name = pizza.name, image = pizza.image, price = pizza.price, category = pizza.category, about = pizza.about, size = pizza.size,)
         viewModelScope.launch {
             productsDao.insertAll(products)
         }
@@ -44,7 +44,7 @@ class RoomViewModel(private val ingredientsDao: IngredientsDao,
         }
     }
 
-    fun getBusket(userId: Int) : LiveData<List<Products>>? {
+    fun getBusket(userId: Int) : LiveData<List<Pizza>>? {
             return orderDao.getOrderedProducts(user_id = userId).asLiveData()
         }
 

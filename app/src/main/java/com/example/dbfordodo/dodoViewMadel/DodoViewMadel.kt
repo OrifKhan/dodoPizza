@@ -6,6 +6,7 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
 import com.example.dbfordodo.db.dao.dbMain.DodoDataBase
+import com.example.dbfordodo.db.data.Combo
 import com.example.dbfordodo.dodoViewMadel.repository.*
 import islom.din.dodo_ilmhona_proskills.db.dao.PizzaDao
 import islom.din.dodo_ilmhona_proskills.db.data.Category
@@ -15,65 +16,88 @@ import islom.din.dodo_ilmhona_proskills.db.data.Vkus
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class DodoViewMadel(app:Application,pizzaDao:PizzaDao): AndroidViewModel(app) {
+class DodoViewMadel(app: Application, pizzaDao: PizzaDao) : AndroidViewModel(app) {
     val db = DodoDataBase.getInstance(app).pizzaDao()
+    val dataBase = DodoDataBase.getInstance(app).orderDao()
 
     fun insertViewMadel() {
         viewModelScope.launch(Dispatchers.IO) {
 
             Log.d("hello", "errrro")
-             GetVkusList().getList().forEach{
+            GetVkusList().getList().forEach {
                 db.insertVkus(it)
             }
-            GetPizzaList().getList().forEach(){
-               db.insertPizza(it)
+            GetPizzaList().getList().forEach() {
+                db.insertPizza(it)
             }
-            GetCategoryList().getCategory().forEach(){
+            GetCategoryList().getCategory().forEach() {
                 db.insertCotegory(it)
             }
 
-            GetIngridientList().getList().forEach(){
+            GetIngridientList().getList().forEach() {
                 db.insertIngredient(it)
             }
-            GetHalfList().getList().forEach {
-                db.insertHalfPizza(it)
+            GetComboList().getList().forEach() {
+                    db.insertCombo(it)
+                }
+                GetHalfList().getList().forEach {
+                    db.insertHalfPizza(it)
+                }
+               /* GetOrder().getList().forEach {
+                   dataBase.newOrder(it)
+                }*/
             }
+
+    }
+
+
+        fun getPizza(): LiveData<List<Pizza>> {
+            return db.getAllPizza()
         }
-    }
 
+        fun getVkus(size: Int): LiveData<List<Vkus>> {
+            return db.getAllVkus(size)
+        }
 
-    fun getPizza():LiveData< List<Pizza>> {
-        return db.getAllPizza()
-    }
+        fun getIngridient(id: Int): LiveData<List<Ingridients>> {
+            return db.getIngredient(id)
+        }
 
-    fun getVkus(size: Int): LiveData<List<Vkus>> {
-        return db.getAllVkus(size)
-    }
+        fun getAllCotegory(): LiveData<List<Category>> {
+            return db.getCotegory()
+        }
 
-    fun getIngridient(id:Int): LiveData<List<Ingridients>> {
-        return db.getIngredient(id)
-    }
+        fun getAllSizeNormal(size: Int): LiveData<List<Pizza>> {
+            return db.getAllSizeNormal(size)
+        }
 
-    fun getAllCotegory(): LiveData<List<Category>> {
-        return db.getCotegory()
-    }
-    fun getAllSizeNormal(size:Int): LiveData<List<Pizza>> {
-        return db.getAllSizeNormal(size)
-    }
-    fun getChoicePizza(things:Int,size:Int): LiveData<List<Pizza>> {
-        return db.getThreePizza(things,size)
-    }
-    fun getCategory(category:String): LiveData<List<Pizza>> {
-        return db.getCatedory(category)
-    }
-    fun getCategoryWithSize(category:String,size: Int): LiveData<List<Pizza>> {
-        return db.getCatedoryWithSize(category,size)
-    }
-    fun getPizzaNameWithSize(name:String, size:Int): LiveData<List<Pizza>> {
-        return db.getPizzaNameWithSize(name,size)
-    }
-    fun getPizzaName(name:String): LiveData<List<Pizza>> {
-        return db.getPizzaName(name)
-    }
+        fun getChoicePizza(things: Int, size: Int): LiveData<List<Pizza>> {
+            return db.getThreePizza(things, size)
+        }
 
-}
+        fun getCategory(category: String): LiveData<List<Pizza>> {
+            return db.getCatedory(category)
+        }
+
+        fun getCategoryWithSize(category: String, size: Int): LiveData<List<Pizza>> {
+            return db.getCatedoryWithSize(category, size)
+        }
+        fun getCombo(id: Int): LiveData<List<Pizza>> {
+            return db.getAllCombo(id)
+        }
+    fun getComboPizza(id_pizza: Int): LiveData<List<Combo>> {
+            return db.getComboPizza(id_pizza)
+        }
+    fun updateComboPizza(combo: Combo){
+             db.updateComboPizza(combo)
+        }
+
+        fun getPizzaNameWithSize(name: String, size: Int): LiveData<List<Pizza>> {
+            return db.getPizzaNameWithSize(name, size)
+        }
+
+        fun getPizzaName(name: String): LiveData<List<Pizza>> {
+            return db.getPizzaName(name)
+        }
+
+    }

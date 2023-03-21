@@ -9,11 +9,12 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.dbfordodo.R
 import com.example.dbfordodo.databinding.ComboDezignBinding
+import com.example.dbfordodo.db.data.Combo
 import islom.din.dodo_ilmhona_proskills.db.data.Pizza
 
 class ChangeAdapter:ListAdapter<Pizza,ChangeAdapter.ChangeViewHolder>(ChangDiffutils()) {
-    var onClickItem:((Pizza, Int,MutableList<Pizza>)->Unit)? = null
-    var list= mutableListOf<Pizza>()
+    var onClickItem:((Pizza, Int)->Unit)? = null
+
 
     inner class ChangeViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val binding = ComboDezignBinding.bind(itemView)
@@ -24,7 +25,7 @@ class ChangeAdapter:ListAdapter<Pizza,ChangeAdapter.ChangeViewHolder>(ChangDiffu
             binding.descriptionComboDezig.text = pizza.name
 
             binding.root.setOnClickListener {
-                onClickItem?.invoke(pizza,adapterPosition,list)
+                onClickItem?.invoke(pizza,adapterPosition)
             }
         }
     }
@@ -40,7 +41,7 @@ class ChangeAdapter:ListAdapter<Pizza,ChangeAdapter.ChangeViewHolder>(ChangDiffu
 }
 
 class ChangDiffutils :DiffUtil.ItemCallback<Pizza>() {
-    override fun areItemsTheSame(oldItem: Pizza, newItem: Pizza):Boolean =  oldItem.id == newItem.id
+    override fun areItemsTheSame(oldItem:Pizza, newItem:Pizza):Boolean =  oldItem.id == newItem.id
     @SuppressLint("DiffUtilEquals")
-    override fun areContentsTheSame(oldItem: Pizza, newItem: Pizza): Boolean =  oldItem == newItem
+    override fun areContentsTheSame(oldItem: Pizza, newItem:Pizza): Boolean =  oldItem == newItem
 }

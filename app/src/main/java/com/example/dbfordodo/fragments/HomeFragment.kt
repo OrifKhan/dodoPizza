@@ -2,6 +2,7 @@ package com.example.dbfordodo.fragments
 
 import android.app.Application
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,6 +13,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.dbfordodo.R
 import com.example.dbfordodo.databinding.ChipItemBinding
 import com.example.dbfordodo.databinding.FragmentHomeBinding
@@ -30,6 +32,7 @@ import islom.din.dodo_ilmhona_proskills.QA.adapter.PizzaAdapter
 @Suppress("IMPLICIT_CAST_TO_ANY")
 open class HomeFragment : Fragment() {
     //binding
+    private lateinit var  recyclerView: RecyclerView
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
 
@@ -67,7 +70,11 @@ open class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         //Room View Model
-   //  dodoViewModel.insertViewMadel()
+  //  dodoViewModel.insertViewMadel()
+
+        recyclerView=binding.recStoirs
+        recyclerView.layoutManager=LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL,false)
+        recyclerView
 
 
 
@@ -193,6 +200,7 @@ if (!viewModel.hideBottomNavView)
 //            Toast.makeText(requireContext(),"Added to db",Toast.LENGTH_SHORT).show()
 //        }
         adapterForPizza.order = {
+            Log.d("MYTESTINGERROR","$it")
             roomViewModel.newOrderConnection(Constants.USER_ID,it.id,1)
             Toast.makeText(requireContext(),"Added to busket",Toast.LENGTH_SHORT).show()
         }

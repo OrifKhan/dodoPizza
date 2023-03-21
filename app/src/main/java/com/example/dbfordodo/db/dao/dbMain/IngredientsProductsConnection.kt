@@ -1,16 +1,18 @@
 package islom.din.dodo_ilmhona_proskills.khq.dbMain
 
 import androidx.room.*
+import islom.din.dodo_ilmhona_proskills.db.data.Ingridients
+import islom.din.dodo_ilmhona_proskills.db.data.Pizza
 
 @Entity(
     tableName = "ingredients_products_connection", foreignKeys = [ForeignKey(
-        entity = Products::class,
+        entity = Pizza::class,
         parentColumns = ["id"],
         childColumns = ["products_id"],
         onDelete = ForeignKey.CASCADE
     ),
         ForeignKey(
-            entity = Ingredients::class,
+            entity = Ingridients::class,
             parentColumns = ["id"],
             childColumns = ["ingredients_id"],
             onDelete = ForeignKey.CASCADE

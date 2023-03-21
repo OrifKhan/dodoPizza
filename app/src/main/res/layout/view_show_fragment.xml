@@ -228,12 +228,15 @@
             android:layout_gravity="center">
 
             <TextView
-                android:layout_width="250dp"
+                android:id="@+id/priceAllBay"
+                android:layout_width="wrap_content"
                 android:paddingVertical="4dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:textColor="@color/color_for_category"
+                android:textColor="@color/white"
                 android:paddingHorizontal="48dp"
+                android:background="@color/secondaryDarkColor"
+                android:requiresFadingEdge="horizontal"
                 android:text="В КОРЗИНУ ЗА 0 TJS"/>
 
         </LinearLayout>

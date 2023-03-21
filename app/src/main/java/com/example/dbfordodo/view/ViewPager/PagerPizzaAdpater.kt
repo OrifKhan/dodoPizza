@@ -22,8 +22,8 @@ class PagerPizzaAdpater : ListAdapter<Pizza, PagerPizzaAdpater.PagerViewHolder>(
             oldItem == newItem
     }
 ) {
-    var list= mutableListOf<Pizza>()
-var pos:Int=0
+
+var idSelectPizza:Int=0
     var onSelectItem: ((Pizza) -> (Unit))? = null
 
     inner class PagerViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -38,7 +38,7 @@ var pos:Int=0
             binding.choosePizza.setOnClickListener {
                 onSelectItem?.invoke(changeData)
                 binding.choosePizza.setBackgroundResource(R.drawable.back_selcted)
-                list[pos]=changeData
+
             }
         }
     }

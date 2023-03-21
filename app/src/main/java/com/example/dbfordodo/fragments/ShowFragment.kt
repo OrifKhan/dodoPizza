@@ -221,7 +221,7 @@ class ShowFragment : Fragment() {
             .into(binding.imageShowOder)
         binding.nameShowder.text = pizza.name
         binding.description.text = pizza.name
-
+       binding.priceAllBay.setBackgroundResource(R.color.    secondaryDarkColor )
 
     }
 
@@ -280,6 +280,8 @@ class ShowFragment : Fragment() {
                     if (it.category==Constants.PIZZA){
                 classic.setBackgroundResource(R.drawable.backround_select)
                 tonciy.setBackgroundResource(R.drawable.back_selcted)
+                        priceAllBay.text="В КОРЗИНУ ЗА "+it.price.toString()+" TJK"
+
                 tonciy.isGone = true
                 classic.width = ViewGroup.LayoutParams.MATCH_PARENT
                 dodoViewMadel.getVkus(1).observe(viewLifecycleOwner) {
@@ -313,6 +315,8 @@ class ShowFragment : Fragment() {
                         tonciy.setBackgroundResource(R.drawable.back_selcted)
                         // binding.imageShowOder.setImageResource(R.drawable.ingridient_1)
 
+                        priceAllBay.text="В КОРЗИНУ ЗА "+it.price.toString()+" TJK"
+
 
                         dodoViewMadel.getVkus(3).observe(viewLifecycleOwner) {
                             adapter.submitList(it)
@@ -340,6 +344,7 @@ class ShowFragment : Fragment() {
                       small.setBackgroundResource(R.drawable.back_selcted)
                       big.setBackgroundResource(R.drawable.back_selcted)
                       normal.setBackgroundResource(R.drawable.backround_select)
+                      priceAllBay.text="В КОРЗИНУ ЗА "+it.price.toString()+" TJK"
                       if (it.category == Constants.PIZZA) {
                           tonciy.setBackgroundResource(R.drawable.back_selcted)
                           // binding.imageShowOder.setImageResource(R.drawable.ingridient_12)

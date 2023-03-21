@@ -87,15 +87,9 @@
         android:id="@+id/fragmetSelectPizza"
         android:name="com.example.dbfordodo.fragments.FragmetSelectPizza"
         android:label="FragmetSelectPizza" >
-        <action
-            android:id="@+id/action_fragmetSelectPizza_to_comboFragment"
-            app:destination="@id/comboFragment" />
         <argument
             android:name="pizza"
             app:argType="islom.din.dodo_ilmhona_proskills.db.data.Pizza" />
-        <argument
-            android:name="listOfPizza"
-            app:argType="islom.din.dodo_ilmhona_proskills.db.data.Pizza[]" />
         <argument
             android:name="posItemCombo"
             app:argType="integer" />

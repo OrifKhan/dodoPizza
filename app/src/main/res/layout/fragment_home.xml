@@ -175,13 +175,12 @@
                 android:layout_height="wrap_content"
                 app:layout_scrollFlags="scroll|enterAlwaysCollapsed">
 
-                <include layout="@layout/stories_item" />
-
-                <include layout="@layout/stories_item" />
-
-                <include layout="@layout/stories_item" />
-
-                <include layout="@layout/stories_item" />
+           <androidx.recyclerview.widget.RecyclerView
+               android:id="@+id/rec_stoirs"
+               android:layout_width="match_parent"
+               android:layout_height="match_parent"
+               android:orientation="horizontal"
+               tools:listitem="@layout/stories_item"/>
 
             </LinearLayout>
 

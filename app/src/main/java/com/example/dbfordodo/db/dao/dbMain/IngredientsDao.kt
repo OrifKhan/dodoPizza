@@ -3,14 +3,14 @@ package islom.din.dodo_ilmhona_proskills.khq.dbMain
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
+import islom.din.dodo_ilmhona_proskills.db.data.Ingridients
 
 @Dao
 interface IngredientsDao {
-    @Insert
-    suspend fun insertAllIngredients (ingredients: Ingredients)
 
-    @Query("SELECT * FROM ingredients")
-    fun getAllIngredients() : List<Ingredients>
+
+   /* @Query("SELECT * FROM ingridient")
+    fun getAllIngredients() : List<Ingridients>*/
 
     @Insert
     suspend fun addIngredientSizeConnection(vararg ingredientSizeConnection: IngredientSizeConnection)

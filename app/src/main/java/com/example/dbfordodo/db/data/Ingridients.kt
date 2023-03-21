@@ -4,15 +4,19 @@ import androidx.room.Entity
 import androidx.room.ForeignKey
 import androidx.room.PrimaryKey
 
-@Entity(tableName = "ingredient", foreignKeys = [ForeignKey(entity = Pizza::class,
-    parentColumns = ["id"],
-    childColumns =["id_pizza"],
-    onDelete = ForeignKey.CASCADE )])
+@Entity(
+    tableName = "ingridient", foreignKeys = [ForeignKey(
+        entity = Pizza::class,
+        parentColumns = ["id"],
+        childColumns = ["id_pizza"],
+        onDelete = ForeignKey.CASCADE
+    )]
+)
 
 data class Ingridients(
- @PrimaryKey(autoGenerate = true) val id :Int,
-   val id_pizza : Int,
-    val name : String,
-    val available : Boolean = true,
-    var delete : Boolean = false
+    @PrimaryKey(autoGenerate = true) val id: Int,
+    val id_pizza: Int,
+    val name: String,
+    val available: Boolean = true,
+    var delete: Boolean = false,
 )

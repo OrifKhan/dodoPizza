@@ -2,6 +2,7 @@ package com.example.dbfordodo.fragments
 
 import android.icu.text.Transliterator.Position
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -23,7 +24,7 @@ class ComboFragment : Fragment() {
     lateinit var adapter: ChangeAdapter
     lateinit var rcView: RecyclerView
     private var fragmentComboBinding: FragmentComboBinding? = null
-    private var combo = mutableListOf<Pizza>()
+    var indert=true
     var position: Int = 0
     private val args: ComboFragmentArgs by navArgs()
 
@@ -42,12 +43,11 @@ class ComboFragment : Fragment() {
         adapter = ChangeAdapter()
         rcView.adapter = adapter
         rcView.layoutManager = LinearLayoutManager(context)
-        adapter.list = combo
-        adapter.onClickItem = { pizza, pos, combo ->
+
+        adapter.onClickItem = { pizza, pos ->
 
             val action = ComboFragmentDirections.actionComboFragmentToFragmetSelectPizza(
                 pizza,
-                combo.toTypedArray(),
                 pos
             )
             findNavController().navigate(action)
@@ -63,152 +63,166 @@ class ComboFragment : Fragment() {
             }
 
 
+            viewModel.getCombo(it[position].id).observe(viewLifecycleOwner) {
 
-            when (it[position].name) {
-                "3 пиццы" -> {
-                    viewModel.getChoicePizza(7, 2).observe(viewLifecycleOwner) { listOfPizza ->
-                        listOfPizza.forEach {
-                            combo.add(it)
-                        }
-                        adapter.submitList(combo)
-                    }
-                }
-                "10 средних пицц" -> {
-                    viewModel.getChoicePizza(22, 2).observe(viewLifecycleOwner) { listOfPizza ->
-                        listOfPizza.forEach {
-                            combo.add(it)
-                        }
-                        adapter.submitList(combo)
-                    }
-                }
-                "2 пиццы" -> {
-                    viewModel.getChoicePizza(5, 2).observe(viewLifecycleOwner) { listOfPizza ->
-                        listOfPizza.forEach {
-                            combo.add(it)
-                        }
-                        adapter.submitList(combo)
-                    }
-                }
-                "7 пицц" -> {
-                    viewModel.getChoicePizza(16, 2).observe(viewLifecycleOwner) { listOfPizza ->
-                        listOfPizza.forEach {
-                            combo.add(it)
-                        }
-                        adapter.submitList(combo)
-                    }
-                }
-                "2 пиццы и напиток" -> {
-                    viewModel.getChoicePizza(6, 2).observe(viewLifecycleOwner) { listOfPizza ->
 
-                        listOfPizza.forEach {
-                            combo.add(it)
-                        }
-                        viewModel.getCategory(Constants.NAPITKI).observe(viewLifecycleOwner) {
-                            var cont = 0
-                            it.forEach {
-                                if (cont < 1)
-                                    combo.add(it)
-                                cont++
-                            }
-                        }
-                        adapter.submitList(combo)
-                    }
+
+                     adapter.submitList(it)
+                     Log.d("sise", "${it.size}")
+
+
+
                 }
-                "Пицца и 2 закуски" -> {
-                    viewModel.getChoicePizza(3, 2).observe(viewLifecycleOwner) {
 
-                        it.forEach {
-                            combo.add(it)
-                        }
-                        viewModel.getCategory(Constants.ZAKUSKI).observe(viewLifecycleOwner) {
-                            var cont = 0
-                            it.forEach {
-                                if (cont < 2) {
-                                    combo.add(it)
-                                    cont++
-                                }
-                            }
-                        }
-                        adapter.submitList(combo)
-
-                    }
-                }
-                "4 Додстера" -> {
-                    viewModel.getCategory(Constants.DESERTI).observe(viewLifecycleOwner) {
-
-                        var cont = 0
-                        it.forEach {
-                            if (cont < 4) {
-                                combo.add(it)
-                                cont++
-                            }
-                        }
-
-                        adapter.submitList(combo)
-                    }
-                }
-                "Пицца, додстер, напиток и соус" -> {
-
-                    viewModel.getCategory(Constants.PIZZA).observe(viewLifecycleOwner) {
-                        var cont = 0
-                        it.forEach {
-                            if (cont < 1) {
-                                combo.add(it)
-                                cont++
-                            }
-                        }
-                    }
-                    viewModel.getCategory(Constants.DESERTI).observe(viewLifecycleOwner) {
-                        var cont = 0
-                        it.forEach {
-                            if (cont < 1) {
-                                combo.add(it)
-                                cont++
-                            }
-                        }
-                    }
-                    viewModel.getCategory(Constants.NAPITKI).observe(viewLifecycleOwner) {
-                        var cont = 0
-                        it.forEach {
-                            if (cont < 1) {
-                                combo.add(it)
-                                cont++
-                            }
-                        }
-                    }
-                    viewModel.getCategory(Constants.ZAKUSKI).observe(viewLifecycleOwner) {
-                        var cont = 0
-                        it.forEach {
-                            if (cont < 1) {
-                                combo.add(it)
-                                cont++
-                            }
-                        }
-                        adapter.submitList(combo)
-                    }
-                }
-                "2 стартера" -> {
-
-                    viewModel.getCategory(Constants.ZAKUSKI).observe(viewLifecycleOwner) {
-                        var cont = 0
-                        it.forEach {
-                            if (cont < 2) {
-                                combo.add(it)
-                                cont++
-                            }
-                        }
-                        adapter.submitList(combo)
-                    }
-                }
             }
+
+            /*  when (it[position].name) {
+                  "3 пиццы" -> {
+                      viewModel.getChoicePizza(7, 2).observe(viewLifecycleOwner) { listOfPizza ->
+                          listOfPizza.forEach {
+                              combo.add(it)
+                          }
+                          adapter.submitList(combo)
+                      }
+                  }
+                  "10 средних пицц" -> {
+                      viewModel.getChoicePizza(22, 2).observe(viewLifecycleOwner) { listOfPizza ->
+                          listOfPizza.forEach {
+                              combo.add(it)
+                          }
+                          adapter.submitList(combo)
+                      }
+                  }
+                  "2 пиццы" -> {
+                      viewModel.getChoicePizza(5, 2).observe(viewLifecycleOwner) { listOfPizza ->
+                          listOfPizza.forEach {
+                              combo.add(it)
+                          }
+                          adapter.submitList(combo)
+                      }
+                  }
+                  "7 пицц" -> {
+                      viewModel.getChoicePizza(16, 2).observe(viewLifecycleOwner) { listOfPizza ->
+                          listOfPizza.forEach {
+                              combo.add(it)
+                          }
+                          adapter.submitList(combo)
+                      }
+                  }
+                  "2 пиццы и напиток" -> {
+                      viewModel.getChoicePizza(6, 2).observe(viewLifecycleOwner) { listOfPizza ->
+
+                          listOfPizza.forEach {
+                              combo.add(it)
+                          }
+                          viewModel.getCategory(Constants.NAPITKI).observe(viewLifecycleOwner) {
+                              var cont = 0
+                              it.forEach {
+                                  if (cont < 1)
+                                      combo.add(it)
+                                  cont++
+                              }
+                          }
+                          adapter.submitList(combo)
+                      }
+                  }
+                  "Пицца и 2 закуски" -> {
+                      viewModel.getChoicePizza(3, 2).observe(viewLifecycleOwner) {
+
+                          it.forEach {
+                              combo.add(it)
+                          }
+                          viewModel.getCategory(Constants.ZAKUSKI).observe(viewLifecycleOwner) {
+                              var cont = 0
+                              it.forEach {
+                                  if (cont < 2) {
+                                      combo.add(it)
+                                      cont++
+                                  }
+                              }
+                          }
+                          adapter.submitList(combo)
+
+                      }
+                  }
+                  "4 Додстера" -> {
+                      viewModel.getCategory(Constants.DESERTI).observe(viewLifecycleOwner) {
+
+                          var cont = 0
+                          it.forEach {
+                              if (cont < 4) {
+                                  combo.add(it)
+                                  cont++
+                              }
+                          }
+
+                          adapter.submitList(combo)
+                      }
+                  }
+                  "Пицца, додстер, напиток и соус" -> {
+
+                      viewModel.getCategory(Constants.PIZZA).observe(viewLifecycleOwner) {
+                          var cont = 0
+                          it.forEach {
+                              if (cont < 1) {
+                                  combo.add(it)
+                                  cont++
+                              }
+                          }
+                      }
+                      viewModel.getCategory(Constants.DESERTI).observe(viewLifecycleOwner) {
+                          var cont = 0
+                          it.forEach {
+                              if (cont < 1) {
+                                  combo.add(it)
+                                  cont++
+                              }
+                          }
+                      }
+                      viewModel.getCategory(Constants.NAPITKI).observe(viewLifecycleOwner) {
+                          var cont = 0
+                          it.forEach {
+                              if (cont < 1) {
+                                  combo.add(it)
+                                  cont++
+                              }
+                          }
+                      }
+                      viewModel.getCategory(Constants.ZAKUSKI).observe(viewLifecycleOwner) {
+                          var cont = 0
+                          it.forEach {
+                              if (cont < 1) {
+                                  combo.add(it)
+                                  cont++
+                              }
+                          }
+                          adapter.submitList(combo)
+                      }
+                  }
+                  "2 стартера" -> {
+
+                      viewModel.getCategory(Constants.ZAKUSKI).observe(viewLifecycleOwner) {
+                          var cont = 0
+                          it.forEach {
+                              if (cont < 2) {
+                                  combo.add(it)
+                                  cont++
+                              }
+                          }
+                          adapter.submitList(combo)
+                      }
+                  }
+              }
+  */
 
 
         }
 
-    }
+
 
     override fun onDestroyView() {
         fragmentComboBinding = null
+
         super.onDestroyView()
     }
 }

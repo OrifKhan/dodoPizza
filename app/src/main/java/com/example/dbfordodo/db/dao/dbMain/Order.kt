@@ -9,5 +9,5 @@ import com.example.dbfordodo.db.data.Constants
 @Entity(tableName = "order_my", indices = [Index(value = ["user_id"], unique = true)])
 data class Order (
     @PrimaryKey(autoGenerate = true) val id : Int = 0,
-    @ColumnInfo("user_id") val userId : Int = Constants.USER_ID
+    @ColumnInfo("user_id") val userId : Int
 )

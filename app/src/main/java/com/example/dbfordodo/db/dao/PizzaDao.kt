@@ -1,10 +1,8 @@
     package islom.din.dodo_ilmhona_proskills.db.dao
 
     import androidx.lifecycle.LiveData
-    import androidx.room.Dao
-    import androidx.room.Insert
-    import androidx.room.OnConflictStrategy
-    import androidx.room.Query
+    import androidx.room.*
+    import com.example.dbfordodo.db.data.Combo
     import islom.din.dodo_ilmhona_proskills.db.data.*
 
     @Dao
@@ -26,7 +24,7 @@
         @Insert(onConflict = OnConflictStrategy.IGNORE)
         suspend fun insertIngredient(ingridients: Ingridients)
 
-        @Query("SELECT * FROM ingredient WHERE id_pizza=:id")
+        @Query("SELECT * FROM ingridient WHERE id_pizza=:id")
         fun getIngredient(id:Int): LiveData<List<Ingridients>>
 
         //half pizza dao
@@ -39,7 +37,15 @@
         // vkus Pizza dao
         @Insert(onConflict = OnConflictStrategy.IGNORE)
         suspend fun insertVkus(vkus: Vkus)
+        @Insert(onConflict = OnConflictStrategy.IGNORE)
+        suspend fun insertCombo(combo: Combo)
 
+        @Query("SELECT * FROM pizzaAll as p INNER JOIN combo as c ON  p.id=c.id_pizza AND c.id_combo=:id_combo")
+        fun getAllCombo(id_combo:  Int): LiveData<List<Pizza>>
+        @Query("SELECT * FROM combo WHERE id_pizza = :id_pizza")
+        fun getComboPizza(id_pizza: Int): LiveData<List<Combo>>
+        @Update
+        fun updateComboPizza(combo: Combo)
         @Query("SELECT * FROM vkus WHERE size = :size")
         fun getAllVkus(size: Int): LiveData<List<Vkus>>
 

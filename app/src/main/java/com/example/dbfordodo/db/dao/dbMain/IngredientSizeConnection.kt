@@ -1,6 +1,7 @@
 package islom.din.dodo_ilmhona_proskills.khq.dbMain
 
 import androidx.room.*
+import islom.din.dodo_ilmhona_proskills.db.data.Ingridients
 
 @Entity(
     tableName = "ingredient_size_connection", foreignKeys = [ForeignKey(
@@ -10,7 +11,7 @@ import androidx.room.*
         onDelete = ForeignKey.CASCADE
     ),
         ForeignKey(
-            entity = Ingredients::class,
+            entity = Ingridients::class,
             parentColumns = ["id"],
             childColumns = ["ingredient_id"],
             onDelete = ForeignKey.CASCADE

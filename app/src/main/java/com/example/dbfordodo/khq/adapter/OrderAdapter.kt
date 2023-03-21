@@ -8,9 +8,9 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.example.dbfordodo.R
 import com.example.dbfordodo.databinding.ItemKorzinaBinding
-import islom.din.dodo_ilmhona_proskills.khq.dbMain.Products
+import islom.din.dodo_ilmhona_proskills.db.data.Pizza
 
-class OrderAdapter() : ListAdapter<Products,OrderAdapter.OrderViewHolder>(OrderDiffUtils()) {
+class OrderAdapter() : ListAdapter<Pizza,OrderAdapter.OrderViewHolder>(OrderDiffUtils()) {
 
     var updateAmount : ((Int,Int) -> Unit)? = null
     var deleteProduct : ((Int) ->Unit)? = null
@@ -19,7 +19,7 @@ class OrderAdapter() : ListAdapter<Products,OrderAdapter.OrderViewHolder>(OrderD
     inner class OrderViewHolder(itemView: View) : ViewHolder(itemView){
         var binding = ItemKorzinaBinding.bind(itemView)
 
-        fun bind(products: Products,pos : Int){
+        fun bind(products: Pizza,pos : Int){
             binding.korzinaItemImage.setImageResource(products.image)
             binding.korzinaItemTitle.text = products.name
             binding.korzinaItemTotal.text = products.price.toString()
@@ -45,12 +45,12 @@ class OrderAdapter() : ListAdapter<Products,OrderAdapter.OrderViewHolder>(OrderD
         }
     }
     companion object {
-        class OrderDiffUtils : DiffUtil.ItemCallback<Products>(){
-            override fun areItemsTheSame(oldItem: Products, newItem: Products): Boolean {
+        class OrderDiffUtils : DiffUtil.ItemCallback<Pizza>(){
+            override fun areItemsTheSame(oldItem: Pizza, newItem: Pizza): Boolean {
                 return oldItem.id == newItem.id
             }
 
-            override fun areContentsTheSame(oldItem: Products, newItem: Products): Boolean {
+            override fun areContentsTheSame(oldItem: Pizza, newItem: Pizza): Boolean {
                 return oldItem == newItem
             }
 

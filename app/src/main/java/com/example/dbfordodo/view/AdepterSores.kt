@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
+import com.bumptech.glide.Glide
 import com.example.dbfordodo.R
 import com.example.dbfordodo.databinding.StoriesItemBinding
 import com.example.dbfordodo.diffUtils.StoresDiffUtil
@@ -16,11 +17,12 @@ class AdepterSores:ListAdapter<StoryData,AdepterSores.ViewHolder>(StoresDiffUtil
 
         fun bind(stores:StoryData){
             binding.storyPhoto.setImageResource(stores.image)
+        }
+        init {
             binding.root.setOnClickListener {
                 itemOnClick?.invoke(adapterPosition)
             }
-        }
-    }
+    }}
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
      return ViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.stories_item,parent,false))

@@ -8,6 +8,7 @@ import androidx.room.PrimaryKey
 
 data class StoryData(
    @PrimaryKey(autoGenerate = true) val id : Int,
+   val idItem:Int,
     val image :Int,
     var main: Boolean =false
 )

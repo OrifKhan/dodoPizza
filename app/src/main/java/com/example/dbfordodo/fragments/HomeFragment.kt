@@ -29,6 +29,10 @@ import com.example.dbfordodo.view.DataBaseApplication
 import com.google.android.material.chip.Chip
 import islom.din.dodo_ilmhona_proskills.QA.adapter.InterestingAdapter
 import islom.din.dodo_ilmhona_proskills.QA.adapter.PizzaAdapter
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 @Suppress("IMPLICIT_CAST_TO_ANY")
 open class HomeFragment : Fragment() {
@@ -72,21 +76,23 @@ open class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         //Room View Model
-    //dodoViewModel.insertViewMadel()
+   // dodoViewModel.insertViewMadel()
 
         adapterStores= AdepterSores()
         recyclerView=binding.recStoirs
         recyclerView.layoutManager=LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL,false)
         recyclerView.adapter=adapterStores
         adapterStores.itemOnClick={
-            val action = HomeFragmentDirections.actionNavigationHomeToStoryItemFragment(it)
+            val action = HomeFragmentDirections.actionNavigationHomeToStoresFragment(it+1)
             findNavController().navigate(action)
 
         }
+        CoroutineScope(Dispatchers.Main).launch {
+        delay(3000)
         dodoViewModel.getMaineStores(true).observe(viewLifecycleOwner){
             adapterStores.submitList(it)
             Log.d("Storis","${it.size}")
-        }
+        }}
 
 
 

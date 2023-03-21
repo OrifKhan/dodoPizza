@@ -36,8 +36,8 @@
             android:id="@+id/action_navigation_home_to_comboFragment"
             app:destination="@id/comboFragment" />
         <action
-            android:id="@+id/action_navigation_home_to_storyItemFragment"
-            app:destination="@id/storyItemFragment" />
+            android:id="@+id/action_navigation_home_to_storesFragment"
+            app:destination="@id/storesFragment" />
 
     </fragment>
 
@@ -116,11 +116,12 @@
             app:argType="islom.din.dodo_ilmhona_proskills.db.data.Pizza" />
     </fragment>
     <fragment
-        android:id="@+id/storyItemFragment"
-        android:name="islom.din.dodo_ilmhona_proskills.shodmon.bekhruz.StoryItemFragment"
-        android:label="StoryItemFragment" >
+        android:id="@+id/storesFragment"
+        android:name="com.example.dbfordodo.fragments.StoresFragment"
+        android:label="fragment_stores"
+        tools:layout="@layout/fragment_stores" >
         <argument
-            android:name="idStoris"
+            android:name="pos"
             app:argType="integer" />
     </fragment>
 

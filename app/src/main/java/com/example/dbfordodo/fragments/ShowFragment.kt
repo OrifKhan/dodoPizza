@@ -38,7 +38,7 @@ import islom.din.dodo_ilmhona_proskills.db.data.Pizza
 import islom.din.dodo_ilmhona_proskills.db.data.Vkus
 
 
-private const val ARG_PARAM1: String = "param1"
+private const val ARG_PARAM1 = "param1"
  private const val ARG_PARAM2 = "param2"
 
 class ShowFragment : Fragment() {

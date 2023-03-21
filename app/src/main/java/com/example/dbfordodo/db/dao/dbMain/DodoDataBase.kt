@@ -8,11 +8,12 @@ import com.example.dbfordodo.db.data.Combo
 import islom.din.dodo_ilmhona_proskills.db.dao.PizzaDao
 import islom.din.dodo_ilmhona_proskills.db.data.*
 import islom.din.dodo_ilmhona_proskills.khq.dbMain.*
+import islom.din.dodo_ilmhona_proskills.shodmon.khushbakht.StoryData
 
 
 @Database(
     entities = [Pizza::class, Category::class, HalfPizza::class, Ingridients::class, Vkus::class,
-         IngredientSize::class, Combo::class, IngredientSizeConnection::class,
+         IngredientSize::class, Combo::class,StoryData::class, IngredientSizeConnection::class,
         IngredientsProductsConnection::class, Order::class, OrderConnection::class,
         OrderConnectionServer::class],
     version = 1

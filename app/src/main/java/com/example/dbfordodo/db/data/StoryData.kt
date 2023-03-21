@@ -2,13 +2,12 @@ package islom.din.dodo_ilmhona_proskills.shodmon.khushbakht
 
 import androidx.room.Entity
 import androidx.room.ForeignKey
+import androidx.room.PrimaryKey
 
-@Entity(tableName = "storis", foreignKeys = [ForeignKey(entity = ImageData::class,
-parentColumns = ["image"], childColumns =[ "image"],
-onDelete = ForeignKey.CASCADE)])
+@Entity(tableName = "stores",)
 
 data class StoryData(
-    val id : Int,
-    val id_item:Int,
-    val image :Int
+   @PrimaryKey(autoGenerate = true) val id : Int,
+    val image :Int,
+    var main: Boolean =false
 )

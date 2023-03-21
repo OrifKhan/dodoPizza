@@ -13,6 +13,7 @@ import islom.din.dodo_ilmhona_proskills.db.data.Category
 import islom.din.dodo_ilmhona_proskills.db.data.Ingridients
 import islom.din.dodo_ilmhona_proskills.db.data.Pizza
 import islom.din.dodo_ilmhona_proskills.db.data.Vkus
+import islom.din.dodo_ilmhona_proskills.shodmon.khushbakht.StoryData
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
@@ -43,6 +44,9 @@ class DodoViewMadel(app: Application, pizzaDao: PizzaDao) : AndroidViewModel(app
                 GetHalfList().getList().forEach {
                     db.insertHalfPizza(it)
                 }
+            GetStores().getList().forEach {
+                    db.insertStores(it)
+                }
                /* GetOrder().getList().forEach {
                    dataBase.newOrder(it)
                 }*/
@@ -57,6 +61,11 @@ class DodoViewMadel(app: Application, pizzaDao: PizzaDao) : AndroidViewModel(app
 
         fun getVkus(size: Int): LiveData<List<Vkus>> {
             return db.getAllVkus(size)
+        }
+    fun getStores(id: Int): LiveData<List<StoryData>> {
+            return db.getAllStores(id) }
+        fun getMaineStores(maine: Boolean): LiveData<List<StoryData>> {
+            return db.getMaineStores(maine)
         }
 
         fun getIngridient(id: Int): LiveData<List<Ingridients>> {

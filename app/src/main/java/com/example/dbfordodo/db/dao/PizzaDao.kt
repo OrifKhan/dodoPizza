@@ -4,6 +4,7 @@
     import androidx.room.*
     import com.example.dbfordodo.db.data.Combo
     import islom.din.dodo_ilmhona_proskills.db.data.*
+    import islom.din.dodo_ilmhona_proskills.shodmon.khushbakht.StoryData
 
     @Dao
     interface PizzaDao {
@@ -37,6 +38,14 @@
         // vkus Pizza dao
         @Insert(onConflict = OnConflictStrategy.IGNORE)
         suspend fun insertVkus(vkus: Vkus)
+        @Insert(onConflict = OnConflictStrategy.IGNORE)
+        suspend fun insertStores(stores:StoryData)
+        @Query("SELECT * FROM stores WHERE id=:id")
+         fun getAllStores(id: Int):LiveData<List<StoryData>>
+         @Query("SELECT * FROM stores WHERE main =:maine")
+         fun getMaineStores(maine: Boolean):LiveData<List<StoryData>>
+
+
         @Insert(onConflict = OnConflictStrategy.IGNORE)
         suspend fun insertCombo(combo: Combo)
 

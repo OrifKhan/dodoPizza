@@ -24,6 +24,7 @@ import com.example.dbfordodo.dodoViewMadel.repository.DodoMadelFactory
 import com.example.dbfordodo.dodoViewMadel.repository.HomeViewMadelFactory
 import com.example.dbfordodo.dodoViewMadel.repository.RoomViewModel
 import com.example.dbfordodo.dodoViewMadel.repository.RoomViewModelFactory
+import com.example.dbfordodo.view.AdepterSores
 import com.example.dbfordodo.view.DataBaseApplication
 import com.google.android.material.chip.Chip
 import islom.din.dodo_ilmhona_proskills.QA.adapter.InterestingAdapter
@@ -49,6 +50,7 @@ open class HomeFragment : Fragment() {
     private val args : HomeFragmentArgs by navArgs()
 
     private lateinit var adapterForPizza: PizzaAdapter
+    private lateinit var adapterStores:AdepterSores
 
 
         //Room View Model
@@ -70,11 +72,22 @@ open class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         //Room View Model
-  //  dodoViewModel.insertViewMadel()
+    //dodoViewModel.insertViewMadel()
 
+        adapterStores= AdepterSores()
         recyclerView=binding.recStoirs
         recyclerView.layoutManager=LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL,false)
-        recyclerView
+        recyclerView.adapter=adapterStores
+        adapterStores.itemOnClick={
+            val action = HomeFragmentDirections.actionNavigationHomeToStoryItemFragment(it)
+            findNavController().navigate(action)
+
+        }
+        dodoViewModel.getMaineStores(true).observe(viewLifecycleOwner){
+            adapterStores.submitList(it)
+            Log.d("Storis","${it.size}")
+        }
+
 
 
 

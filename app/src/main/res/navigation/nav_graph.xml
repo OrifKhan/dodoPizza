@@ -35,6 +35,9 @@
         <action
             android:id="@+id/action_navigation_home_to_comboFragment"
             app:destination="@id/comboFragment" />
+        <action
+            android:id="@+id/action_navigation_home_to_storyItemFragment"
+            app:destination="@id/storyItemFragment" />
 
     </fragment>
 
@@ -111,6 +114,14 @@
         <argument
             android:name="pizza"
             app:argType="islom.din.dodo_ilmhona_proskills.db.data.Pizza" />
+    </fragment>
+    <fragment
+        android:id="@+id/storyItemFragment"
+        android:name="islom.din.dodo_ilmhona_proskills.shodmon.bekhruz.StoryItemFragment"
+        android:label="StoryItemFragment" >
+        <argument
+            android:name="idStoris"
+            app:argType="integer" />
     </fragment>
 
 

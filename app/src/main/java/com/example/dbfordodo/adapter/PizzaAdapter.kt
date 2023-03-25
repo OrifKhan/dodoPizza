@@ -10,6 +10,7 @@ import com.example.dbfordodo.R
 import com.example.dbfordodo.databinding.PizzaItemBinding
 import com.example.dbfordodo.databinding.PizzaItemMainBinding
 import com.example.dbfordodo.db.data.Constants
+import com.example.dbfordodo.db.data.Constants.Companion.PIZZA
 import islom.din.dodo_ilmhona_proskills.QA.diffUtils.PizzaDiffUtls
 import islom.din.dodo_ilmhona_proskills.db.data.Pizza
 
@@ -67,13 +68,12 @@ class PizzaAdapter() : ListAdapter<Pizza, ViewHolder>(PizzaDiffUtls()) {
     }
 
     override fun getItemViewType(position: Int): Int {
-        return when (getItem(position).id){
-            1-> {     PIZZAMAIN}
-           63-> {PIZZAMAIN}
-            else-> {PIZZA}
+        return if (getItem(position).main) {     PIZZAMAIN}
+
+            else {PIZZA}
     }
 
-    }
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return if (viewType == PIZZA) PizzaViewHolder(

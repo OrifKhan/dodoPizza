@@ -76,19 +76,19 @@ open class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         //Room View Model
-   // dodoViewModel.insertViewMadel()
+    dodoViewModel.insertViewMadel()
 
         adapterStores= AdepterSores()
         recyclerView=binding.recStoirs
         recyclerView.layoutManager=LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL,false)
         recyclerView.adapter=adapterStores
         adapterStores.itemOnClick={
-            val action = HomeFragmentDirections.actionNavigationHomeToStoresFragment(it+1)
+            val action = HomeFragmentDirections.actionNavigationHomeToStoresFragment(it)
             findNavController().navigate(action)
 
         }
         CoroutineScope(Dispatchers.Main).launch {
-        delay(3000)
+        delay(500)
         dodoViewModel.getMaineStores(true).observe(viewLifecycleOwner){
             adapterStores.submitList(it)
             Log.d("Storis","${it.size}")
@@ -168,8 +168,8 @@ if (!viewModel.hideBottomNavView)
 
     private fun scrollingOnCategoryClicked() {
         binding.chipCategoryGroup.setOnCheckedStateChangeListener { group, checkedIds ->
-            var checkedId = checkedIds.first()
-            var checkedCategoryButton = requireActivity().findViewById<Chip>(checkedId)
+            val checkedId = checkedIds.first()
+            val checkedCategoryButton = requireActivity().findViewById<Chip>(checkedId)
             checkedCategoryButton.setOnClickListener {
                 binding.pizzaRv.smoothScrollToPosition(adapterForPizza.currentList.indexOfFirst {
                     it.category == checkedCategoryButton.text

@@ -2,9 +2,9 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_marginHorizontal="16dp"
-    android:layout_width="260dp"
+    android:layout_width="match_parent"
     android:layout_gravity="center"
-    android:layout_height="480dp"
+    android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     app:cardCornerRadius="20dp"
     tools:context=".fragments.FragmetSelectPizza">
@@ -12,7 +12,8 @@
 
 <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+    android:layout_gravity="center">
 
         <ImageView
             android:id="@+id/image"
@@ -31,7 +32,6 @@
             android:layout_marginTop="16dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-
             android:id="@+id/name"
             android:textColor="@color/black"
             android:text="Name"/>

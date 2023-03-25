@@ -18,12 +18,12 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:text="ss"
-        app:layout_constraintBottom_toTopOf="@id/recyaclePager"/>
+        app:layout_constraintBottom_toTopOf="@id/view_pager_select_pizza"/>
 
-    <androidx.recyclerview.widget.RecyclerView
+    <androidx.viewpager2.widget.ViewPager2
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:id="@+id/recyaclePager"
+        android:layout_height="400dp"
+        android:id="@+id/view_pager_select_pizza"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

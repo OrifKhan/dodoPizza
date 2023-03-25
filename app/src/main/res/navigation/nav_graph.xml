@@ -38,6 +38,9 @@
         <action
             android:id="@+id/action_navigation_home_to_storesFragment"
             app:destination="@id/storesFragment" />
+        <action
+            android:id="@+id/action_navigation_home_to_meetFragment2"
+            app:destination="@id/meetFragment" />
 
     </fragment>
 
@@ -124,6 +127,71 @@
             android:name="pos"
             app:argType="integer" />
     </fragment>
+    <fragment
+        android:id="@+id/meetFragment"
+        android:name="islom.din.dodo_ilmhona_proskills.view.fragment.MeetFragment"
+        android:label="MeetFragment" >
+        <action
+            android:id="@+id/action_meetFragment2_to_numberRegisterFragment"
+            app:destination="@id/numberRegisterFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/numberRegisterFragment"
+        android:name="islom.din.dodo_ilmhona_proskills.view.fragment.NumberRegisterFragment"
+        android:label="NumberRegisterFragment" >
+        <action
+            android:id="@+id/action_numberRegisterFragment_to_passwordFragment"
+            app:destination="@id/passwordFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/passwordFragment"
+        android:name="islom.din.dodo_ilmhona_proskills.view.fragment.PasswordFragment"
+        android:label="PasswordFragment" >
+        <action
+            android:id="@+id/action_passwordFragment_to_profilFragement"
+            app:destination="@id/profilFragement" />
+    </fragment>
+    <fragment
+        android:id="@+id/profilFragement"
+        android:name="islom.din.dodo_ilmhona_proskills.view.fragment.ProfilFragement"
+        android:label="ProfilFragement" >
+        <action
+            android:id="@+id/action_profilFragement_to_adressFragment"
+            app:destination="@id/adressFragment" />
+        <action
+            android:id="@+id/action_profilFragement_to_dodoCoinFragment"
+            app:destination="@id/dodoCoinFragment" />
+        <action
+            android:id="@+id/action_profilFragement_to_historyOrdersFragment"
+            app:destination="@id/historyOrdersFragment" />
+        <action
+            android:id="@+id/action_profilFragement_to_settingFragment"
+            app:destination="@id/settingFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/adressFragment"
+        android:name="islom.din.dodo_ilmhona_proskills.view.fragment.AdressFragment"
+        android:label="AdressFragment" />
+    <fragment
+        android:id="@+id/dodoCoinFragment"
+        android:name="islom.din.dodo_ilmhona_proskills.view.fragment.DodoCoinFragment"
+        android:label="DodoCoinFragment" >
+        <action
+            android:id="@+id/action_dodoCoinFragment_to_orderCointFragement"
+            app:destination="@id/orderCointFragement" />
+    </fragment>
+    <fragment
+        android:id="@+id/historyOrdersFragment"
+        android:name="islom.din.dodo_ilmhona_proskills.view.fragment.HistoryOrdersFragment"
+        android:label="HistoryOrdersFragment" />
+    <fragment
+        android:id="@+id/settingFragment"
+        android:name="islom.din.dodo_ilmhona_proskills.view.fragment.SettingFragment"
+        android:label="SettingFragment" />
+    <fragment
+        android:id="@+id/orderCointFragement"
+        android:name="islom.din.dodo_ilmhona_proskills.view.fragment.OrderCointFragement"
+        android:label="OrderCointFragement" />
 
 
 </navigation>

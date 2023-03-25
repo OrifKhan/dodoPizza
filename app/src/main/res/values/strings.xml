@@ -3,6 +3,8 @@
 
     <dimen name="viewpager_next_item_visible">70dp</dimen>
     <dimen name="viewpager_current_item_horizontal_margin">80dp</dimen>
+    <dimen name="viewpager_next_item_visible1">70dp</dimen>
+    <dimen name="viewpager_current_item_horizontal_margin1">60dp</dimen>
 
 
     <string name="menu">Меню</string>

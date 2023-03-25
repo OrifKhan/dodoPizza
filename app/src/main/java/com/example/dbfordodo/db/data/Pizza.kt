@@ -20,7 +20,8 @@ data class Pizza(
     val price:Int,
     val category: String,
     val things: Int=1,
-    var size:Int
+    var size:Int,
+    var main: Boolean =false
 ):Parcelable {
     fun formatPriceSmall(): String {
         return "$price  TJS"

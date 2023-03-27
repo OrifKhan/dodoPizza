@@ -29,10 +29,8 @@ class FragmentViewPager : Fragment() {
 
     //Room View Model
     private val dodoViewMadel: DodoViewMadel by activityViewModels {
-        DodoMadelFactory(
-            Application(),
-            (requireActivity().application as DataBaseApplication).database.pizzaDao()
-        )
+        DodoMadelFactory((requireActivity().application as DataBaseApplication).database.pizzaDao(),
+            (requireActivity().application as DataBaseApplication).database.orderDao())
     }
 
     private val args:FragmentViewPagerArgs by navArgs()
@@ -59,6 +57,8 @@ class FragmentViewPager : Fragment() {
                     binding.viewPagerLayout.adapter = adapter
                     binding.viewPagerLayout.setPageTransformer(getTransformation())
                     binding.viewPagerLayout.currentItem = args.pos
+                /*    if (!viewModel.hideBottomNavView)
+                      binding.bottomNavigationView.visibility = View.VISIBLE*/
 
 
                 }

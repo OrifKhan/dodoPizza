@@ -27,8 +27,9 @@ class StoresFragment : Fragment() {
      private val binding get() = _binding!!
     private lateinit var adapter: VpAdapter
     private val args: StoresFragmentArgs by navArgs()
-     private val dodoViewModel: DodoViewMadel by activityViewModels(){
-        DodoMadelFactory(Application(),(requireActivity().application as DataBaseApplication).database.pizzaDao())
+    private val dodoViewMadel: DodoViewMadel by activityViewModels {
+        DodoMadelFactory((requireActivity().application as DataBaseApplication).database.pizzaDao(),
+            (requireActivity().application as DataBaseApplication).database.orderDao())
     }
 
 
@@ -42,7 +43,7 @@ class StoresFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        dodoViewModel.getMaineStores(true).observe(viewLifecycleOwner){
+        dodoViewMadel.getMaineStores(true).observe(viewLifecycleOwner){
             adapter=VpAdapter(it,requireActivity(),args.pos)
         binding.viewPager.adapter=adapter
             binding.viewPager.currentItem=args.pos

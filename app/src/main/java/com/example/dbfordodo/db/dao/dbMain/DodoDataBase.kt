@@ -39,6 +39,7 @@ abstract class DodoDataBase: RoomDatabase() {
                 val instance=Room.databaseBuilder(context.applicationContext,
                 DodoDataBase::class.java,
                 "dodo_base")
+                    .fallbackToDestructiveMigrationFrom()
                     .build()
                 INSTANCE =instance
 

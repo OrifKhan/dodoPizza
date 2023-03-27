@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
@@ -16,7 +17,9 @@ import com.example.dbfordodo.R
 import com.example.dbfordodo.databinding.FragmentComboBinding
 import com.example.dbfordodo.db.data.Constants
 import com.example.dbfordodo.dodoViewMadel.DodoViewMadel
+import com.example.dbfordodo.dodoViewMadel.repository.DodoMadelFactory
 import com.example.dbfordodo.view.ChangeAdapter
+import com.example.dbfordodo.view.DataBaseApplication
 import islom.din.dodo_ilmhona_proskills.db.data.Pizza
 import kotlin.properties.Delegates
 
@@ -27,6 +30,10 @@ class ComboFragment : Fragment() {
     var indert=true
     var position: Int = 0
     private val args: ComboFragmentArgs by navArgs()
+    private val dodoViewMadel: DodoViewMadel by activityViewModels {
+        DodoMadelFactory((requireActivity().application as DataBaseApplication).database.pizzaDao(),
+            (requireActivity().application as DataBaseApplication).database.orderDao())
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -52,9 +59,9 @@ class ComboFragment : Fragment() {
             )
             findNavController().navigate(action)
         }
-        val viewModel = ViewModelProvider(requireActivity())[DodoViewMadel::class.java]
 
-        viewModel.getPizza().observe(viewLifecycleOwner) {
+
+        dodoViewMadel.getPizza().observe(viewLifecycleOwner) {
             position = args.pos - 1
             with(binding) {
                 imageComboFragment.setImageResource(it[position].image)
@@ -63,157 +70,13 @@ class ComboFragment : Fragment() {
             }
 
 
-            viewModel.getCombo(it[position].id).observe(viewLifecycleOwner) {
-
-
-
+            dodoViewMadel.getCombo(it[position].id).observe(viewLifecycleOwner) {
                      adapter.submitList(it)
                      Log.d("sise", "${it.size}")
-
-
 
                 }
 
             }
-
-            /*  when (it[position].name) {
-                  "3 пиццы" -> {
-                      viewModel.getChoicePizza(7, 2).observe(viewLifecycleOwner) { listOfPizza ->
-                          listOfPizza.forEach {
-                              combo.add(it)
-                          }
-                          adapter.submitList(combo)
-                      }
-                  }
-                  "10 средних пицц" -> {
-                      viewModel.getChoicePizza(22, 2).observe(viewLifecycleOwner) { listOfPizza ->
-                          listOfPizza.forEach {
-                              combo.add(it)
-                          }
-                          adapter.submitList(combo)
-                      }
-                  }
-                  "2 пиццы" -> {
-                      viewModel.getChoicePizza(5, 2).observe(viewLifecycleOwner) { listOfPizza ->
-                          listOfPizza.forEach {
-                              combo.add(it)
-                          }
-                          adapter.submitList(combo)
-                      }
-                  }
-                  "7 пицц" -> {
-                      viewModel.getChoicePizza(16, 2).observe(viewLifecycleOwner) { listOfPizza ->
-                          listOfPizza.forEach {
-                              combo.add(it)
-                          }
-                          adapter.submitList(combo)
-                      }
-                  }
-                  "2 пиццы и напиток" -> {
-                      viewModel.getChoicePizza(6, 2).observe(viewLifecycleOwner) { listOfPizza ->
-
-                          listOfPizza.forEach {
-                              combo.add(it)
-                          }
-                          viewModel.getCategory(Constants.NAPITKI).observe(viewLifecycleOwner) {
-                              var cont = 0
-                              it.forEach {
-                                  if (cont < 1)
-                                      combo.add(it)
-                                  cont++
-                              }
-                          }
-                          adapter.submitList(combo)
-                      }
-                  }
-                  "Пицца и 2 закуски" -> {
-                      viewModel.getChoicePizza(3, 2).observe(viewLifecycleOwner) {
-
-                          it.forEach {
-                              combo.add(it)
-                          }
-                          viewModel.getCategory(Constants.ZAKUSKI).observe(viewLifecycleOwner) {
-                              var cont = 0
-                              it.forEach {
-                                  if (cont < 2) {
-                                      combo.add(it)
-                                      cont++
-                                  }
-                              }
-                          }
-                          adapter.submitList(combo)
-
-                      }
-                  }
-                  "4 Додстера" -> {
-                      viewModel.getCategory(Constants.DESERTI).observe(viewLifecycleOwner) {
-
-                          var cont = 0
-                          it.forEach {
-                              if (cont < 4) {
-                                  combo.add(it)
-                                  cont++
-                              }
-                          }
-
-                          adapter.submitList(combo)
-                      }
-                  }
-                  "Пицца, додстер, напиток и соус" -> {
-
-                      viewModel.getCategory(Constants.PIZZA).observe(viewLifecycleOwner) {
-                          var cont = 0
-                          it.forEach {
-                              if (cont < 1) {
-                                  combo.add(it)
-                                  cont++
-                              }
-                          }
-                      }
-                      viewModel.getCategory(Constants.DESERTI).observe(viewLifecycleOwner) {
-                          var cont = 0
-                          it.forEach {
-                              if (cont < 1) {
-                                  combo.add(it)
-                                  cont++
-                              }
-                          }
-                      }
-                      viewModel.getCategory(Constants.NAPITKI).observe(viewLifecycleOwner) {
-                          var cont = 0
-                          it.forEach {
-                              if (cont < 1) {
-                                  combo.add(it)
-                                  cont++
-                              }
-                          }
-                      }
-                      viewModel.getCategory(Constants.ZAKUSKI).observe(viewLifecycleOwner) {
-                          var cont = 0
-                          it.forEach {
-                              if (cont < 1) {
-                                  combo.add(it)
-                                  cont++
-                              }
-                          }
-                          adapter.submitList(combo)
-                      }
-                  }
-                  "2 стартера" -> {
-
-                      viewModel.getCategory(Constants.ZAKUSKI).observe(viewLifecycleOwner) {
-                          var cont = 0
-                          it.forEach {
-                              if (cont < 2) {
-                                  combo.add(it)
-                                  cont++
-                              }
-                          }
-                          adapter.submitList(combo)
-                      }
-                  }
-              }
-  */
 
 
         }

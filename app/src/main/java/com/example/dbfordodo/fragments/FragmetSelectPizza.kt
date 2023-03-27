@@ -1,13 +1,16 @@
 package com.example.dbfordodo.fragments
 
+import SliderTransformer
 import android.app.Application
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.LifecycleCoroutineScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.viewpager2.widget.ViewPager2
@@ -20,6 +23,10 @@ import com.example.dbfordodo.dodoViewMadel.repository.DodoMadelFactory
 import com.example.dbfordodo.view.DataBaseApplication
 import com.example.dbfordodo.view.ViewPager.PagerPizzaAdpater
 import com.example.order.view.HorizontalMarginItemDecoration
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 
 class FragmetSelectPizza : Fragment() {
@@ -43,23 +50,22 @@ class FragmetSelectPizza : Fragment() {
 
         val dodoViewMadel: DodoViewMadel by activityViewModels {
             DodoMadelFactory(
-                Application(),
-                (requireActivity().application as DataBaseApplication).database.pizzaDao()
+                (requireActivity().application as DataBaseApplication).database.pizzaDao(),
+                (requireActivity().application as DataBaseApplication).database.orderDao()
             )
         }
         binding.viewPagerSelectPizza.adapter = adapter
-        adapter.idSelectPizza = args.pizza.id
-        binding.viewPagerSelectPizza.offscreenPageLimit=1
         val nextItemVisiblePx = resources.getDimension(R.dimen.viewpager_next_item_visible1)
-        val currentItemHorizontalMarginPx = resources.getDimension(R.dimen.viewpager_current_item_horizontal_margin1)
+        val currentItemHorizontalMarginPx = resources.getDimension(/* id = */ R.dimen.viewpager_current_item_horizontal_margin1)
         val pageTranslationX = nextItemVisiblePx + currentItemHorizontalMarginPx
         val pageTransformer = ViewPager2.PageTransformer { page: View, position: Float ->
+
             page.translationX = -pageTranslationX * position
             // Next line scales the item's height. You can remove it if you don't want this effect
-            page.scaleY = 1 - (0.1f * Math.abs(position))
+            page.scaleY = 1 - (0.25f * Math.abs(position))
             // If you want a fading effect uncomment the next line:
         }
-            binding.viewPagerSelectPizza.setPageTransformer(pageTransformer)
+        binding.viewPagerSelectPizza.setPageTransformer(pageTransformer)
 
 // The ItemDecoration gives the current (centered) item horizontal margin so that
 // it doesn't occupy the whole screen width. Without it the items overlap
@@ -70,19 +76,20 @@ class FragmetSelectPizza : Fragment() {
             binding.viewPagerSelectPizza.addItemDecoration(itemDecoration)
 
 
-
+        dodoViewMadel.getComboPizza(args.pizza.id).observe(viewLifecycleOwner) {
+            it.forEach() {
+                Toast.makeText(requireContext(),"${it.id_combo}",Toast.LENGTH_SHORT).show()
             adapter.onSelectItem = { pizza ->
-            dodoViewMadel.getComboPizza(args.pizza.id).observe(viewLifecycleOwner) {
-                it.forEach() {
-                    dodoViewMadel.updateComboPizza(Combo(args.pizza.id, it.id_combo, pizza.id))
-                    Log.d("listzise", "$it")
+                    dodoViewMadel.updateComboPizza(args.pizza.id,  pizza.id)
+                findNavController().navigateUp()
                 }
             }
-            findNavController().navigateUp()
-            /*Navigation.findNavController(view).popBackStack()*/
-            /*  viewModel.pizzaChanged(it)
-                  (requireActivity().supportFragmentManager.findFragmentById(R.id.fragmetSelectPizza) as NavHostFragment)
-                      .navController.navigateUp()*/
+
+
+
+
+        /*Navigation.findNavController(view).popBackStack()*/
+
         }
 
 
@@ -90,19 +97,19 @@ class FragmetSelectPizza : Fragment() {
 
         when (category.category) {
             Constants.PIZZA ->
-                dodoViewMadel.getCategory(Constants.PIZZA)
+                dodoViewMadel.getCategoryWithSize(Constants.PIZZA,2)
                     .observe(viewLifecycleOwner) { adapter.submitList(it) }
             Constants.NAPITKI ->
-                dodoViewMadel.getCategory(Constants.NAPITKI)
+                dodoViewMadel.getCategoryWithSize(Constants.NAPITKI,2)
                     .observe(viewLifecycleOwner) { adapter.submitList(it) }
             Constants.SOUSI ->
-                dodoViewMadel.getCategory(Constants.SOUSI)
+                dodoViewMadel.getCategoryWithSize(Constants.SOUSI,2)
                     .observe(viewLifecycleOwner) { adapter.submitList(it) }
             Constants.ZAKUSKI ->
-                dodoViewMadel.getCategory(Constants.ZAKUSKI)
+                dodoViewMadel.getCategoryWithSize(Constants.ZAKUSKI,2)
                     .observe(viewLifecycleOwner) { adapter.submitList(it) }
             Constants.DESERTI ->
-                dodoViewMadel.getCategory(Constants.DESERTI)
+                dodoViewMadel.getCategoryWithSize(Constants.DESERTI,2)
                     .observe(viewLifecycleOwner) { adapter.submitList(it) }
         }
 

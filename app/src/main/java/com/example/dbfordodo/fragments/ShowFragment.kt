@@ -55,7 +55,8 @@ class ShowFragment : Fragment() {
     private var listOfSize= mutableListOf<Pizza>()
 
     private val dodoViewMadel: DodoViewMadel by activityViewModels {
-        DodoMadelFactory(Application(),(requireActivity().application as DataBaseApplication).database.pizzaDao())
+        DodoMadelFactory((requireActivity().application as DataBaseApplication).database.pizzaDao(),
+            (requireActivity().application as DataBaseApplication).database.orderDao())
     }
 
     val binding get() = _binding!!

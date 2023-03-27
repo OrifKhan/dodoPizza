@@ -11,7 +11,7 @@ import islom.din.dodo_ilmhona_proskills.db.dao.PizzaDao
 import islom.din.dodo_ilmhona_proskills.db.data.Pizza
 import kotlin.random.Random
 
-class HomeViewModel(app:Application,pizzaDao: PizzaDao) : AndroidViewModel(app) {
+class HomeViewModel(pizzaDao: PizzaDao) : ViewModel() {
 
     //Getting category list from repository permanently  for category recycler view in home fragment
 //    var categoryList: List<Category> = GetCategoryList().getCategory()

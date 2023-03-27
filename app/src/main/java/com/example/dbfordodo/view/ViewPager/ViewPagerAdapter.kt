@@ -16,10 +16,9 @@ class ViewPagerAdapter(fa: FragmentViewPager, lists: List<Pizza>, pos: Int) :
         list = mutableListOf()
 
         for (i in lists) {
-            pos + 1
+
             list.add(ShowFragment.newInstance(i, pos))
-
-
+            pos + 1
         }
     }
 

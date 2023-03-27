@@ -99,6 +99,9 @@
         <argument
             android:name="posItemCombo"
             app:argType="integer" />
+        <action
+            android:id="@+id/action_fragmetSelectPizza_to_comboFragment"
+            app:destination="@id/comboFragment" />
     </fragment>
     <fragment
         android:id="@+id/basketFragment"

@@ -10,6 +10,8 @@ import android.widget.Toast
 import androidx.core.view.get
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -29,6 +31,7 @@ import com.example.dbfordodo.view.DataBaseApplication
 import com.google.android.material.chip.Chip
 import islom.din.dodo_ilmhona_proskills.QA.adapter.InterestingAdapter
 import islom.din.dodo_ilmhona_proskills.QA.adapter.PizzaAdapter
+import islom.din.dodo_ilmhona_proskills.db.data.Pizza
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
@@ -43,12 +46,13 @@ open class HomeFragment : Fragment() {
 
 
     //View Model
-    private val dodoViewModel: DodoViewMadel by activityViewModels(){
-        DodoMadelFactory(Application(),(requireActivity().application as DataBaseApplication).database.pizzaDao())
+    private val dodoViewModel: DodoViewMadel by viewModels(){
+        DodoMadelFactory((requireActivity().application as DataBaseApplication).database.pizzaDao(),
+            (requireActivity().application as DataBaseApplication).database.orderDao())
     }
 //View Model
     private val viewModel: HomeViewModel by activityViewModels {
-        HomeViewMadelFactory(Application(),(requireActivity().application as DataBaseApplication).database.pizzaDao())
+        HomeViewMadelFactory((requireActivity().application as DataBaseApplication).database.pizzaDao())
 }
 
     private val args : HomeFragmentArgs by navArgs()
@@ -76,7 +80,14 @@ open class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         //Room View Model
-    dodoViewModel.insertViewMadel()
+        var db: List<Pizza>? = listOf()
+     dodoViewModel.getPizza().observe(viewLifecycleOwner){
+         db=it
+   }
+        if (db?.isEmpty() ==true){
+           // dodoViewModel.insertViewMadel()
+        }
+
 
         adapterStores= AdepterSores()
         recyclerView=binding.recStoirs
@@ -87,7 +98,7 @@ open class HomeFragment : Fragment() {
             findNavController().navigate(action)
 
         }
-        CoroutineScope(Dispatchers.Main).launch {
+        lifecycleScope.launch {
         delay(500)
         dodoViewModel.getMaineStores(true).observe(viewLifecycleOwner){
             adapterStores.submitList(it)
@@ -99,7 +110,7 @@ open class HomeFragment : Fragment() {
 
 
         // Making Bottom Nav View Visible
- /*var bottomNavigationView = requireActivity().findViewById<BottomNavigationView>(R.id.bottom_nav_view)
+/* var bottomNavigationView = requireActivity().findViewById<BottomNavigationView>(R.id.bottom_nav_view)
        bottomNavigationView.setOnItemSelectedListener{
            when(it.itemId){
                -> {navigateToMeetFragment()

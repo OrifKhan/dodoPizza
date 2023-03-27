@@ -6,11 +6,11 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.dbfordodo.dodoViewMadel.HomeViewModel
 import islom.din.dodo_ilmhona_proskills.db.dao.PizzaDao
 
-class HomeViewMadelFactory(val app:Application,private val pizzaDao: PizzaDao):ViewModelProvider.AndroidViewModelFactory(app) {
+class HomeViewMadelFactory(private val pizzaDao: PizzaDao):ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(HomeViewModel::class.java)){
             @Suppress("UNCHECKED_CAST")
-            return HomeViewModel(app,pizzaDao) as T
+            return HomeViewModel(pizzaDao) as T
         }
         throw IllegalArgumentException("Unknown ViewModel Class")
     }

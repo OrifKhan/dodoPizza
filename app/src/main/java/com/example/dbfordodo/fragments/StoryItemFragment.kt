@@ -28,8 +28,9 @@ class StoryItemFragment : Fragment(), MultiProgressBar.ProgressStepChangeListene
     private val pos get()=_pos!!
 
     private lateinit var binding: FragmentStoryItemBinding
-    private val dodoViewModel: DodoViewMadel by activityViewModels(){
-        DodoMadelFactory(Application(),(requireActivity().application as DataBaseApplication).database.pizzaDao())
+    private val dodoViewModel: DodoViewMadel by activityViewModels {
+        DodoMadelFactory((requireActivity().application as DataBaseApplication).database.pizzaDao(),
+            (requireActivity().application as DataBaseApplication).database.orderDao())
     }
 
 

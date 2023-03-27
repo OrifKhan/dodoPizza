@@ -51,10 +51,10 @@
 
         @Query("SELECT * FROM pizzaAll as p INNER JOIN combo as c ON  p.id=c.id_pizza AND c.id_combo=:id_combo")
         fun getAllCombo(id_combo:  Int): LiveData<List<Pizza>>
-        @Query("SELECT * FROM combo WHERE id_pizza = :id_pizza")
-        fun getComboPizza(id_pizza: Int): LiveData<List<Combo>>
-        @Update
-        fun updateComboPizza(combo: Combo)
+        @Query("SELECT * FROM combo WHERE id = :id")
+        fun getComboPizza(id: Int): LiveData<List<Combo>>
+        @Query("Update combo set id_pizza =:id_pizza Where id=:id")
+       suspend fun updateComboPizza(id: Int,id_pizza: Int)
         @Query("SELECT * FROM vkus WHERE size = :size")
         fun getAllVkus(size: Int): LiveData<List<Vkus>>
 

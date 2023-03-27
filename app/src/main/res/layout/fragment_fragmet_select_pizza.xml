@@ -4,12 +4,18 @@
     android:layout_width="match_parent"
     android:layout_gravity="center"
     android:layout_height="match_parent"
-    android:background="#68050000"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     app:cardCornerRadius="20dp"
+    android:background="#FF5722"
+
     android:paddingVertical="48dp"
     tools:context=".fragments.FragmetSelectPizza">
-
+<!--<ImageView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:src="@raw/def"
+    android:rotation="90"
+    android:scaleType="center"/>-->
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -21,8 +27,11 @@
         app:layout_constraintBottom_toTopOf="@id/view_pager_select_pizza"/>
 
     <androidx.viewpager2.widget.ViewPager2
+        android:translationZ="1dp"
         android:layout_width="match_parent"
-        android:layout_height="400dp"
+        android:layout_height="500dp"
+        android:clipChildren="false"
+        android:clipToPadding="false"
         android:id="@+id/view_pager_select_pizza"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"

@@ -2,6 +2,7 @@ package com.example.dbfordodo.fragments
 
 import android.app.Application
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -23,13 +24,15 @@ private const val ARG_PARAM2 = "param2"
 
 
 class StoresFragment : Fragment() {
-    private var _binding: FragmentStoresBinding ?=null
-     private val binding get() = _binding!!
+    private var _binding: FragmentStoresBinding? = null
+    private val binding get() = _binding!!
     private lateinit var adapter: VpAdapter
     private val args: StoresFragmentArgs by navArgs()
     private val dodoViewMadel: DodoViewMadel by activityViewModels {
-        DodoMadelFactory((requireActivity().application as DataBaseApplication).database.pizzaDao(),
-            (requireActivity().application as DataBaseApplication).database.orderDao())
+        DodoMadelFactory(
+            (requireActivity().application as DataBaseApplication).database.pizzaDao(),
+            (requireActivity().application as DataBaseApplication).database.orderDao()
+        )
     }
 
 
@@ -43,10 +46,11 @@ class StoresFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        dodoViewMadel.getMaineStores(true).observe(viewLifecycleOwner){
-            adapter=VpAdapter(it,requireActivity(),args.pos)
-        binding.viewPager.adapter=adapter
-            binding.viewPager.currentItem=args.pos
-    }
+        dodoViewMadel.getMaineStores(true).observe(viewLifecycleOwner) {
+            adapter = VpAdapter(it, requireActivity())
+            Log.d("stores", "${args.pos}")
+            binding.viewPager.adapter = adapter
+            binding.viewPager.currentItem = args.pos
+        }
     }
 }

@@ -14,11 +14,11 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 
 open class SplashFragment : Fragment() {
 
-    private val viewModel : HomeViewModel by activityViewModels()
+    private val viewModel: HomeViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View? {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_splash, container, false)
@@ -28,14 +28,16 @@ open class SplashFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         Handler().postDelayed({
             findNavController().navigate(R.id.action_splashFragment_to_navigation_home)
-        },3000)
+        }, 3000)
 
-        var bottomNavView = requireActivity().findViewById<BottomNavigationView>(R.id.bottom_nav_view)
-
+        val bottomNavView =
+            requireActivity().findViewById<BottomNavigationView>(R.id.bottom_nav_view)
         bottomNavView.visibility = View.GONE
+
 
         viewModel.hideBottomNavView = false
     }
 }
+
 
 

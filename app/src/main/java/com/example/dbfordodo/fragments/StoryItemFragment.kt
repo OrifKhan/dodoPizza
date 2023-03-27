@@ -1,6 +1,5 @@
 package islom.din.dodo_ilmhona_proskills.shodmon.bekhruz
 
-import android.app.Application
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -13,24 +12,28 @@ import com.example.dbfordodo.R
 import com.example.dbfordodo.databinding.FragmentStoryItemBinding
 import com.example.dbfordodo.dodoViewMadel.DodoViewMadel
 import com.example.dbfordodo.dodoViewMadel.repository.DodoMadelFactory
+import com.example.dbfordodo.fragments.HomeFragment
 import com.example.dbfordodo.view.DataBaseApplication
 import com.genius.multiprogressbar.MultiProgressBar
-import islom.din.dodo_ilmhona_proskills.shodmon.khushbakht.StoryData
 
 private const val ARG_STORES = "stores"
 private const val ARG_POS = "pos"
+
 class StoryItemFragment : Fragment(), MultiProgressBar.ProgressStepChangeListener,
     MultiProgressBar.ProgressFinishListener {
-   private var _stores:Int?=null
-   private val stores get() =_stores!!
+    private var _stores: Int? = null
+    private val stores get() = _stores!!
 
-    private var _pos:Int?=null
-    private val pos get()=_pos!!
+    private var _pos: Int? = null
+    private val pos get() = _pos!!
+    private var positon = 0
 
     private lateinit var binding: FragmentStoryItemBinding
     private val dodoViewModel: DodoViewMadel by activityViewModels {
-        DodoMadelFactory((requireActivity().application as DataBaseApplication).database.pizzaDao(),
-            (requireActivity().application as DataBaseApplication).database.orderDao())
+        DodoMadelFactory(
+            (requireActivity().application as DataBaseApplication).database.pizzaDao(),
+            (requireActivity().application as DataBaseApplication).database.orderDao()
+        )
     }
 
 
@@ -38,7 +41,7 @@ class StoryItemFragment : Fragment(), MultiProgressBar.ProgressStepChangeListene
         super.onCreate(savedInstanceState)
         arguments?.let {
             _stores = it.getInt(ARG_STORES)
-            _pos=it.getInt(ARG_POS)
+            _pos = it.getInt(ARG_POS)
         }
 
     }
@@ -53,24 +56,34 @@ class StoryItemFragment : Fragment(), MultiProgressBar.ProgressStepChangeListene
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+
         super.onViewCreated(view, savedInstanceState)
-        dodoViewModel.getStores(pos).observe(viewLifecycleOwner) {
+        dodoViewModel.getStores(pos).observe(viewLifecycleOwner) { listItem ->
 
 
             binding.storyProgressBar.setSingleDisplayTime(5f)
-            binding.storyProgressBar.setProgressStepsCount(it.size)
+            binding.storyProgressBar.setProgressStepsCount(listItem.size)
             binding.storyProgressBar.setListener(this)
             binding.storyProgressBar.setFinishListener(this)
-            it.forEach(){
-                binding.image.setImageResource(it.image)
-            }
+            binding.image.setImageResource(stores)
+
+
 
             binding.leftView.setOnClickListener {
                 binding.storyProgressBar.previous()
+                if (positon != 0) {
+                    positon--
+                    binding.image.setImageResource(listItem[positon].image)
+
+                }
             }
-            binding.rightView.setOnClickListener {
-                binding.storyProgressBar.next()
-            }
+                binding.rightView.setOnClickListener {
+                    binding.storyProgressBar.next()
+                    if (positon!=listItem.size-1){
+                    positon++
+                    binding.image.setImageResource(listItem[positon].image)
+                    }
+                }
 
 
         }
@@ -95,29 +108,31 @@ class StoryItemFragment : Fragment(), MultiProgressBar.ProgressStepChangeListene
 
 
     override fun onProgressStepChange(newStep: Int) {
+        dodoViewModel.getStores(pos).observe(viewLifecycleOwner){
+        binding.image.setImageResource(it[newStep].image)
+            positon=newStep
         Log.d("TESTING", "New step --> $newStep")
+        }
 
     }
-
-
-
 
 
     override fun onProgressFinished() {
         Log.d("TESTING", "onProgressFinished: ")
 
         val pager = requireActivity().findViewById<ViewPager2>(R.id.viewPager)
-        pager.currentItem += 1
+
+       pager.currentItem += 1
 
 
     }
-    companion object{
-        fun newInstance(stores:StoryData,pos: Int) =
+
+    companion object {
+        fun newInstance(stores: Int, pos: Int) =
             StoryItemFragment().apply {
                 arguments = Bundle().apply {
-                    putInt(ARG_STORES,stores.image)
-                    putInt(ARG_POS,pos)
-
+                    putInt(ARG_STORES, stores)
+                    putInt(ARG_POS, pos)
 
 
                 }
@@ -125,6 +140,6 @@ class StoryItemFragment : Fragment(), MultiProgressBar.ProgressStepChangeListene
             }
 
 
-        }
     }
+}
 

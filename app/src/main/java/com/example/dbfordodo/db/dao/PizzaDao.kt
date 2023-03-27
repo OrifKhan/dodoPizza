@@ -40,7 +40,7 @@
         suspend fun insertVkus(vkus: Vkus)
         @Insert(onConflict = OnConflictStrategy.IGNORE)
         suspend fun insertStores(stores:StoryData)
-        @Query("SELECT * FROM stores WHERE id=:id")
+        @Query("SELECT * FROM stores WHERE idItem=:id")
          fun getAllStores(id: Int):LiveData<List<StoryData>>
          @Query("SELECT * FROM stores WHERE main =:maine")
          fun getMaineStores(maine: Boolean):LiveData<List<StoryData>>

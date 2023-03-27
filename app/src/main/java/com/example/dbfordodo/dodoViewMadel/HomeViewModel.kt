@@ -17,7 +17,7 @@ class HomeViewModel(pizzaDao: PizzaDao) : ViewModel() {
 //    var categoryList: List<Category> = GetCategoryList().getCategory()
 
     // Getting pizza list from repository for pizza recycler view in home fragment
-    var pizzaList = pizzaDao.getAllPizza()
+
 
     var hideBottomNavView = true
 

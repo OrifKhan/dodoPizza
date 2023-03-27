@@ -28,6 +28,7 @@ import com.example.dbfordodo.dodoViewMadel.repository.RoomViewModel
 import com.example.dbfordodo.dodoViewMadel.repository.RoomViewModelFactory
 import com.example.dbfordodo.view.AdepterSores
 import com.example.dbfordodo.view.DataBaseApplication
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.chip.Chip
 import islom.din.dodo_ilmhona_proskills.QA.adapter.InterestingAdapter
 import islom.din.dodo_ilmhona_proskills.QA.adapter.PizzaAdapter
@@ -40,37 +41,42 @@ import kotlinx.coroutines.launch
 @Suppress("IMPLICIT_CAST_TO_ANY")
 open class HomeFragment : Fragment() {
     //binding
-    private lateinit var  recyclerView: RecyclerView
+    private lateinit var recyclerView: RecyclerView
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
 
 
     //View Model
-    private val dodoViewModel: DodoViewMadel by viewModels(){
-        DodoMadelFactory((requireActivity().application as DataBaseApplication).database.pizzaDao(),
-            (requireActivity().application as DataBaseApplication).database.orderDao())
+    private val dodoViewModel: DodoViewMadel by viewModels() {
+        DodoMadelFactory(
+            (requireActivity().application as DataBaseApplication).database.pizzaDao(),
+            (requireActivity().application as DataBaseApplication).database.orderDao()
+        )
     }
-//View Model
+
+    //View Model
     private val viewModel: HomeViewModel by activityViewModels {
         HomeViewMadelFactory((requireActivity().application as DataBaseApplication).database.pizzaDao())
-}
+    }
 
-    private val args : HomeFragmentArgs by navArgs()
+    private val args: HomeFragmentArgs by navArgs()
 
     private lateinit var adapterForPizza: PizzaAdapter
-    private lateinit var adapterStores:AdepterSores
+    private lateinit var adapterStores: AdepterSores
 
 
-        //Room View Model
-        private val roomViewModel: RoomViewModel by activityViewModels {
-            RoomViewModelFactory((requireActivity().application as DataBaseApplication).database.ingredientsDao(),
-                (requireActivity().application as DataBaseApplication).database.ingredientProductsConnectionDao(),
-                (requireActivity().application as DataBaseApplication).database.productsDao(),
-                (requireActivity().application as DataBaseApplication).database.orderDao())
+    //Room View Model
+    private val roomViewModel: RoomViewModel by activityViewModels {
+        RoomViewModelFactory(
+            (requireActivity().application as DataBaseApplication).database.ingredientsDao(),
+            (requireActivity().application as DataBaseApplication).database.ingredientProductsConnectionDao(),
+            (requireActivity().application as DataBaseApplication).database.productsDao(),
+            (requireActivity().application as DataBaseApplication).database.orderDao()
+        )
     }
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?,
     ): View? {
         // Inflate the layout for this fragment
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
@@ -81,50 +87,41 @@ open class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         //Room View Model
         var db: List<Pizza>? = listOf()
-     dodoViewModel.getPizza().observe(viewLifecycleOwner){
-         db=it
-   }
-        if (db?.isEmpty() ==true){
-           // dodoViewModel.insertViewMadel()
+        dodoViewModel.getPizza().observe(viewLifecycleOwner) {
+            db = it
+        }
+        if (db?.isEmpty() == true) {
+            // dodoViewModel.insertViewMadel()
         }
 
 
-        adapterStores= AdepterSores()
-        recyclerView=binding.recStoirs
-        recyclerView.layoutManager=LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL,false)
-        recyclerView.adapter=adapterStores
-        adapterStores.itemOnClick={
+        adapterStores = AdepterSores()
+        recyclerView = binding.recStoirs
+        recyclerView.layoutManager =
+            LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+        recyclerView.adapter = adapterStores
+        adapterStores.itemOnClick = {
             val action = HomeFragmentDirections.actionNavigationHomeToStoresFragment(it)
             findNavController().navigate(action)
 
         }
         lifecycleScope.launch {
-        delay(500)
-        dodoViewModel.getMaineStores(true).observe(viewLifecycleOwner){
-            adapterStores.submitList(it)
-            Log.d("Storis","${it.size}")
-        }}
-
-
-
+            delay(500)
+            dodoViewModel.getMaineStores(true).observe(viewLifecycleOwner) {
+                adapterStores.submitList(it)
+                Log.d("Storis", "${it.size}")
+            }
+        }
 
 
         // Making Bottom Nav View Visible
-/* var bottomNavigationView = requireActivity().findViewById<BottomNavigationView>(R.id.bottom_nav_view)
-       bottomNavigationView.setOnItemSelectedListener{
-           when(it.itemId){
-               -> {navigateToMeetFragment()
-               if (!viewModel.hideBottomNavView) {
-                   bottomNavigationView.visibility = View.VISIBLE
-               }
-               }
-           }
-           true
-       }*//*
+ val bottomNavigationView = requireActivity().findViewById<BottomNavigationView>(R.id.bottom_nav_view)
 
-if (!viewModel.hideBottomNavView)
-            bottomNavigationView.visibility = View.VISIBLE*/
 
+
+if (!viewModel.hideBottomNavView) {
+   bottomNavigationView.visibility = View.VISIBLE
+}
 
         adapterForPizza = PizzaAdapter()
 
@@ -134,8 +131,6 @@ if (!viewModel.hideBottomNavView)
         scrollingChangeListener()
         settingPizzaRecyclerView()
         setupInterestingRecyclerView()
-
-
 
 
     }
@@ -148,10 +143,10 @@ if (!viewModel.hideBottomNavView)
         binding.interestingRV.adapter = adapter
     }
 
-   /* private fun navigateToMeetFragment() {
-        val directions = HomeFragmentDirections.actionNavigationHomeToMeetFragment()
-        findNavController().navigate(directions)
-    }*/
+    /* private fun navigateToMeetFragment() {
+         val directions = HomeFragmentDirections.actionNavigationHomeToMeetFragment()
+         findNavController().navigate(directions)
+     }*/
 
     private fun scrollingChangeListener() {
         binding.pizzaRv.setOnScrollChangeListener { v, _, _, _, _ ->
@@ -200,22 +195,22 @@ if (!viewModel.hideBottomNavView)
             if (viewModel.orderStreet.value == Constants.DOSTAVKA) {
                 binding.naDostavku.setBackgroundResource(R.drawable.shape_chip_white)
                 binding.vZale.setBackgroundResource(R.drawable.shape_chip_grey)
-            }else if (viewModel.orderStreet.value == Constants.ZAL){
+            } else if (viewModel.orderStreet.value == Constants.ZAL) {
                 binding.vZale.setBackgroundResource(R.drawable.shape_chip_white)
                 binding.naDostavku.setBackgroundResource(R.drawable.shape_chip_grey)
             }
         }
 
-            //What should happen if I click "V zale" button
+        //What should happen if I click "V zale" button
         binding.vZale.setOnClickListener {
-                viewModel.changeOrderType(Constants.ZAL)
-            }
-
-            //What should happen if I click "Dostavka" button
-        binding.naDostavku.setOnClickListener {
-                    viewModel.changeOrderType(Constants.DOSTAVKA)
-            }
+            viewModel.changeOrderType(Constants.ZAL)
         }
+
+        //What should happen if I click "Dostavka" button
+        binding.naDostavku.setOnClickListener {
+            viewModel.changeOrderType(Constants.DOSTAVKA)
+        }
+    }
 
     private fun settingPizzaRecyclerView() {
         // Pizza recycler view initialising and setting adapter and list for it
@@ -230,20 +225,20 @@ if (!viewModel.hideBottomNavView)
 //            Toast.makeText(requireContext(),"Added to db",Toast.LENGTH_SHORT).show()
 //        }
         adapterForPizza.order = {
-            Log.d("MYTESTINGERROR","$it")
-            roomViewModel.newOrderConnection(Constants.USER_ID,it.id,1)
-            Toast.makeText(requireContext(),"Added to busket",Toast.LENGTH_SHORT).show()
+            Log.d("MYTESTINGERROR", "$it")
+            roomViewModel.newOrderConnection(Constants.USER_ID, it.id, 1)
+            Toast.makeText(requireContext(), "Added to busket", Toast.LENGTH_SHORT).show()
         }
         binding.pizzaRv.adapter = adapterForPizza
-        adapterForPizza.onClick={pos,pizza->
-            Toast.makeText(requireContext(),"$pos",Toast.LENGTH_SHORT).show()
-            val action = if (pizza.category==Constants.COMBO) {
+        adapterForPizza.onClick = { pos, pizza ->
+            Toast.makeText(requireContext(), "$pos", Toast.LENGTH_SHORT).show()
+            val action = if (pizza.category == Constants.COMBO) {
                 HomeFragmentDirections.actionNavigationHomeToComboFragment(pos)
-            }else{
-               HomeFragmentDirections.actionNavigationHomeToFragmentViewPager(pos,pizza)
+            } else {
+                HomeFragmentDirections.actionNavigationHomeToFragmentViewPager(pos, pizza)
 
 
-        }
+            }
             findNavController().navigate(action)
         }
     }

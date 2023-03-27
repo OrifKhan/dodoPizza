@@ -2,6 +2,7 @@ package islom.din.dodo_ilmhona_proskills.db.data
 
 import android.os.Parcelable
 import androidx.compose.ui.geometry.Size
+import androidx.navigation.fragment.FragmentNavigator
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.ForeignKey
@@ -21,7 +22,8 @@ data class Pizza(
     val category: String,
     val things: Int=1,
     var size:Int,
-    var main: Boolean =false
+    var main: Boolean =false,
+    var description: String?=null
 ):Parcelable {
     fun formatPriceSmall(): String {
         return "$price  TJS"

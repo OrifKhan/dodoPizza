@@ -28,6 +28,7 @@ import com.example.dbfordodo.databinding.ChipTextItemBinding
 import com.example.dbfordodo.databinding.DeleteIngridientItemBinding
 import com.example.dbfordodo.databinding.ViewShowFragmentBinding
 import com.example.dbfordodo.db.data.Constants
+
 import com.example.dbfordodo.dodoViewMadel.DodoViewMadel
 import com.example.dbfordodo.dodoViewMadel.repository.DodoMadelFactory
 import com.example.dbfordodo.view.DataBaseApplication
@@ -52,7 +53,7 @@ class ShowFragment : Fragment() {
     lateinit var recycler: RecyclerView
     lateinit var adapter: ListSousAdapter
 
-    private var listOfSize= mutableListOf<Pizza>()
+
 
     private val dodoViewMadel: DodoViewMadel by activityViewModels {
         DodoMadelFactory((requireActivity().application as DataBaseApplication).database.pizzaDao(),
@@ -489,6 +490,7 @@ Toast.makeText(requireContext(),"${it.size } ddfdfdfd",Toast.LENGTH_SHORT).show(
             adapter.submitList(newList)
         }
     }
+
     companion object {
 
         fun newInstance(param1: islom.din.dodo_ilmhona_proskills.db.data.Pizza,pos: Int) =

@@ -40,7 +40,7 @@
 
     <TextView
         android:background="@drawable/shape_price"
-        android:id="@+id/picca_price"
+        android:id="@+id/pizza_price"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintLeft_toLeftOf="@id/pizza_about"

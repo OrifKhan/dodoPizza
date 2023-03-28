@@ -87,11 +87,12 @@ open class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         //Room View Model
         var db: List<Pizza>? = listOf()
+        if (db?.isEmpty() == true) {
+           // dodoViewModel.insertViewMadel()
+        }
+
         dodoViewModel.getPizza().observe(viewLifecycleOwner) {
             db = it
-        }
-        if (db?.isEmpty() == true) {
-            // dodoViewModel.insertViewMadel()
         }
 
 
@@ -143,10 +144,6 @@ if (!viewModel.hideBottomNavView) {
         binding.interestingRV.adapter = adapter
     }
 
-    /* private fun navigateToMeetFragment() {
-         val directions = HomeFragmentDirections.actionNavigationHomeToMeetFragment()
-         findNavController().navigate(directions)
-     }*/
 
     private fun scrollingChangeListener() {
         binding.pizzaRv.setOnScrollChangeListener { v, _, _, _, _ ->

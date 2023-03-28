@@ -3,14 +3,12 @@ package islom.din.dodo_ilmhona_proskills.QA.adapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.constraintlayout.widget.ConstraintSet.Constraint
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.example.dbfordodo.R
 import com.example.dbfordodo.databinding.PizzaItemBinding
 import com.example.dbfordodo.databinding.PizzaItemMainBinding
 import com.example.dbfordodo.db.data.Constants
-import com.example.dbfordodo.db.data.Constants.Companion.PIZZA
 import islom.din.dodo_ilmhona_proskills.QA.diffUtils.PizzaDiffUtls
 import islom.din.dodo_ilmhona_proskills.db.data.Pizza
 
@@ -26,9 +24,9 @@ class PizzaAdapter() : ListAdapter<Pizza, ViewHolder>(PizzaDiffUtls()) {
             binding.pizzaImage.setImageResource(pizzaData.image)
             binding.pizzaName.text = pizzaData.name
             binding.pizzaAbout.text = pizzaData.about
-            binding.piccaPrice.text = pizzaData.formatPriceSmall()
+            binding.pizzaPrice.text = pizzaData.formatPriceSmall()
 
-            binding.piccaPrice.setOnClickListener {
+            binding.pizzaPrice.setOnClickListener {
                 order?.invoke(pizzaData)
             }
             if (pizzaData.category == Constants.COMBO) {
@@ -51,8 +49,8 @@ class PizzaAdapter() : ListAdapter<Pizza, ViewHolder>(PizzaDiffUtls()) {
             binding.pizzaImage.setImageResource(pizzaData.image)
             binding.pizzaName.text = pizzaData.name
             binding.pizzaAbout.text = pizzaData.about
-            binding.piccaPrice.text = pizzaData.formatPriceSmall()
-            binding.piccaPrice.setOnClickListener {
+            binding.pizzaPrice.text = pizzaData.formatPriceSmall()
+            binding.pizzaPrice.setOnClickListener {
                 order?.invoke(pizzaData)
             }
             if (pizzaData.category == Constants.COMBO) {

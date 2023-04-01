@@ -76,16 +76,21 @@
             android:textColor="#E40909"/>
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/get_new_cod"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="получить новый код"
-        android:textSize="25sp"
-        android:padding="5dp"
-        android:gravity="center_horizontal"
-        android:layout_gravity="bottom|center_horizontal"
-        android:layout_margin="40dp"
-        android:textColor="@color/white"
-        android:background="@drawable/rounded_coreners"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/get_new_cod"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="10dp"
+            android:layout_gravity="bottom"
+            android:background="@drawable/button_style"
+            android:gravity="center"
+            android:text="@string/get_new_kod"
+            android:textColor="@color/white"
+
+            />
+
 </FrameLayout>

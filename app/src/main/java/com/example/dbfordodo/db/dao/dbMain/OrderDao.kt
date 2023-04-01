@@ -1,5 +1,6 @@
 package islom.din.dodo_ilmhona_proskills.khq.dbMain
 
+import androidx.lifecycle.LiveData
 import androidx.room.*
 import islom.din.dodo_ilmhona_proskills.db.data.Pizza
 import kotlinx.coroutines.flow.Flow
@@ -24,14 +25,15 @@ interface OrderDao {
 
     @Insert
     suspend fun newOrderConnection(orderConnection : OrderConnection)
-
+@Query("SELECT * FROM order_connection_server")
+    fun getHistoryOrders():LiveData<List<OrderConnectionServer>>
     @RewriteQueriesToDropUnusedColumns
     @Query("SELECT * FROM pizzaAll as p INNER JOIN order_connection as o " +
             "ON p.id = o.product_id AND o.users_id = :user_id")
     fun getOrderedProducts(user_id: Int) : Flow<List<Pizza>>
 
     @Query("SELECT SUM(p.price * o.amount) FROM pizzaAll as p INNER JOIN order_connection as o " +
-            "ON p.id = o.product_id AND o.users_id = :user_id")
+            " ON p.id = o.product_id AND o.users_id =:user_id")
     fun getProductsSum(user_id: Int) : Flow<Int>
 
     @Query("SELECT amount FROM order_connection WHERE users_id = :user_id")

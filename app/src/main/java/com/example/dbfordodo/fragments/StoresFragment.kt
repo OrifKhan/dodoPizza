@@ -15,19 +15,17 @@ import com.example.dbfordodo.dodoViewMadel.DodoViewMadel
 import com.example.dbfordodo.dodoViewMadel.repository.DodoMadelFactory
 import com.example.dbfordodo.view.DataBaseApplication
 import com.example.dbfordodo.view.ViewPager.VpAdapter
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import islom.din.dodo_ilmhona_proskills.shodmon.khushbakht.StoryData
-
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
 
 class StoresFragment : Fragment() {
     private var _binding: FragmentStoresBinding? = null
     private val binding get() = _binding!!
+
     private lateinit var adapter: VpAdapter
+
     private val args: StoresFragmentArgs by navArgs()
+
     private val dodoViewMadel: DodoViewMadel by activityViewModels {
         DodoMadelFactory(
             (requireActivity().application as DataBaseApplication).database.pizzaDao(),
@@ -46,7 +44,9 @@ class StoresFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         dodoViewMadel.getMaineStores(true).observe(viewLifecycleOwner) {
+            binding.viewPager.currentItem = args.pos
             adapter = VpAdapter(it, requireActivity())
             Log.d("stores", "${args.pos}")
             binding.viewPager.adapter = adapter

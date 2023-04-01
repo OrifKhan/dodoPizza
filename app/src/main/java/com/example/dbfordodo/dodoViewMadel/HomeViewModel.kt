@@ -13,12 +13,6 @@ import kotlin.random.Random
 
 class HomeViewModel(pizzaDao: PizzaDao) : ViewModel() {
 
-    //Getting category list from repository permanently  for category recycler view in home fragment
-//    var categoryList: List<Category> = GetCategoryList().getCategory()
-
-    // Getting pizza list from repository for pizza recycler view in home fragment
-
-
     var hideBottomNavView = true
 
     private var _orderType = MutableLiveData(Constants.DOSTAVKA)

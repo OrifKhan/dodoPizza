@@ -7,14 +7,17 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.dbfordodo.R
 import com.example.dbfordodo.dodoViewMadel.HomeViewModel
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 open class SplashFragment : Fragment() {
-
-    private val viewModel: HomeViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -26,16 +29,13 @@ open class SplashFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        Handler().postDelayed({
-            findNavController().navigate(R.id.action_splashFragment_to_navigation_home)
-        }, 3000)
+        lifecycleScope.launch(Dispatchers.IO) {
+            delay(3000)
+            withContext(Dispatchers.Main) {
+                findNavController().navigate(R.id.action_splashFragment_to_navigation_home)
 
-        val bottomNavView =
-            requireActivity().findViewById<BottomNavigationView>(R.id.bottom_nav_view)
-        bottomNavView.visibility = View.GONE
-
-
-        viewModel.hideBottomNavView = false
+            }
+        }
     }
 }
 

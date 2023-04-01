@@ -77,13 +77,13 @@ class StoryItemFragment : Fragment(), MultiProgressBar.ProgressStepChangeListene
 
                 }
             }
-                binding.rightView.setOnClickListener {
-                    binding.storyProgressBar.next()
-                    if (positon!=listItem.size-1){
+            binding.rightView.setOnClickListener {
+                binding.storyProgressBar.next()
+                if (positon != (listItem.size - 1)) {
                     positon++
                     binding.image.setImageResource(listItem[positon].image)
-                    }
                 }
+            }
 
 
         }
@@ -108,10 +108,10 @@ class StoryItemFragment : Fragment(), MultiProgressBar.ProgressStepChangeListene
 
 
     override fun onProgressStepChange(newStep: Int) {
-        dodoViewModel.getStores(pos).observe(viewLifecycleOwner){
-        binding.image.setImageResource(it[newStep].image)
-            positon=newStep
-        Log.d("TESTING", "New step --> $newStep")
+        dodoViewModel.getStores(pos).observe(viewLifecycleOwner) {
+            binding.image.setImageResource(it[newStep].image)
+            positon = newStep
+            Log.d("TESTING", "New step --> $newStep")
         }
 
     }
@@ -122,9 +122,7 @@ class StoryItemFragment : Fragment(), MultiProgressBar.ProgressStepChangeListene
 
         val pager = requireActivity().findViewById<ViewPager2>(R.id.viewPager)
 
-       pager.currentItem += 1
-
-
+        pager.currentItem += 1
     }
 
     companion object {
@@ -133,13 +131,8 @@ class StoryItemFragment : Fragment(), MultiProgressBar.ProgressStepChangeListene
                 arguments = Bundle().apply {
                     putInt(ARG_STORES, stores)
                     putInt(ARG_POS, pos)
-
-
                 }
-
             }
-
-
     }
 }
 

@@ -96,7 +96,7 @@ class KorzinaFragment : Fragment() {
     @SuppressLint("SetTextI18n")
     private fun observe() {
         roomViewModel.getProductsSum().observe(viewLifecycleOwner) {
-            binding.txtKorzina.text = "${adapter.currentList.size} товара на $it TJS"
+            binding.korzinaCountItems.text = "${adapter.currentList.size} товара на $it TJS"
         }
     }
 

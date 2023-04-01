@@ -3,10 +3,7 @@ package com.example.dbfordodo.dodoViewMadel
 import android.app.Application
 import android.util.Log
 import android.view.View
-import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import com.example.dbfordodo.R
 import com.example.dbfordodo.db.dao.dbMain.DodoDataBase
 import com.example.dbfordodo.db.data.Combo
@@ -17,6 +14,7 @@ import islom.din.dodo_ilmhona_proskills.db.data.Category
 import islom.din.dodo_ilmhona_proskills.db.data.Ingridients
 import islom.din.dodo_ilmhona_proskills.db.data.Pizza
 import islom.din.dodo_ilmhona_proskills.db.data.Vkus
+import islom.din.dodo_ilmhona_proskills.khq.dbMain.OrderConnectionServer
 import islom.din.dodo_ilmhona_proskills.khq.dbMain.OrderDao
 import islom.din.dodo_ilmhona_proskills.shodmon.khushbakht.StoryData
 import kotlinx.coroutines.Dispatchers
@@ -54,9 +52,9 @@ class DodoViewMadel(
             GetStores().getList().forEach {
                 pizzaDao.insertStores(it)
             }
-           /* GetOrder().getList().forEach {
+           GetOrder().getList().forEach {
                 orderDao.newOrder(it)
-            }*/
+            }
 
 
 
@@ -71,8 +69,14 @@ class DodoViewMadel(
 
     }
 
+    fun getHistory(): LiveData<List<OrderConnectionServer>> {
+        return orderDao.getHistoryOrders()
+    }
     fun getPizza(): LiveData<List<Pizza>> {
         return pizzaDao.getAllPizza()
+    }
+    fun getPizzaId(id:Int): LiveData<List<Pizza>> {
+        return pizzaDao.getPizzaId(id).asLiveData()
     }
 
     fun getVkus(size: Int): LiveData<List<Vkus>> {

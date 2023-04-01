@@ -59,7 +59,6 @@ open class HomeFragment : Fragment() {
         HomeViewMadelFactory((requireActivity().application as DataBaseApplication).database.pizzaDao())
     }
 
-    private val args: HomeFragmentArgs by navArgs()
 
     private lateinit var adapterForPizza: PizzaAdapter
     private lateinit var adapterStores: AdepterSores
@@ -78,7 +77,6 @@ open class HomeFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?,
     ): View? {
-        // Inflate the layout for this fragment
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -88,7 +86,7 @@ open class HomeFragment : Fragment() {
         //Room View Model
         var db: List<Pizza>? = listOf()
         if (db?.isEmpty() == true) {
-           // dodoViewModel.insertViewMadel()
+            // dodoViewModel.insertViewMadel()
         }
 
         dodoViewModel.getPizza().observe(viewLifecycleOwner) {
@@ -104,7 +102,6 @@ open class HomeFragment : Fragment() {
         adapterStores.itemOnClick = {
             val action = HomeFragmentDirections.actionNavigationHomeToStoresFragment(it)
             findNavController().navigate(action)
-
         }
         lifecycleScope.launch {
             delay(500)
@@ -115,15 +112,6 @@ open class HomeFragment : Fragment() {
         }
 
 
-        // Making Bottom Nav View Visible
- val bottomNavigationView = requireActivity().findViewById<BottomNavigationView>(R.id.bottom_nav_view)
-
-
-
-if (!viewModel.hideBottomNavView) {
-   bottomNavigationView.visibility = View.VISIBLE
-}
-
         adapterForPizza = PizzaAdapter()
 
         setupChip()
@@ -132,8 +120,6 @@ if (!viewModel.hideBottomNavView) {
         scrollingChangeListener()
         settingPizzaRecyclerView()
         setupInterestingRecyclerView()
-
-
     }
 
     private fun setupInterestingRecyclerView() {

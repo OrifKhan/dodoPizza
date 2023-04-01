@@ -35,19 +35,22 @@
         android:gravity="center"
         android:textStyle="normal"/>
 
-        <TextView
-            android:id="@+id/set_number"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="указать телефон"
-            android:textSize="25sp"
-            android:layout_gravity="center_horizontal"
-            android:paddingStart="15dp"
-            android:paddingEnd="15dp"
-            android:paddingTop="5dp"
-            android:paddingBottom="5dp"
-            android:textColor="@color/white"
-            android:background="@drawable/rounded_coreners"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/set_number"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/button_style"
+        android:gravity="center"
+        android:text="@string/ukazat_namber"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </LinearLayout>
 

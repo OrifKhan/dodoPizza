@@ -4,7 +4,9 @@
     import androidx.room.*
     import com.example.dbfordodo.db.data.Combo
     import islom.din.dodo_ilmhona_proskills.db.data.*
+    import islom.din.dodo_ilmhona_proskills.khq.dbMain.OrderConnectionServer
     import islom.din.dodo_ilmhona_proskills.shodmon.khushbakht.StoryData
+    import kotlinx.coroutines.flow.Flow
 
     @Dao
     interface PizzaDao {
@@ -70,6 +72,10 @@
         fun getPizzaNameWithSize(name: String, size: Int): LiveData<List<Pizza>>
         @Query("SELECT * FROM pizzaAll WHERE  name= :name")
         fun getPizzaName(name: String): LiveData<List<Pizza>>
+        @RewriteQueriesToDropUnusedColumns
+        @Query("SELECT * FROM pizzaAll as p INNER JOIN order_connection_server as o " +
+                "ON p.id = o.product_id AND o.users_id = :user_id")
+        fun getPizzaId(user_id: Int) : Flow<List<Pizza>>
 
 
 

@@ -41,6 +41,9 @@
         <action
             android:id="@+id/action_navigation_home_to_meetFragment2"
             app:destination="@id/meetFragment" />
+        <action
+            android:id="@+id/action_navigation_home_to_contactFragment"
+            app:destination="@+id/navigation_contact" />
 
     </fragment>
 
@@ -197,6 +200,42 @@
         android:id="@+id/orderCointFragement"
         android:name="islom.din.dodo_ilmhona_proskills.view.fragment.OrderCointFragement"
         android:label="OrderCointFragement" />
+    <fragment
+        android:id="@+id/navigation_contact"
+        android:name="com.example.dbfordodo.fragments.ContactFragment"
+        android:label="ContactFragment" >
+        <action
+            android:id="@+id/action_contactFragment_to_aboutFragment"
+            app:destination="@id/aboutFragment" />
+        <action
+            android:id="@+id/action_navigation_contact_to_mapsFragment"
+            app:destination="@id/mapsFragment" />
+        <action
+            android:id="@+id/action_navigation_contact_to_documentFragment"
+            app:destination="@id/documentFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/aboutFragment"
+        android:name="com.example.dbfordodo.fragments.AboutFragment"
+        android:label="AboutFragment" />
+    <fragment
+        android:id="@+id/PDFFragment"
+        android:name="com.example.dbfordodo.fragments.PDFFragment"
+        android:label="PDFFragment" />
+    <fragment
+        android:id="@+id/mapsFragment"
+        android:name="com.example.dbfordodo.fragments.MapsFragment"
+        android:label="fragment_maps"
+        tools:layout="@layout/fragment_maps" />
+    <fragment
+        android:id="@+id/documentFragment"
+        android:name="com.example.dbfordodo.fragments.DocumentFragment"
+        android:label="fragment_document"
+        tools:layout="@layout/fragment_document" >
+        <action
+            android:id="@+id/action_documentFragment_to_PDFFragment2"
+            app:destination="@id/PDFFragment" />
+    </fragment>
 
 
 </navigation>

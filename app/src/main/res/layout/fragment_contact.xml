@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragments.ContactFragment">
+
+    <RelativeLayout
+        android:id="@+id/img_map_conteiner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_marginTop="22dp"
+            app:cardCornerRadius="500dp">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:contentDescription="@string/app_name"
+                android:scaleType="centerCrop"
+                android:src="@raw/map" />
+        </androidx.cardview.widget.CardView>
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/openMap"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="8dp"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/textdesign"
+        android:paddingHorizontal="12dp"
+        android:paddingVertical="4dp"
+        android:text="ПИЦЦЕРИИ НА КАРТЕ"
+        android:textAlignment="center"
+        android:textColor="@color/color_for_category"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@id/img_map_conteiner"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+
+    <TextView
+        android:id="@+id/textTech"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="70dp"
+        android:text="Связться с поддержкой"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/openMap" />
+
+    <TextView
+        android:id="@+id/call"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/shape_price"
+        android:gravity="center"
+        android:paddingVertical="12dp"
+        android:text="Пoзвонить"
+        android:textAlignment="center"
+        android:textColor="@color/secondaryDarkColor"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textTech" />
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/call">
+
+        <LinearLayout
+            android:id="@+id/social_icons"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp"
+            android:weightSum="2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/facebook"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_weight="1"
+                android:src="@drawable/facebook" />
+
+            <ImageView
+                android:id="@+id/instagram"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_weight="1"
+                android:src="@drawable/instagram"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/facebook"
+                app:layout_constraintTop_toTopOf="parent" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1.5dp"
+            android:background="@color/grey_lighter"
+            app:layout_constraintBottom_toTopOf="@id/social_icons" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1.5dp"
+            android:background="@color/grey_lighter"
+            app:layout_constraintTop_toBottomOf="@id/social_icons" />
+
+        <LinearLayout
+            android:id="@+id/linear1"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:gravity="center"
+            android:weightSum="2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/social_icons"
+            app:layout_constraintVertical_bias="0.589">
+
+            <TextView
+                android:id="@+id/textDocumentetion"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginVertical="@dimen/super_low_mp"
+                android:layout_marginStart="10dp"
+                android:layout_weight="1"
+                android:gravity="start"
+                android:text="Праводные документы"
+                android:textColor="@color/black" />
+
+            <ImageView
+                android:id="@+id/goTo"
+                android:layout_width="30dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="end"
+                android:layout_weight="1"
+                android:src="@drawable/ic_right" />
+
+        </LinearLayout>
+
+        <View
+            android:id="@+id/line5"
+            android:layout_width="match_parent"
+            android:layout_height="1.5dp"
+            android:background="@color/grey_lighter"
+            app:layout_constraintTop_toBottomOf="@id/linear1" />
+
+        <LinearLayout
+            android:id="@+id/goToAboutFragment"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:orientation="horizontal"
+            android:weightSum="2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/line5">
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginVertical="@dimen/super_low_mp"
+                android:layout_marginStart="10dp"
+                android:layout_weight="1"
+                android:gravity="start"
+                android:text="О приложении                 "
+                android:textColor="@color/black" />
+
+            <ImageView
+                android:id="@+id/linear2"
+                android:layout_width="30dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="end"
+                android:layout_weight="1"
+                android:src="@drawable/ic_right" />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1.5dp"
+            android:background="@color/grey_lighter"
+            app:layout_constraintTop_toBottomOf="@id/goToAboutFragment" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

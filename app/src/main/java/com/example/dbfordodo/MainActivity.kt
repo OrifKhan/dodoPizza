@@ -8,6 +8,7 @@ import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.NavDestination
@@ -30,6 +31,8 @@ class MainActivity : AppCompatActivity() {
 
         //Navigation view getting from layout
         val bottomNavView = binding.bottomNavView
+
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
 
         // Getting my Nav Host and setting to it a Nav Controller
         val navFragment =

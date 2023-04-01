@@ -86,7 +86,7 @@ open class HomeFragment : Fragment() {
         //Room View Model
         var db: List<Pizza>? = listOf()
         if (db?.isEmpty() == true) {
-            // dodoViewModel.insertViewMadel()
+           // dodoViewModel.insertViewMadel()
         }
 
         dodoViewModel.getPizza().observe(viewLifecycleOwner) {

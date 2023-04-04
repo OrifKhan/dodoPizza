@@ -16,7 +16,7 @@ class NumberRegisterFragment() :Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentNumberRegisterBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -24,8 +24,10 @@ class NumberRegisterFragment() :Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.nextContinue.setOnClickListener {
+            val number=binding.editNumber.text.toString()
+
             val action =
-                NumberRegisterFragmentDirections.actionNumberRegisterFragmentToPasswordFragment()
+                NumberRegisterFragmentDirections.actionNumberRegisterFragmentToPasswordFragment(number)
             findNavController().navigate(action)
         }
     }

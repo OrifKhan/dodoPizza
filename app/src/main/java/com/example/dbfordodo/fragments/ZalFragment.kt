@@ -27,7 +27,7 @@ class ZalFragment : Fragment() {
 
         binding.container1.setOnClickListener {
             val action =
-              ZalFragmentDirections.actionZalFragment2ToNavigationHome(null,
+              ZalFragmentDirections.actionZalFragmentToNavigationHome(null,
 
                     binding.locationName.toString()
               )
@@ -36,7 +36,7 @@ class ZalFragment : Fragment() {
 
         binding.container2.setOnClickListener {
             val action =
-                ZalFragmentDirections.actionZalFragment2ToNavigationHome(
+                ZalFragmentDirections.actionZalFragmentToNavigationHome(
                     null,
                     binding.locationName2.toString()
                 )

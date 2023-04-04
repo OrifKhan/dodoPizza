@@ -1,6 +1,8 @@
 package com.example.dbfordodo.fragments
 
 import android.app.Application
+import android.content.Context
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -38,7 +40,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
-@Suppress("IMPLICIT_CAST_TO_ANY")
+
 open class HomeFragment : Fragment() {
     //binding
     private lateinit var recyclerView: RecyclerView
@@ -83,16 +85,37 @@ open class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        //Room View Model
-        var db: List<Pizza>? = listOf()
-        if (db?.isEmpty() == true) {
-           // dodoViewModel.insertViewMadel()
-        }
 
-        dodoViewModel.getPizza().observe(viewLifecycleOwner) {
-            db = it
-        }
+        val bottomNavigationView =
+            requireActivity().findViewById<BottomNavigationView>(R.id.bottom_nav_view)
+        bottomNavigationView.setOnItemSelectedListener() {
 
+            if (sharedPref().getInt("number", 0) == null) {
+                findNavController().navigate(R.id.action_navigation_home_to_profilFragement)
+            } else {
+
+                findNavController().navigate(R.id.action_navigation_home_to_meetFragment2)
+            }
+
+            true
+            /*
+            when (it.itemId) {
+                }
+                R.id.backFragment -> {
+                    findNavController().navigate(R.id.action_navigation_home_to_korzinaFragment)
+                    true
+                }
+                R.id.navigation_contact -> {
+                    findNavController().navigate(R.id.action_navigation_home_to_korzinaFragment)
+                    true
+                }
+                else->{
+                    findNavController().navigate(R.id.navigation_home)
+                    true
+                }*/
+
+
+        }
 
         adapterStores = AdepterSores()
         recyclerView = binding.recStoirs
@@ -113,6 +136,7 @@ open class HomeFragment : Fragment() {
 
 
         adapterForPizza = PizzaAdapter()
+
 
         setupChip()
         scrollingOnCategoryClicked()
@@ -176,22 +200,26 @@ open class HomeFragment : Fragment() {
     private fun chooseOrderType() {
         viewModel.orderStreet.observe(requireActivity()) {
             if (viewModel.orderStreet.value == Constants.DOSTAVKA) {
-                binding.naDostavku.setBackgroundResource(R.drawable.shape_chip_white)
-                binding.vZale.setBackgroundResource(R.drawable.shape_chip_grey)
+                binding.adressDostavkiFragment.setBackgroundResource(R.drawable.shape_chip_white)
+                binding.zalFragment2.setBackgroundResource(R.drawable.shape_chip_grey)
             } else if (viewModel.orderStreet.value == Constants.ZAL) {
-                binding.vZale.setBackgroundResource(R.drawable.shape_chip_white)
-                binding.naDostavku.setBackgroundResource(R.drawable.shape_chip_grey)
+                binding.zalFragment2.setBackgroundResource(R.drawable.shape_chip_white)
+                binding.adressDostavkiFragment.setBackgroundResource(R.drawable.shape_chip_grey)
             }
         }
 
         //What should happen if I click "V zale" button
-        binding.vZale.setOnClickListener {
+        binding.zalFragment2.setOnClickListener {
             viewModel.changeOrderType(Constants.ZAL)
+            val action = HomeFragmentDirections.actionNavigationHomeToZalFragment()
+            findNavController().navigate(action)
         }
 
         //What should happen if I click "Dostavka" button
-        binding.naDostavku.setOnClickListener {
+        binding.adressDostavkiFragment.setOnClickListener {
             viewModel.changeOrderType(Constants.DOSTAVKA)
+            val action = HomeFragmentDirections.actionNavigationHomeToAdressDostavkiFragment2()
+            findNavController().navigate(action)
         }
     }
 
@@ -247,6 +275,12 @@ open class HomeFragment : Fragment() {
         chip.text = category
         return chip
     }
+
+    fun sharedPref(): SharedPreferences {
+        return requireActivity().getSharedPreferences("number_user", Context.MODE_PRIVATE)
+    }
+
+
 
     override fun onDestroyView() {
         super.onDestroyView()

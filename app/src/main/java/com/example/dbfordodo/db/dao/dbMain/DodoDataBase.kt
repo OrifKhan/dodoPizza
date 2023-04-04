@@ -31,10 +31,21 @@ abstract class DodoDataBase: RoomDatabase() {
     abstract fun orderDao() : OrderDao
 
     companion object{
-        @Volatile
-        private var INSTANCE: DodoDataBase? =null
+
 
         fun getInstance(context: Context): DodoDataBase {
+            return androidx.room.Room.databaseBuilder(
+                context.applicationContext,
+                DodoDataBase::class.java,
+                "dodo_base"
+            )
+                .createFromAsset("dodo_base.db")
+                .build()
+
+        }
+
+        }
+      /*  fun getInstance(context: Context): DodoDataBase {
             return  INSTANCE ?:synchronized(this){
                 val instance=Room.databaseBuilder(context.applicationContext,
                 DodoDataBase::class.java,
@@ -46,7 +57,7 @@ abstract class DodoDataBase: RoomDatabase() {
                 instance
             }
 
-        }
+        }*/
     }
-}
+
 

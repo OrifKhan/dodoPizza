@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import com.example.dbfordodo.R
 import com.example.dbfordodo.databinding.FragmentAdressDostavkiBinding
@@ -32,20 +33,24 @@ class AdressDostavkiFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.toolbar.setOnMenuItemClickListener {
+       /* binding.toolbar.setOnMenuItemClickListener {
             when (it.itemId) {
                 R.id.save ->  {
                     val action =
-                       AdressDostavkiFragmentDirections.actionAdressDostavkiFragmentToNavigationHome(
+                       AdressDostavkiFragmentDirections.actionAdressDostavkiFragment2ToNavigationHome(
                             binding.ulica.toString(),
                             null
                         )
                     findNavController().navigate(action)
                     return@setOnMenuItemClickListener true
                 }
-                else -> { return@setOnMenuItemClickListener false}
+                R.id.back->{
+
+                    Navigation.findNavController(view).popBackStack()
+                }
+                else -> {true}
             }
-        }
+        }*/
     }
 
 

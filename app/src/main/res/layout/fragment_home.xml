@@ -114,7 +114,7 @@
                         <TextView
                             android:textSize="12sp"
                             android:textColor="@color/black"
-                            android:id="@+id/na_dostavku"
+                            android:id="@+id/adressDostavkiFragment"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
@@ -126,7 +126,7 @@
                         <TextView
                             android:textSize="12sp"
                             android:textColor="@color/black"
-                            android:id="@+id/v_zale"
+                            android:id="@+id/zalFragment2"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"

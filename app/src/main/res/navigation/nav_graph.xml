@@ -19,12 +19,6 @@
             android:name="zal_location"
             app:argType="string"
             app:nullable="true" />
-        <action
-            android:id="@+id/action_navigation_home_to_zalFragment2"
-            app:destination="@id/zalFragment2" />
-        <action
-            android:id="@+id/action_navigation_home_to_adressDostavkiFragment"
-            app:destination="@id/adressDostavkiFragment" />
 
         <action
             android:id="@+id/action_navigation_home_to_korzinaFragment"
@@ -44,17 +38,18 @@
         <action
             android:id="@+id/action_navigation_home_to_contactFragment"
             app:destination="@+id/navigation_contact" />
-
-    </fragment>
-
-    <fragment
-        android:id="@+id/zalFragment2"
-        android:name="com.example.dbfordodo.fragments.ZalFragment"
-        android:label="ZalFragment" >
         <action
-            android:id="@+id/action_zalFragment2_to_navigation_home"
-            app:destination="@id/navigation_home" />
+            android:id="@+id/action_navigation_home_to_profilFragement"
+            app:destination="@id/profilFragement" />
+        <action
+            android:id="@+id/action_navigation_home_to_adressDostavkiFragment2"
+            app:destination="@id/adressDostavkiFragment2" />
+        <action
+            android:id="@+id/action_navigation_home_to_zalFragment"
+            app:destination="@id/zalFragment" />
+
     </fragment>
+
     <fragment
         android:id="@+id/splashFragment"
         android:name="com.example.dbfordodo.fragments.SplashFragment"
@@ -65,14 +60,6 @@
             app:destination="@id/navigation_home"
             app:popUpTo="@id/splashFragment"
             app:popUpToInclusive="true" />
-    </fragment>
-    <fragment
-        android:id="@+id/adressDostavkiFragment"
-        android:name="com.example.dbfordodo.fragments.AdressDostavkiFragment"
-        android:label="AdressDostavkiFragment" >
-        <action
-            android:id="@+id/action_adressDostavkiFragment_to_navigation_home"
-            app:destination="@id/navigation_home" />
     </fragment>
     <fragment
         android:id="@+id/showFragment2"
@@ -158,6 +145,9 @@
         <action
             android:id="@+id/action_passwordFragment_to_profilFragement"
             app:destination="@id/profilFragement" />
+        <argument
+            android:name="number"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/profilFragement"
@@ -235,6 +225,23 @@
         <action
             android:id="@+id/action_documentFragment_to_PDFFragment2"
             app:destination="@id/PDFFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/adressDostavkiFragment2"
+        android:name="com.example.dbfordodo.fragments.AdressDostavkiFragment"
+        android:label="AdressDostavkiFragment" >
+        <action
+            android:id="@+id/action_adressDostavkiFragment2_to_navigation_home"
+            app:destination="@id/navigation_home" />
+    </fragment>
+    <fragment
+        android:id="@+id/zalFragment"
+        android:name="com.example.dbfordodo.fragments.ZalFragment"
+        android:label="fragment_zal"
+        tools:layout="@layout/fragment_zal" >
+        <action
+            android:id="@+id/action_zalFragment_to_navigation_home"
+            app:destination="@id/navigation_home" />
     </fragment>
 
 

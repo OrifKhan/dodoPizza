@@ -9,7 +9,7 @@
 
     <fragment
         android:id="@+id/navigation_home"
-        android:name="com.example.dbfordodo.fragments.HomeFragment"
+        android:name="com.example.dbfordodo.view.fragments.HomeFragment"
         android:label="@string/menu"
         tools:layout="@layout/fragment_home" >
         <argument android:name="dostavka_location"
@@ -52,7 +52,7 @@
 
     <fragment
         android:id="@+id/splashFragment"
-        android:name="com.example.dbfordodo.fragments.SplashFragment"
+        android:name="com.example.dbfordodo.view.fragments.SplashFragment"
         android:label="fragment_splash"
         tools:layout="@layout/fragment_splash" >
         <action
@@ -63,7 +63,7 @@
     </fragment>
     <fragment
         android:id="@+id/showFragment2"
-        android:name="com.example.dbfordodo.fragments.ShowFragment"
+        android:name="com.example.dbfordodo.view.fragments.ShowFragment"
         android:label="ShowFragment" >
         <action
             android:id="@+id/action_showFragment2_to_comboFragment"
@@ -72,7 +72,7 @@
 
     <fragment
         android:id="@+id/comboFragment"
-        android:name="com.example.dbfordodo.fragments.ComboFragment"
+        android:name="com.example.dbfordodo.view.fragments.ComboFragment"
         android:label="ComboFragment" >
         <action
             android:id="@+id/action_comboFragment_to_fragmetSelectPizza"
@@ -83,7 +83,7 @@
     </fragment>
     <fragment
         android:id="@+id/fragmetSelectPizza"
-        android:name="com.example.dbfordodo.fragments.FragmetSelectPizza"
+        android:name="com.example.dbfordodo.view.fragments.FragmetSelectPizza"
         android:label="FragmetSelectPizza" >
         <argument
             android:name="pizza"
@@ -97,7 +97,7 @@
     </fragment>
     <fragment
         android:id="@+id/basketFragment"
-        android:name="com.example.dbfordodo.fragments.KorzinaFragment"
+        android:name="com.example.dbfordodo.view.fragments.KorzinaFragment"
         android:label="KorzinaFragment" />
     <fragment
         android:id="@+id/fragmentViewPager"
@@ -115,7 +115,7 @@
     </fragment>
     <fragment
         android:id="@+id/storesFragment"
-        android:name="com.example.dbfordodo.fragments.StoresFragment"
+        android:name="com.example.dbfordodo.view.fragments.StoresFragment"
         android:label="fragment_stores"
         tools:layout="@layout/fragment_stores" >
         <argument
@@ -192,7 +192,7 @@
         android:label="OrderCointFragement" />
     <fragment
         android:id="@+id/navigation_contact"
-        android:name="com.example.dbfordodo.fragments.ContactFragment"
+        android:name="com.example.dbfordodo.view.fragments.ContactFragment"
         android:label="ContactFragment" >
         <action
             android:id="@+id/action_contactFragment_to_aboutFragment"
@@ -206,20 +206,20 @@
     </fragment>
     <fragment
         android:id="@+id/aboutFragment"
-        android:name="com.example.dbfordodo.fragments.AboutFragment"
+        android:name="com.example.dbfordodo.view.fragments.AboutFragment"
         android:label="AboutFragment" />
     <fragment
         android:id="@+id/PDFFragment"
-        android:name="com.example.dbfordodo.fragments.PDFFragment"
+        android:name="com.example.dbfordodo.view.fragments.PDFFragment"
         android:label="PDFFragment" />
     <fragment
         android:id="@+id/mapsFragment"
-        android:name="com.example.dbfordodo.fragments.MapsFragment"
+        android:name="com.example.dbfordodo.view.fragments.MapsFragment"
         android:label="fragment_maps"
         tools:layout="@layout/fragment_maps" />
     <fragment
         android:id="@+id/documentFragment"
-        android:name="com.example.dbfordodo.fragments.DocumentFragment"
+        android:name="com.example.dbfordodo.view.fragments.DocumentFragment"
         android:label="fragment_document"
         tools:layout="@layout/fragment_document" >
         <action
@@ -228,7 +228,7 @@
     </fragment>
     <fragment
         android:id="@+id/adressDostavkiFragment2"
-        android:name="com.example.dbfordodo.fragments.AdressDostavkiFragment"
+        android:name="com.example.dbfordodo.view.fragments.AdressDostavkiFragment"
         android:label="AdressDostavkiFragment" >
         <action
             android:id="@+id/action_adressDostavkiFragment2_to_navigation_home"
@@ -236,7 +236,7 @@
     </fragment>
     <fragment
         android:id="@+id/zalFragment"
-        android:name="com.example.dbfordodo.fragments.ZalFragment"
+        android:name="com.example.dbfordodo.view.fragments.ZalFragment"
         android:label="fragment_zal"
         tools:layout="@layout/fragment_zal" >
         <action

@@ -1,6 +1,6 @@
 package com.example.dbfordodo.dodoViewMadel.repository
 
-import com.example.dbfordodo.db.data.Constants
+import com.example.dbfordodo.madel.data.Constants
 import islom.din.dodo_ilmhona_proskills.db.data.Category
 
 // -------- NOT USED ------------ //

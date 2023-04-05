@@ -1,9 +1,5 @@
 package com.example.dbfordodo.dodoViewMadel.repository
 
-import com.example.dbfordodo.R
-import com.example.dbfordodo.db.data.Constants
-import islom.din.dodo_ilmhona_proskills.db.data.Pizza
-
 class GetPizzaList {
   /*  fun getList(): List<Pizza> {
 

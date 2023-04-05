@@ -1,8 +1,7 @@
 package com.example.dbfordodo.dodoViewMadel.repository
 
-import com.example.dbfordodo.db.data.Constants
-import islom.din.dodo_ilmhona_proskills.db.data.Pizza
-import islom.din.dodo_ilmhona_proskills.khq.dbMain.Order
+import com.example.dbfordodo.madel.data.Constants
+import com.example.dbfordodo.madel.data.Order
 
 class GetOrder {
     fun getList(): List<Order> {

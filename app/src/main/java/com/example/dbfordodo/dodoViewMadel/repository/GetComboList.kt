@@ -1,7 +1,6 @@
 package com.example.dbfordodo.dodoViewMadel.repository
 
-import com.example.dbfordodo.db.data.Combo
-import islom.din.dodo_ilmhona_proskills.db.data.Pizza
+import com.example.dbfordodo.madel.data.Combo
 
 class GetComboList {
     fun getList(): List<Combo> {

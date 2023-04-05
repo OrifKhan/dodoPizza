@@ -7,5 +7,5 @@ import androidx.room.PrimaryKey
 data class Category (
    @PrimaryKey(autoGenerate = true) val id:Int,
     val name: String,
-   val isChecked:Boolean=false
+   val isChecked:Int=0
         )

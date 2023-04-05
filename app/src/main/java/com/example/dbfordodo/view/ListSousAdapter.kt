@@ -40,7 +40,7 @@ class ListSousAdapter() : ListAdapter<Vkus, ListSousAdapter.SousViewHolder>(MyDi
 
             binding.root.setOnClickListener() {
                 onClick.invoke(adapterPosition)
-                vkus.select = true
+                vkus.select = 1
                 showChecked(vkus)
 
                 showHide(binding.selectImage)
@@ -48,7 +48,7 @@ class ListSousAdapter() : ListAdapter<Vkus, ListSousAdapter.SousViewHolder>(MyDi
 
             }
             binding.seconClock.setOnClickListener() {
-                vkus.select = false
+                vkus.select = 0
                 showChecked(vkus)
                 showHide(binding.seconClock)
                 showHide(binding.selectImage)
@@ -78,7 +78,7 @@ class ListSousAdapter() : ListAdapter<Vkus, ListSousAdapter.SousViewHolder>(MyDi
         }
 
         fun showChecked(vkus: Vkus) {
-            if (vkus.select == true) {
+            if (vkus.select == 1) {
 
                 binding.begItem.setBackgroundResource(R.drawable.stoke_select.toInt())
             } else {

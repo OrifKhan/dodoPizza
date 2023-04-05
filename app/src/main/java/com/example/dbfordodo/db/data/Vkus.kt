@@ -10,6 +10,6 @@ data class Vkus(
     val name : String,
     val priceSmall :Int,
     val size:Int,
-    val available : Boolean? = true,
-    var select : Boolean? = false,
+    val available :Int = 1,
+    var select : Int = 0,
 )

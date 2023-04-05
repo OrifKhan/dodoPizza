@@ -8,6 +8,8 @@ import com.example.dbfordodo.R
 import com.example.dbfordodo.db.dao.dbMain.DodoDataBase
 import com.example.dbfordodo.db.data.Combo
 import com.example.dbfordodo.dodoViewMadel.repository.*
+import com.example.dbfordodo.dodoViewMadel.retrafitrepository.MainApi
+import com.example.dbfordodo.dodoViewMadel.retrafitrepository.Retrofit
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import islom.din.dodo_ilmhona_proskills.db.dao.PizzaDao
 import islom.din.dodo_ilmhona_proskills.db.data.Category
@@ -26,33 +28,35 @@ class DodoViewMadel(
     val orderDao: OrderDao,
 ) : ViewModel() {
 
+    private val mainApi: MainApi =Retrofit().retrofit.create(MainApi::class.java)
+
     fun insertViewMadel() {
         viewModelScope.launch(Dispatchers.IO) {
 
             Log.d("hello", "errrro")
-            GetVkusList().getList().forEach {
+            mainApi.getVkus().body()?.forEach {
                 pizzaDao.insertVkus(it)
             }
-            GetPizzaList().getList().forEach() {
+            mainApi.getPizza().body()?.forEach() {
                 pizzaDao.insertPizza(it)
             }
-            GetCategoryList().getCategory().forEach() {
+            mainApi.getCategory().body()?.forEach() {
                 pizzaDao.insertCotegory(it)
             }
 
-            GetIngridientList().getList().forEach() {
+            mainApi.getIngredient().body()?.forEach() {
                 pizzaDao.insertIngredient(it)
             }
-            GetComboList().getList().forEach() {
+            mainApi.getCombo().body()?.forEach() {
                 pizzaDao.insertCombo(it)
             }
             GetHalfList().getList().forEach {
                 pizzaDao.insertHalfPizza(it)
             }
-            GetStores().getList().forEach {
+            mainApi.getStores().body()?.forEach {
                 pizzaDao.insertStores(it)
             }
-           GetOrder().getList().forEach {
+            mainApi.getOrder().body()?.forEach {
                 orderDao.newOrder(it)
             }
 

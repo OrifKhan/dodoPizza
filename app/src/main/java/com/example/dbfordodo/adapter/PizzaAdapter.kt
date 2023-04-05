@@ -66,7 +66,7 @@ class PizzaAdapter() : ListAdapter<Pizza, ViewHolder>(PizzaDiffUtls()) {
     }
 
     override fun getItemViewType(position: Int): Int {
-        return if (getItem(position).main) {     PIZZAMAIN}
+        return if (getItem(position).main==1) {     PIZZAMAIN}
 
             else {PIZZA}
     }

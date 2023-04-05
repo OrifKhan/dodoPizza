@@ -85,8 +85,8 @@ open class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        val bottomNavigationView =
+dodoViewModel.insertViewMadel()
+        /*   val bottomNavigationView =
             requireActivity().findViewById<BottomNavigationView>(R.id.bottom_nav_view)
         bottomNavigationView.setOnItemSelectedListener() {
 
@@ -97,8 +97,8 @@ open class HomeFragment : Fragment() {
                 findNavController().navigate(R.id.action_navigation_home_to_meetFragment2)
             }
 
-            true
-            /*
+            true*/
+        /*
             when (it.itemId) {
                 }
                 R.id.backFragment -> {
@@ -115,7 +115,7 @@ open class HomeFragment : Fragment() {
                 }*/
 
 
-        }
+
 
         adapterStores = AdepterSores()
         recyclerView = binding.recStoirs

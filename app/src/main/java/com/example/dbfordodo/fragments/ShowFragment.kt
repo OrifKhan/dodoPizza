@@ -411,7 +411,7 @@ class ShowFragment : Fragment() {
 
                 for (index in periodicList.indices) {
                     if (index == it) {
-                        val listes = periodicList[it].copy(select = true)
+                        val listes = periodicList[it].copy(select = 1)
                         newList.add(listes)
                     } else {
                         newList.add(periodicList[index])
@@ -508,7 +508,7 @@ class ShowFragment : Fragment() {
 
 
             for (item in it) {
-                newList.add(item.copy(select = false))
+                newList.add(item.copy(select = 0))
             }
 
             adapter.submitList(newList)

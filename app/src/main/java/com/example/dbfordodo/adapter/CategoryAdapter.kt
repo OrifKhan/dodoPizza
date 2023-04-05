@@ -29,7 +29,7 @@ class CategoryAdapter() :
         //Binding the data and setting background and text color
         fun bind(categoryData: Category) {
             binding.categoryText.text = categoryData.name
-            if (categoryData.isChecked) {
+            if (categoryData.isChecked==1) {
                 binding.categoryText.setBackgroundResource(R.drawable.shape_category_checked)
                 binding.categoryText.setTextColor(ContextCompat.getColor(binding.root.context,R.color.secondaryColor))
             } else {

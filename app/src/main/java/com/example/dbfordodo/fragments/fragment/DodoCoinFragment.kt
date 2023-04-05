@@ -32,7 +32,7 @@ class DodoCoinFragment: Fragment() {
         adapter= CoinAdapter()
         viewPager2 =binding.viewPager2
         viewPager2.adapter=adapter
-        adapter.submitList(GetPizzaList().getList())
+      //  adapter.submitList(GetPizzaList().getList())
         adapter.onClick={
             val action =DodoCoinFragmentDirections.actionDodoCoinFragmentToOrderCointFragement()
             findNavController().navigate(action)

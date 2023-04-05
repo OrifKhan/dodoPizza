@@ -16,48 +16,53 @@ import islom.din.dodo_ilmhona_proskills.shodmon.khushbakht.StoryData
          IngredientSize::class, Combo::class,StoryData::class, IngredientSizeConnection::class,
         IngredientsProductsConnection::class, Order::class, OrderConnection::class,
         OrderConnectionServer::class],
-    version = 1
+    version = 3
 )
 
 abstract class DodoDataBase: RoomDatabase() {
-    abstract fun pizzaDao():PizzaDao
+    abstract fun pizzaDao(): PizzaDao
 
-    abstract fun ingredientsDao() : IngredientsDao
+    abstract fun ingredientsDao(): IngredientsDao
 
-    abstract fun ingredientProductsConnectionDao() : IngredientsProductsConnectionDao
+    abstract fun ingredientProductsConnectionDao(): IngredientsProductsConnectionDao
 
-    abstract fun productsDao() : ProductsDao
+    abstract fun productsDao(): ProductsDao
 
-    abstract fun orderDao() : OrderDao
+    abstract fun orderDao(): OrderDao
 
-    companion object{
+    companion object {
 
 
-        fun getInstance(context: Context): DodoDataBase {
+        /*    fun getInstance(context: Context): DodoDataBase {
             return androidx.room.Room.databaseBuilder(
                 context.applicationContext,
                 DodoDataBase::class.java,
                 "dodo_base"
             )
-                .createFromAsset("dodo_base.db")
+                .createFromAsset("dodo_base1.db")
+                .fallbackToDestructiveMigration()
                 .build()
 
-        }
+        }*/
 
-        }
-      /*  fun getInstance(context: Context): DodoDataBase {
-            return  INSTANCE ?:synchronized(this){
-                val instance=Room.databaseBuilder(context.applicationContext,
-                DodoDataBase::class.java,
-                "dodo_base")
+
+        var INSTANCE: DodoDataBase? = null
+        fun getInstance(context: Context): DodoDataBase {
+            return INSTANCE ?: synchronized(this) {
+                val instance = Room.databaseBuilder(
+                    context.applicationContext,
+                    DodoDataBase::class.java,
+                    "dodo_base"
+                )
                     .fallbackToDestructiveMigrationFrom()
                     .build()
-                INSTANCE =instance
+                INSTANCE = instance
 
                 instance
             }
 
-        }*/
+        }
     }
 
 
+}

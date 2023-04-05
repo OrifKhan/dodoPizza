@@ -22,7 +22,7 @@ data class Pizza(
     val category: String,
     val things: Int=1,
     var size:Int,
-    var main: Boolean =false,
+    var main: Int =0,
     var description: String?=null
 ):Parcelable {
     fun formatPriceSmall(): String {

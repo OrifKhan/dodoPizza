@@ -5,10 +5,11 @@ import com.example.dbfordodo.db.data.Constants
 import islom.din.dodo_ilmhona_proskills.db.data.Pizza
 
 class GetPizzaList {
-    fun getList(): List<Pizza> {
+  /*  fun getList(): List<Pizza> {
 
 
         val list = mutableListOf<Pizza>()
+
 
 
         list.add(
@@ -431,5 +432,6 @@ list.add(
                 price = 49, category = Constants.DRUGIE, things = 2, size = 2)
         )
         return list
-    }
+
+    }*/
 }

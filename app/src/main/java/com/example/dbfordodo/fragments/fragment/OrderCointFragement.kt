@@ -32,7 +32,7 @@ class OrderCointFragement : Fragment() {
             LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
         binding.coinRecycler.adapter = adapter
 
-        adapter.submitList(GetPizzaList().getList())
+      //  adapter.submitList(GetPizzaList().getList())
 
     }
 

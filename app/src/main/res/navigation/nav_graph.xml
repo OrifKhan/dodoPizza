@@ -4,12 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
 
     android:id="@+id/nag_graf"
-    app:startDestination="@id/navigation_home">
+    app:startDestination="@id/splashFragment">
 
 
     <fragment
         android:id="@+id/navigation_home"
-        android:name="com.example.dbfordodo.fragments.HomeFragment"
+        android:name="com.example.dbfordodo.view.fragments.HomeFragment"
         android:label="@string/menu"
         tools:layout="@layout/fragment_home" >
         <argument android:name="dostavka_location"
@@ -19,69 +19,230 @@
             android:name="zal_location"
             app:argType="string"
             app:nullable="true" />
+
         <action
-            android:id="@+id/action_navigation_home_to_zalFragment2"
-            app:destination="@id/zalFragment2" />
-        <action
-            android:id="@+id/action_navigation_home_to_adressDostavkiFragment"
-            app:destination="@id/adressDostavkiFragment" />
+            android:id="@+id/action_navigation_home_to_korzinaFragment"
+            app:destination="@id/basketFragment" />
         <action
             android:id="@+id/action_navigation_home_to_fragmentViewPager"
             app:destination="@id/fragmentViewPager" />
         <action
-            android:id="@+id/action_navigation_home_to_forCklick22"
-            app:destination="@id/forCklick2" />
+            android:id="@+id/action_navigation_home_to_comboFragment"
+            app:destination="@id/comboFragment" />
+        <action
+            android:id="@+id/action_navigation_home_to_storesFragment"
+            app:destination="@id/storesFragment" />
+        <action
+            android:id="@+id/action_navigation_home_to_meetFragment2"
+            app:destination="@id/meetFragment" />
+        <action
+            android:id="@+id/action_navigation_home_to_contactFragment"
+            app:destination="@+id/navigation_contact" />
+        <action
+            android:id="@+id/action_navigation_home_to_profilFragement"
+            app:destination="@id/profilFragement" />
+        <action
+            android:id="@+id/action_navigation_home_to_adressDostavkiFragment2"
+            app:destination="@id/adressDostavkiFragment2" />
+        <action
+            android:id="@+id/action_navigation_home_to_zalFragment"
+            app:destination="@id/zalFragment" />
+
     </fragment>
 
     <fragment
-        android:id="@+id/zalFragment2"
-        android:name="com.example.dbfordodo.fragments.ZalFragment"
-        android:label="ZalFragment" >
-        <action
-            android:id="@+id/action_zalFragment2_to_navigation_home"
-            app:destination="@id/navigation_home" />
-    </fragment>
-    <fragment
         android:id="@+id/splashFragment"
-        android:name="com.example.dbfordodo.fragments.SplashFragment"
+        android:name="com.example.dbfordodo.view.fragments.SplashFragment"
         android:label="fragment_splash"
         tools:layout="@layout/fragment_splash" >
         <action
             android:id="@+id/action_splashFragment_to_navigation_home"
-            app:destination="@id/navigation_home" />
+            app:destination="@id/navigation_home"
+            app:popUpTo="@id/splashFragment"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
-        android:id="@+id/adressDostavkiFragment"
-        android:name="com.example.dbfordodo.fragments.AdressDostavkiFragment"
-        android:label="AdressDostavkiFragment" >
+        android:id="@+id/showFragment2"
+        android:name="com.example.dbfordodo.view.fragments.ShowFragment"
+        android:label="ShowFragment" >
         <action
-            android:id="@+id/action_adressDostavkiFragment_to_navigation_home"
-            app:destination="@id/navigation_home" />
+            android:id="@+id/action_showFragment2_to_comboFragment"
+            app:destination="@id/comboFragment" />
     </fragment>
+
+    <fragment
+        android:id="@+id/comboFragment"
+        android:name="com.example.dbfordodo.view.fragments.ComboFragment"
+        android:label="ComboFragment" >
+        <action
+            android:id="@+id/action_comboFragment_to_fragmetSelectPizza"
+            app:destination="@id/fragmetSelectPizza" />
+        <argument
+            android:name="pos"
+            app:argType="integer" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragmetSelectPizza"
+        android:name="com.example.dbfordodo.view.fragments.FragmetSelectPizza"
+        android:label="FragmetSelectPizza" >
+        <argument
+            android:name="pizza"
+            app:argType="islom.din.dodo_ilmhona_proskills.db.data.Pizza" />
+        <argument
+            android:name="posItemCombo"
+            app:argType="integer" />
+        <action
+            android:id="@+id/action_fragmetSelectPizza_to_comboFragment"
+            app:destination="@id/comboFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/basketFragment"
+        android:name="com.example.dbfordodo.view.fragments.KorzinaFragment"
+        android:label="KorzinaFragment" />
     <fragment
         android:id="@+id/fragmentViewPager"
         android:name="islom.din.dodo_ilmhona_proskills.view.ViewPager.FragmentViewPager"
         android:label="FragmentViewPager" >
         <action
             android:id="@+id/action_fragmentViewPager_to_showFragment2"
-            app:destination="@id/showFragment2"
-            app:popUpTo="@id/navigation_home" />
+            app:destination="@id/showFragment2" />
+        <argument
+            android:name="pos"
+            app:argType="integer" />
+        <argument
+            android:name="pizza"
+            app:argType="islom.din.dodo_ilmhona_proskills.db.data.Pizza" />
+    </fragment>
+    <fragment
+        android:id="@+id/storesFragment"
+        android:name="com.example.dbfordodo.view.fragments.StoresFragment"
+        android:label="fragment_stores"
+        tools:layout="@layout/fragment_stores" >
         <argument
             android:name="pos"
             app:argType="integer" />
     </fragment>
     <fragment
-        android:id="@+id/showFragment2"
-        android:name="com.example.dbfordodo.fragments.ShowFragment"
-        android:label="ShowFragment" >
-        <argument
-            android:name="pos"
-            app:argType="integer" />
+        android:id="@+id/meetFragment"
+        android:name="islom.din.dodo_ilmhona_proskills.view.fragment.MeetFragment"
+        android:label="MeetFragment" >
+        <action
+            android:id="@+id/action_meetFragment2_to_numberRegisterFragment"
+            app:destination="@id/numberRegisterFragment" />
     </fragment>
     <fragment
-        android:id="@+id/forCklick2"
-        android:name="com.example.dbfordodo.fragments.ForCklick"
-        android:label="fragment_for_cklick"
-        tools:layout="@layout/fragment_for_cklick" />
+        android:id="@+id/numberRegisterFragment"
+        android:name="islom.din.dodo_ilmhona_proskills.view.fragment.NumberRegisterFragment"
+        android:label="NumberRegisterFragment" >
+        <action
+            android:id="@+id/action_numberRegisterFragment_to_passwordFragment"
+            app:destination="@id/passwordFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/passwordFragment"
+        android:name="islom.din.dodo_ilmhona_proskills.view.fragment.PasswordFragment"
+        android:label="PasswordFragment" >
+        <action
+            android:id="@+id/action_passwordFragment_to_profilFragement"
+            app:destination="@id/profilFragement" />
+        <argument
+            android:name="number"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/profilFragement"
+        android:name="islom.din.dodo_ilmhona_proskills.view.fragment.ProfilFragement"
+        android:label="ProfilFragement" >
+        <action
+            android:id="@+id/action_profilFragement_to_adressFragment"
+            app:destination="@id/adressFragment" />
+        <action
+            android:id="@+id/action_profilFragement_to_dodoCoinFragment"
+            app:destination="@id/dodoCoinFragment" />
+        <action
+            android:id="@+id/action_profilFragement_to_historyOrdersFragment"
+            app:destination="@id/historyOrdersFragment" />
+        <action
+            android:id="@+id/action_profilFragement_to_settingFragment"
+            app:destination="@id/settingFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/adressFragment"
+        android:name="islom.din.dodo_ilmhona_proskills.view.fragment.AdressFragment"
+        android:label="AdressFragment" />
+    <fragment
+        android:id="@+id/dodoCoinFragment"
+        android:name="islom.din.dodo_ilmhona_proskills.view.fragment.DodoCoinFragment"
+        android:label="DodoCoinFragment" >
+        <action
+            android:id="@+id/action_dodoCoinFragment_to_orderCointFragement"
+            app:destination="@id/orderCointFragement" />
+    </fragment>
+    <fragment
+        android:id="@+id/historyOrdersFragment"
+        android:name="islom.din.dodo_ilmhona_proskills.view.fragment.HistoryOrdersFragment"
+        android:label="HistoryOrdersFragment" />
+    <fragment
+        android:id="@+id/settingFragment"
+        android:name="islom.din.dodo_ilmhona_proskills.view.fragment.SettingFragment"
+        android:label="SettingFragment" />
+    <fragment
+        android:id="@+id/orderCointFragement"
+        android:name="islom.din.dodo_ilmhona_proskills.view.fragment.OrderCointFragement"
+        android:label="OrderCointFragement" />
+    <fragment
+        android:id="@+id/navigation_contact"
+        android:name="com.example.dbfordodo.view.fragments.ContactFragment"
+        android:label="ContactFragment" >
+        <action
+            android:id="@+id/action_contactFragment_to_aboutFragment"
+            app:destination="@id/aboutFragment" />
+        <action
+            android:id="@+id/action_navigation_contact_to_mapsFragment"
+            app:destination="@id/mapsFragment" />
+        <action
+            android:id="@+id/action_navigation_contact_to_documentFragment"
+            app:destination="@id/documentFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/aboutFragment"
+        android:name="com.example.dbfordodo.view.fragments.AboutFragment"
+        android:label="AboutFragment" />
+    <fragment
+        android:id="@+id/PDFFragment"
+        android:name="com.example.dbfordodo.view.fragments.PDFFragment"
+        android:label="PDFFragment" />
+    <fragment
+        android:id="@+id/mapsFragment"
+        android:name="com.example.dbfordodo.view.fragments.MapsFragment"
+        android:label="fragment_maps"
+        tools:layout="@layout/fragment_maps" />
+    <fragment
+        android:id="@+id/documentFragment"
+        android:name="com.example.dbfordodo.view.fragments.DocumentFragment"
+        android:label="fragment_document"
+        tools:layout="@layout/fragment_document" >
+        <action
+            android:id="@+id/action_documentFragment_to_PDFFragment2"
+            app:destination="@id/PDFFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/adressDostavkiFragment2"
+        android:name="com.example.dbfordodo.view.fragments.AdressDostavkiFragment"
+        android:label="AdressDostavkiFragment" >
+        <action
+            android:id="@+id/action_adressDostavkiFragment2_to_navigation_home"
+            app:destination="@id/navigation_home" />
+    </fragment>
+    <fragment
+        android:id="@+id/zalFragment"
+        android:name="com.example.dbfordodo.view.fragments.ZalFragment"
+        android:label="fragment_zal"
+        tools:layout="@layout/fragment_zal" >
+        <action
+            android:id="@+id/action_zalFragment_to_navigation_home"
+            app:destination="@id/navigation_home" />
+    </fragment>
+
 
 </navigation>

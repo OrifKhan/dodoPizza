@@ -1,11 +1,14 @@
 <resources>
-    <string name="app_name">dodo-ilmhona-proSkills</string>
+    <string name="app_name">dbForDodo</string>
 
     <dimen name="viewpager_next_item_visible">70dp</dimen>
     <dimen name="viewpager_current_item_horizontal_margin">80dp</dimen>
+    <dimen name="viewpager_next_item_visible1">70dp</dimen>
+    <dimen name="viewpager_current_item_horizontal_margin1">60dp</dimen>
 
 
     <string name="menu">Меню</string>
+    <string name="menu_for_bay">в казину за 0 tjk</string>
     <string name="profile">Профиль</string>
     <string name="contact">Контакты</string>
     <string name="basket">Корзина</string>
@@ -31,6 +34,9 @@
     <string name="korzina_empty_title">Пусто!</string>
     <string name="korzina_btn_create_order">Оформить за</string>
     <string name="korzina_txt_korzina">Корзина</string>
+    <string name="ukazat_namber">указать телефон</string>
+    <string name="prodalghat">продолжать</string>
+    <string name="get_new_kod">получить новый код</string>
     <string name="korzina_empty_btn">\"Меню\"</string>
 
 </resources>

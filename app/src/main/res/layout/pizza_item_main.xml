@@ -17,7 +17,7 @@
 
         <ImageView
             android:id="@+id/pizza_image"
-            android:src="@raw/img_1"
+            android:src="@raw/img_2"
             android:layout_width="match_parent"
             android:layout_height="300dp"/>
 
@@ -41,7 +41,7 @@
         <TextView
             android:layout_gravity="end"
             android:background="@drawable/shape_price"
-            android:id="@+id/picca_price"
+            android:id="@+id/pizza_price"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/medium_mp"

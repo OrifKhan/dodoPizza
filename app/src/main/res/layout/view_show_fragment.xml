@@ -24,13 +24,15 @@
                 android:id="@+id/imageShowOder"
                 android:layout_width="match_parent"
                 android:layout_height="300dp"
+                android:layout_margin="10dp"
                 android:padding="50dp"
-                android:scaleType="centerCrop"
+                android:scaleType="center"
+                android:src="@raw/ima1_3"
 
 
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/nameShowder"
@@ -90,11 +92,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="10dp"
-
                 android:layout_marginVertical="4dp"
                 android:background="@drawable/back_selcted"
                 android:padding="4dp"
-                android:weightSum="3"
+
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/removeIngrelienites">
 
@@ -103,10 +104,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="4dp"
-                    android:layout_weight="1"
                     android:background="@drawable/back_selcted"
                     android:gravity="center"
                     android:padding="8dp"
+                    android:layout_weight="1"
                     android:text="маленькая"
                     android:textColor="@color/black" />
 
@@ -134,12 +135,12 @@
                     android:gravity="center"
                     android:background="@drawable/back_selcted"
                     android:textColor="@color/black"
-
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="4dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="20dp"
                     android:layout_weight="1"
-
                     android:padding="8dp"
                     android:text="Большая"
                      />
@@ -191,6 +192,8 @@
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rec_sous"
+                android:foregroundGravity="center"
+                android:layout_marginStart="5dp"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -227,12 +230,15 @@
             android:layout_gravity="center">
 
             <TextView
-                android:layout_width="250dp"
+                android:id="@+id/priceAllBay"
+                android:layout_width="wrap_content"
                 android:paddingVertical="4dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:textColor="@color/color_for_category"
+                android:textColor="@color/white"
                 android:paddingHorizontal="48dp"
+                android:background="@color/secondaryDarkColor"
+                android:requiresFadingEdge="horizontal"
                 android:text="В КОРЗИНУ ЗА 0 TJS"/>
 
         </LinearLayout>

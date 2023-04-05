@@ -8,119 +8,168 @@ class GetIngridientList()  {
 
         val list = mutableListOf<Ingridients>()
 
-        list.add(Ingridients(id = 0, name = "NOTHING"))
-        list.add(Ingridients(id = 0, name = "Соус альфредо",false))
-        list.add(Ingridients(id = 0, name = "Мандарины"))
-        list.add(Ingridients(id = 0 , name = "Цитровый соус",false))
-        list.add(Ingridients(id = 0 , name = "Новогодгый соус",))
-        list.add(Ingridients(id = 0 , name = "Cыр моцарелла",false))
-        list.add(Ingridients(id = 0 , name = "Красный лук"))
-        list.add(Ingridients(id = 0 , name = "Солёные огурчики"))
-        list.add(Ingridients(id = 0 , name = "Томаты"))
-        list.add(Ingridients(id = 0 , name = "Соус бургер",false))
-        list.add(Ingridients(id = 0 , name = "Ветчина халяль",false))
-        list.add(Ingridients(id = 0 , name = "Сыр моцарелла",false))
-        list.add(Ingridients(id = 0 , name = "Цыплёнок"))
-        list.add(Ingridients(id = 0 , name = "Соус ранч"))
-        list.add(Ingridients(id = 0 , name = "Острая чоризо из цыплёнка"))
-        list.add(Ingridients(id = 0 , name = "Сладкий перец"))
-        list.add(Ingridients(id = 0 , name = "Чеснок"))
-        list.add(Ingridients(id = 0 , name = "Пепперони из цыплёнка"))
-        list.add(Ingridients(id = 0 , name = "Томатный соус",false))
-        list.add(Ingridients(id = 0 , name = "Увеличенная порция моцареллы",false))
-        list.add(Ingridients(id = 0 , name = "NOTHING",false))
-        list.add(Ingridients(id = 0 , name = "Ветчина из цыплёнка"))
-        list.add(Ingridients(id = 0 , name = "Митболы из говдины"))
-        list.add(Ingridients(id = 0 , name = "Пикатная пепперони из цыплёнка"))
-        list.add(Ingridients(id = 0 , name = "Шампиньоны"))
-        list.add(Ingridients(id = 0 , name = "Моцарелла"))
-        list.add(Ingridients(id = 0 , name = "Острый перец халапеньо"))
-        list.add(Ingridients(id = 0 , name = "Соус барбекю"))
-        list.add(Ingridients(id =0 , name = "Митболы из говядины"))
-        list.add(Ingridients(id = 0 , name = "Томаты"))
-        list.add(Ingridients(id = 0 , name = "Томаты"))
+        list.add(Ingridients(id=0,2,"Сыр моцарелла",false))
+        list.add(Ingridients(id=0,2,"салат свежий",false))
+        list.add(Ingridients(id=0,2,"соус цезеарь",false))
+        list.add(Ingridients(id=0,2,"томаты",))
+        list.add(Ingridients(id=0,2,"смесь сыров чеддер и пармезан"))
 
-        var couter =0
-        var text = "Смесь сыров чеддер и пармезан, соус альфредо, моцарелла".split(",")
+        list.add(Ingridients(id=0,5,"Сыр моцарелла",false))
+        list.add(Ingridients(id=0,5,"томатный соус",false))
+        list.add(Ingridients(id=0,5,"слаткий перец"))
+        list.add(Ingridients(id=0,5,"острая чоризо из цыпленка"))
 
-        for (i in text){
-            list.add(Ingridients(id = couter, name = i))
+        list.add(Ingridients(id=0,8,"Сыр моцарелла",false))
+        list.add(Ingridients(id=0,8,"соус бургер",false))
+        list.add(Ingridients(id=0,8,"ветчина хальяль",))
+        list.add(Ingridients(id=0,8,"маринованные огурчики",))
+        list.add(Ingridients(id=0,8,"красный лук",))
+        list.add(Ingridients(id=0,8,"томаты",))
 
-        }
+        list.add(Ingridients(id=0,11,"Сыр моцарелла",false))
+        list.add(Ingridients(id=0,11,"соус ранч",false))
+        list.add(Ingridients(id=0,11,"соус бургер",false))
+        list.add(Ingridients(id=0,11,"цыпленок"))
+        list.add(Ingridients(id=0,11,"острая чоризо из цыпленка"))
+        list.add(Ingridients(id=0,11,"сладкий перец"))
+        list.add(Ingridients(id=0,11,"красный лук"))
+        list.add(Ingridients(id=0,11,"томаты "))
+        list.add(Ingridients(id=0,11,"чеснок "))
 
-        text = "Пикатна пепперони из цыплёнка, том аты, томаный соус, увеличенная порция моцаррелы".split(",")
-        for (i in text){
-            list.add(Ingridients(id = couter, name = i))
-
-        }
-
-        text = "Цыплёнок, ветчина из цыплёнка, пикантная пепперони из цыплёнка, томатный соус, острая чоризо из цыплёнка, сыр моцарелла".split(",")
-        for (i in text){
-            list.add(Ingridients(id = couter, name = i))
-
-        }
-
-        text = "Томаты, итальянские травы, томатный соус, увеличенная порция моцареллы".split(",")
-        for (i in text){
-            list.add(Ingridients(id = couter, name = i))
-
-        }
-
-        text = "Соус песто, соус альфредо, цыплёнок, кубики брынзы, томаты, моцарелла".split(",")
-        for (i in text){
-            list.add(Ingridients(id = couter, name = i))
-
-        }
-
-        text = "Пепперони из цыплёнка, томатный соус, моцарелла".split(",")
-        for (i in text){
-            list.add(Ingridients(id = couter, name = i))
-
-        }
-
-        text = "Цыплёнок, соу альфредо, моцарелла".split(",")
-        for (i in text){
-            list.add(Ingridients(id = couter, name = i))
-
-        }
-
-        text = "Ветчина из цыплёнка, сыр моцарелла, соус альфредо".split(",")
-        for (i in text){
-            list.add(Ingridients(id = couter, name = i))
-
-        }
-
-        text = "Увеличенная порция моцареллы, смесь сыров чеддер и пармезан, сыр блю чиз, соус фльфредо".split(",")
-        for (i in text){
-            list.add(Ingridients(id = couter, name = i))
-
-        }
-
-        text = "Увеличенная порция моцареллы, смесь сыров чеддер и пармезан, сыр блю чиз, соус альфредо".split(",")
-        for (i in text){
-            list.add(Ingridients(id = couter, name = i))
-
-        }
-
-        text = "Сыр моцарлла, ветчина из цыплёнка, пикантная пепперони из цыплёнка, кубики брынзф, томаты, шампиньогы, томатный соус, итальянские травы".split(",")
-        for (i in text){
-            list.add(Ingridients(id = couter, name = i))
-
-        }
-
-        text = "Картофель из печи, огурцы маринованные, цыплёнок, соус, чесночный ранч, томаты свежие, лук красный, чеснок, пицца-соус, сыр моцалрелла".split(",")
-        for (i in text){
-            list.add(Ingridients(id = couter, name = i))
-
-        }
-
-        text = "Ветчина из цыплёнка, шампиньоны, томатный соус, увеличенная порция моцареллы".split(",")
-        for (i in text){
-            list.add(Ingridients(id = couter, name = i))
-
-        }
+        list.add(Ingridients(id=0,14,"Увеличенная порция моцареллы",false))
+        list.add(Ingridients(id=0,14,"томатный соус",false))
+        list.add(Ingridients(id=0,14,"пепперони из цыпленка "))
 
 
+
+
+//Додо
+        list.add(Ingridients(id=0,17,"Сыр моцарелла",false))
+        list.add(Ingridients(id=0,17,"томатный соус",false))
+        list.add(Ingridients(id=0,17,"пикантная пепперони из цыпленка"))
+        list.add(Ingridients(id=0,17,"ветчина из цыпленка"))
+        list.add(Ingridients(id=0,17,"митболы из говядины"))
+        list.add(Ingridients(id=0,17,"томаты"))
+        list.add(Ingridients(id=0,17,"сладкий перец"))
+        list.add(Ingridients(id=0,17,"красный лук"))
+        list.add(Ingridients(id=0,17,"шампиньоны"))
+        list.add(Ingridients(id=0,17,"чеснок"))
+
+//Диабло
+        list.add(Ingridients(id=0,20,"Сыр моцарелла",false))
+        list.add(Ingridients(id=0,20,"томатный соус",false))
+        list.add(Ingridients(id=0,20,"соус барбекю",false))
+        list.add(Ingridients(id=0,20,"митболы из говядины"))
+        list.add(Ingridients(id=0,20,"острая чоризо из цыпленка"))
+        list.add(Ingridients(id=0,20,"острый перец халапеньо"))
+        list.add(Ingridients(id=0,20,"сладкий перец"))
+        list.add(Ingridients(id=0,20,"красный лук"))
+        list.add(Ingridients(id=0,20,"томаты"))
+
+//Сырная
+        list.add(Ingridients(id=0,23,"Сыр моцарелла",false))
+        list.add(Ingridients(id=0,23,"соус альфредо",false))
+        list.add(Ingridients(id=0,23,"смесь сыров чеддер и пармезан"))
+
+//Пепперони фреш
+        list.add(Ingridients(id=0,26,"Увеличенная порция моцареллы",false))
+        list.add(Ingridients(id=0,26,"томатный соус",false))
+        list.add(Ingridients(id=0,26,"пикантная пепперони из цыпленка"))
+        list.add(Ingridients(id=0,26,"томаты"))
+
+
+//Мясная
+        list.add(Ingridients(id=0,29,"Сыр моцарелла",false))
+        list.add(Ingridients(id=0,29,"томатный соус",false))
+        list.add(Ingridients(id=0,29,"цыпленок"))
+        list.add(Ingridients(id=0,29,"пикантная пепперони из цыпленка"))
+        list.add(Ingridients(id=0,29,"ветчина из цыпленка"))
+        list.add(Ingridients(id=0,29,"острая чоризо из цыпленка"))
+
+//Маргарита
+        list.add(Ingridients(id=0,32,"Увеличенная порция моцареллы",false))
+        list.add(Ingridients(id=0,32,"томатный соус",false))
+        list.add(Ingridients(id=0,32,"томаты"))
+        list.add(Ingridients(id=0,32,"итальянские травы"))
+
+//Песто
+        list.add(Ingridients(id=0,35,"Сыр моцарелла",false))
+        list.add(Ingridients(id=0,35,"соус альфредо",false))
+        list.add(Ingridients(id=0,35,"соус песто",false))
+        list.add(Ingridients(id=0,35,"цыпленок"))
+        list.add(Ingridients(id=0,35,"кубики брынзы"))
+        list.add(Ingridients(id=0,35,"томаты"))
+
+//Двойная пепперони
+        list.add(Ingridients(id=0,38,"Сыр моцарелла",false))
+        list.add(Ingridients(id=0,38,"томатный соус",false))
+        list.add(Ingridients(id=0,38,"двойная порция пепперони из цыпленка"))
+
+//Двойной цыпленок
+        list.add(Ingridients(id=0,41,"Сыр моцарелла",false))
+        list.add(Ingridients(id=0,41,"соус альфредо",false))
+        list.add(Ingridients(id=0,41,"цыпленок"))
+
+//Ветчина и сыр
+        list.add(Ingridients(id=0,44,"Сыр моцарелла",false))
+        list.add(Ingridients(id=0,44,"соус альфредо",false))
+        list.add(Ingridients(id=0,44,"ветчина из цыпленка"))
+
+//Карбонара
+        list.add(Ingridients(id=0,47,"Сыр моцарелла",false))
+        list.add(Ingridients(id=0,47,"соус альфредо",false))
+        list.add(Ingridients(id=0,47,"ветчина из цыпленка"))
+        list.add(Ingridients(id=0,47,"смесь сыров чеддер и пармезан"))
+        list.add(Ingridients(id=0,47,"томаты"))
+        list.add(Ingridients(id=0,47,"красный лук"))
+        list.add(Ingridients(id=0,47,"чеснок"))
+        list.add(Ingridients(id=0,47,"итальянские травы"))
+
+//Четыре сыра
+        list.add(Ingridients(id=0,50,"Увеличенная порция моцареллы",false))
+        list.add(Ingridients(id=0,50,"соус альфредо",false))
+        list.add(Ingridients(id=0,50,"смесь сыров чеддер и пармезан"))
+        list.add(Ingridients(id=0,50,"сыр блю чиз"))
+
+//Четыре сезона
+        list.add(Ingridients(id=0,53,"Сыр моцарелла",false))
+        list.add(Ingridients(id=0,53,"томатный соус",false))
+        list.add(Ingridients(id=0,53,"пикантная пепперони из цыпленка"))
+        list.add(Ingridients(id=0,53,"ветчина из цыпленка"))
+        list.add(Ingridients(id=0,53,"шампиньоны"))
+        list.add(Ingridients(id=0,53,"кубики брынзы"))
+        list.add(Ingridients(id=0,53,"томаты"))
+        list.add(Ingridients(id=0,53,"итальянские травы"))
+
+//Овощи и грибы
+        list.add(Ingridients(id=0,56,"Сыр моцарелла",false))
+        list.add(Ingridients(id=0,56,"томатный соус",false))
+        list.add(Ingridients(id=0,56,"сладкий перец"))
+        list.add(Ingridients(id=0,56,"красный лук"))
+        list.add(Ingridients(id=0,56,"томаты"))
+        list.add(Ingridients(id=0,56,"кубики брынзы"))
+        list.add(Ingridients(id=0,56,"маслины"))
+        list.add(Ingridients(id=0,56,"шампиньоны"))
+        list.add(Ingridients(id=0,56,"итальянские травы"))
+
+
+//Деревенская
+        list.add(Ingridients(id=0,59,"Сыр моцарелла",false))
+        list.add(Ingridients(id=0,59,"томатный соус",false))
+        list.add(Ingridients(id=0,59,"соус ранч",false))
+        list.add(Ingridients(id=0,59,"цыпленок"))
+        list.add(Ingridients(id=0,59,"картофель из печи"))
+        list.add(Ingridients(id=0,59,"красный лук"))
+        list.add(Ingridients(id=0,59,"томаты"))
+        list.add(Ingridients(id=0,59,"маринованные огурчики"))
+        list.add(Ingridients(id=0,59,"чеснок"))
+
+
+//Ветчина и грибы
+        list.add(Ingridients(id=0,62,"Увеличенная порция моцареллы",false))
+        list.add(Ingridients(id=0,62,"томатный соус",false))
+        list.add(Ingridients(id=0,62,"ветчина из цыпленка"))
+        list.add(Ingridients(id=0,62,"шампиньоны"))
 
 
 

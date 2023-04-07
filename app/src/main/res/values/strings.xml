@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">dbForDodo</string>
+    <string name="app_name">dodoPizza</string>
 
     <dimen name="viewpager_next_item_visible">70dp</dimen>
     <dimen name="viewpager_current_item_horizontal_margin">80dp</dimen>

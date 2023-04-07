@@ -129,6 +129,9 @@
         <action
             android:id="@+id/action_meetFragment2_to_numberRegisterFragment"
             app:destination="@id/numberRegisterFragment" />
+        <action
+            android:id="@+id/action_meetFragment_to_profilFragement"
+            app:destination="@id/profilFragement" />
     </fragment>
     <fragment
         android:id="@+id/numberRegisterFragment"

@@ -17,6 +17,6 @@ data class Ingridients(
     @PrimaryKey(autoGenerate = true) val id: Int,
     val id_pizza: Int,
     val name: String,
-    val available: Boolean = true,
-    var delete: Boolean = false,
+    val available: Int = 1,
+    var delete: Int = 0,
 )

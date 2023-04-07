@@ -4,7 +4,7 @@ import com.example.dbfordodo.R
 import islom.din.dodo_ilmhona_proskills.shodmon.khushbakht.StoryData
 
 class GetStores {
-    fun getList():List<StoryData>{
+  /*  fun getList():List<StoryData>{
         val list = mutableListOf<StoryData>()
 
         list.add(StoryData(0,1, R.raw.stores1,true))
@@ -26,5 +26,5 @@ class GetStores {
 
         return list
 
-    }
+    }*/
 }

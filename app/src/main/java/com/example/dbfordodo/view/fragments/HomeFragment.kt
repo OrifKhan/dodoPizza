@@ -30,6 +30,7 @@ import com.example.dbfordodo.view.HelperClass.DataBaseApplication
 import com.example.dbfordodo.view.adapter.ListAdapters.AdepterSores
 import com.example.dbfordodo.view.adapter.ListAdapters.InterestingAdapter
 import com.example.dbfordodo.view.adapter.ListAdapters.PizzaAdapter
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.chip.Chip
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -79,34 +80,39 @@ open class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-dodoViewModel.insertViewMadel()
-        /*   val bottomNavigationView =
-            requireActivity().findViewById<BottomNavigationView>(R.id.bottom_nav_view)
+       var insert=true
+        if(insert){
+//dodoViewModel.insertViewMadel()
+            insert=false
+        }
+
+ /*        val bottomNavigationView =
+           requireActivity().findViewById<BottomNavigationView>(R.id.bottom_nav_view)
         bottomNavigationView.setOnItemSelectedListener() {
 
-            if (sharedPref().getInt("number", 0) == null) {
-                findNavController().navigate(R.id.action_navigation_home_to_profilFragement)
-            } else {
+//            if (sharedPref().getInt("number", 0) == null||it.itemId) {
+//                findNavController().navigate(R.id.action_navigation_home_to_profilFragement)
+//            } else {
+//
+//                findNavController().navigate(R.id.action_navigation_home_to_meetFragment2)
+//            }
+//
+//            true
 
-                findNavController().navigate(R.id.action_navigation_home_to_meetFragment2)
-            }
-
-            true*/
-        /*
             when (it.itemId) {
-                }
-                R.id.backFragment -> {
-                    findNavController().navigate(R.id.action_navigation_home_to_korzinaFragment)
-                    true
-                }
-                R.id.navigation_contact -> {
-                    findNavController().navigate(R.id.action_navigation_home_to_korzinaFragment)
-                    true
-                }
-                else->{
-                    findNavController().navigate(R.id.navigation_home)
-                    true
-                }*/
+            R.id.backFragment -> {
+            findNavController().navigate(R.id.action_navigation_home_to_korzinaFragment)
+            true
+        }
+            R.id.navigation_contact -> {
+            findNavController().navigate(R.id.action_navigation_home_to_korzinaFragment)
+            true
+        }
+            else->{
+            findNavController().navigate(R.id.navigation_home)
+            true
+        }*/
+
 
 
 

@@ -4,7 +4,7 @@ import islom.din.dodo_ilmhona_proskills.db.data.Ingridients
 
 
 class GetIngridientList()  {
-    fun getList() : MutableList<Ingridients> {
+/*    fun getList() : MutableList<Ingridients> {
 
         val list = mutableListOf<Ingridients>()
 
@@ -175,5 +175,5 @@ class GetIngridientList()  {
 
 
         return list
-    }
+    }*/
 }

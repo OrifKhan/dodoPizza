@@ -15,9 +15,8 @@ import islom.din.dodo_ilmhona_proskills.shodmon.khushbakht.StoryData
          IngredientSize::class, Combo::class, StoryData::class, IngredientSizeConnection::class,
         IngredientsProductsConnection::class, Order::class, OrderConnection::class,
         OrderConnectionServer::class],
-    version = 3
+    version = 1, exportSchema = false
 )
-
 abstract class DodoDataBase: RoomDatabase() {
     abstract fun pizzaDao(): PizzaDao
 
@@ -32,18 +31,16 @@ abstract class DodoDataBase: RoomDatabase() {
     companion object {
 
 
-        /*    fun getInstance(context: Context): DodoDataBase {
+         /*   fun getInstance(context: Context): DodoDataBase {
             return androidx.room.Room.databaseBuilder(
                 context.applicationContext,
                 DodoDataBase::class.java,
                 "dodo_base"
             )
-                .createFromAsset("dodo_base1.db")
-                .fallbackToDestructiveMigration()
+                .createFromAsset("dodo_base5.db")
                 .build()
 
         }*/
-
 
         var INSTANCE: DodoDataBase? = null
         fun getInstance(context: Context): DodoDataBase {
@@ -53,7 +50,6 @@ abstract class DodoDataBase: RoomDatabase() {
                     DodoDataBase::class.java,
                     "dodo_base"
                 )
-                    .fallbackToDestructiveMigrationFrom()
                     .build()
                 INSTANCE = instance
 

@@ -115,7 +115,7 @@ class ShowFragment : Fragment() {
                             dodoViewMadel.getIngridient(pizza.id).observe(viewLifecycleOwner) {
                                 for (ingrident in it.withIndex())
                                     if (ingrident.index !in view1.chipGroup.checkedChipIds)
-                                        it[ingrident.index].delete = true
+                                        it[ingrident.index].delete = 1
                                 Log.d("MyERROR", "${pizza.about}")
                                 dialog.dismiss()
                             }
@@ -428,17 +428,17 @@ class ShowFragment : Fragment() {
 
 
             for (item in ingridients.withIndex()) {
-                if (item.value.available) {
+                if (item.value.available == 1) {
                     val chip = createChp(item.value.name)
                     chip.id = item.index
 
                     if (view.chipGroup.contains(chip))
                         view.chipGroup.removeAllViews()
                     view.chipGroup.addView(chip)
-                    chip.isChecked = !item.value.delete
+                    chip.isChecked = !(item.value.delete==1)
 
                     ingridients.map {
-                        if (!it.delete) {
+                        if (it.delete != 1) {
                             chip.isGone
                         }
                     }

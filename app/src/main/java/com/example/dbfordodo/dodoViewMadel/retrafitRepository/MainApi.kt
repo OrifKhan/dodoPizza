@@ -34,7 +34,7 @@ interface MainApi {
     @GET("ingredients_products_connection")
     suspend fun getIngredientSizeProducts(): Response<List<IngredientsProductsConnection>>
 
-    @GET("ingredient")
+    @GET("ingridient")
     suspend fun getIngredient(): Response<List<Ingridients>>
 
     @GET("order_connection")

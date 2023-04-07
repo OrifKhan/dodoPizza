@@ -7,7 +7,7 @@ import islom.din.dodo_ilmhona_proskills.db.data.HalfPizza
 class GetHalfList {
     fun getList(): MutableList<HalfPizza> {
 
-        var ingridientList = GetIngridientList().getList()
+       // var ingridientList = GetIngridientList().getList()
         val list = mutableListOf<HalfPizza>()
 
 

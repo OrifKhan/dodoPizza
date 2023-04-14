@@ -27,7 +27,7 @@ class DodoViewMadel(
     fun insertViewMadel() {
         viewModelScope.launch(Dispatchers.IO) {
 
-            for(it in mainApi.getStores().body()!!){
+          /*  for(it in mainApi.getStores().body()!!){
                 pizzaDao.insertStores(it)
             }
             for(it in mainApi.getPizza().body()!!){
@@ -47,8 +47,11 @@ class DodoViewMadel(
             }
             for(it in mainApi.getVkus().body()!!){
                 pizzaDao.insertVkus(it)
+            }*/
+            Log.d("hello", "errrro")
+            mainApi.getOrder().body()?.forEach {
+                orderDao.newOrder(it)
             }
-           /* Log.d("hello", "errrro")
             mainApi.getStores().body()?.forEach {
                 pizzaDao.insertStores(it)
             }
@@ -68,12 +71,9 @@ class DodoViewMadel(
             GetHalfList().getList().forEach {
                 pizzaDao.insertHalfPizza(it)
             }
-            mainApi.getOrder().body()?.forEach {
-                orderDao.newOrder(it)
-            }
             mainApi.getVkus().body()?.forEach {
                 pizzaDao.insertVkus(it)
-            }*/
+            }
 
 
 
@@ -106,8 +106,8 @@ class DodoViewMadel(
         return pizzaDao.getAllStores(id)
     }
 
-    fun getMaineStores(maine: Boolean): LiveData<List<StoryData>> {
-        return pizzaDao.getMaineStores(maine)
+    fun getMaineStores(main:Int): LiveData<List<StoryData>> {
+        return pizzaDao.getMaineStores(main)
     }
 
     fun getIngridient(id: Int): LiveData<List<Ingridients>> {

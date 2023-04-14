@@ -68,6 +68,9 @@
         <action
             android:id="@+id/action_showFragment2_to_comboFragment"
             app:destination="@id/comboFragment" />
+        <action
+            android:id="@+id/action_showFragment2_to_basketFragment"
+            app:destination="@id/basketFragment" />
     </fragment>
 
     <fragment

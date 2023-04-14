@@ -1,7 +1,11 @@
 package com.example.dbfordodo.dodoViewMadel.repository
 
+import com.example.dbfordodo.R
+import com.example.dbfordodo.madel.data.Constants
+import islom.din.dodo_ilmhona_proskills.db.data.Pizza
+
 class GetPizzaList {
-  /*  fun getList(): List<Pizza> {
+    fun getList(): List<Pizza> {
 
 
         val list = mutableListOf<Pizza>()
@@ -10,10 +14,10 @@ class GetPizzaList {
 
         list.add(
             Pizza(0, R.raw.ima1_2,"Бургер пицца","Красный лук, сольёные огурчики, томаты, соус бургер, ветчина залясь, сыр моцарелла",
-                54,Constants.PIZZA, size = 1, description = "25 см, традиционное тесто, , 410 г"))
+                54, Constants.PIZZA, size = 1, description = "25 см, традиционное тесто, , 410 г"))
         list.add(
             Pizza(0, R.raw.img_2,"Бургер пицца","Красный лук, сольёные огурчики, томаты, соус бургер, ветчина залясь, сыр моцарелла",
-                79,Constants.PIZZA, size = 2, main = true, description = "30 см, традиционное тесто, 660 г"))
+                79,Constants.PIZZA, size = 2, main = 1, description = "30 см, традиционное тесто, 660 г"))
         list.add(
             Pizza(0, R.raw.img2_2,"Бургер пицца","Красный лук, сольёные огурчики, томаты, соус бургер, ветчина залясь, сыр моцарелла",
                 96,Constants.PIZZA, size = 3 ,description = "35 см, традиционное тесто, 900 г"))
@@ -219,7 +223,7 @@ class GetPizzaList {
 
         list.add(
             Pizza(0, R.raw.img_21,"3 пиццы","Комбо 3 пиццы 30см на любой вкус",
-                price = 225, category = Constants.COMBO, things = 30, size = 2, main = true)
+                price = 225, category = Constants.COMBO, things = 30, size = 2, main = 1)
             )
 
 
@@ -270,7 +274,7 @@ class GetPizzaList {
         )
         list.add(
             Pizza(id = 0, image = R.raw.ima_32, name = "Сырные палочки с песто + Соус Ранч", about = "Сытный перекус для компании. На пышном тесте — только песто и сыр. И соус ранч/чесночный в комплекте — с ним вкуснее!",
-                price = 33, category = Constants.ZAKUSKI, things = 1, size = 2, main = true))
+                price = 33, category = Constants.ZAKUSKI, things = 1, size = 2, main = 1))
         list.add(
             Pizza(id = 0, image = R.raw.ima_33, name = "Супермясной додстер", about = "Горячая закуска с цыпленком, моцареллой, митболами, острыми колбасками чоризо и соусом бургер в тонкой пшеничной лепешке",
                 price = 28, category = Constants.ZAKUSKI, things = 1, size = 2))
@@ -337,7 +341,7 @@ class GetPizzaList {
 
         list.add(
             Pizza(id = 0, image = R.raw.img_44, name = "Рулетки с корицей", about = "Сытные сладкие рулетки с корицей",
-                price= 22, category = Constants.DESERTI,16, size = 2, main = true)
+                price= 22, category = Constants.DESERTI,16, size = 2, main = 1)
         )
 
         list.add(
@@ -357,7 +361,7 @@ class GetPizzaList {
 
         list.add(
             Pizza(id = 0, image = R.raw.ima1_49, name = "Coca-cola",
-                price= 10, category = Constants.NAPITKI, things = 1, size = 1, main = true))
+                price= 10, category = Constants.NAPITKI, things = 1, size = 1, main = 1))
         list.add(
             Pizza(id = 0, image = R.raw.img_49, name = "Coca-cola",
                 price = 8, category = Constants.NAPITKI, things = 1, size = 2))
@@ -410,7 +414,7 @@ list.add(
 
         list.add(
             Pizza(id = 0, image = R.raw.img_56, name = "Барбекю",
-                price = 5, category = Constants.SOUSI, size = 2 , main = true)
+                price = 5, category = Constants.SOUSI, size = 2 , main = 1)
         )
 
         list.add(
@@ -420,7 +424,7 @@ list.add(
 
         list.add(
             Pizza(id = 0, image = R.raw.img_58, name = "Додо Раскарска",
-                price = 2, category = Constants.DRUGIE, size = 2 , main = true)
+                price = 2, category = Constants.DRUGIE, size = 2 , main = 1)
         )
 
         list.add(
@@ -429,5 +433,5 @@ list.add(
         )
         return list
 
-    }*/
+    }
 }

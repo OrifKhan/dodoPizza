@@ -16,6 +16,8 @@ import androidx.core.view.isGone
 import androidx.core.view.size
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
@@ -104,6 +106,13 @@ class ShowFragment : Fragment() {
             Toast.makeText(requireContext(), "Added to busket", Toast.LENGTH_SHORT).show()
         }
         val binding = view.let { ViewShowFragmentBinding.bind(it) }
+        binding.backButton.setOnClickListener(){
+            Navigation.findNavController(view).popBackStack()
+        }
+       /* binding.toBacketButton.setOnClickListener(){
+            val action=ShowFragmentDirections.actionShowFragment2ToBasketFragment()
+            findNavController().navigate(action)
+        }*/
 
 
         when (pizza.category) {

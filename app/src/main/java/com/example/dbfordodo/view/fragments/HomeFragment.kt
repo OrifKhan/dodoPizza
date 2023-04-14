@@ -80,11 +80,11 @@ open class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-       var insert=true
-        if(insert){
-//dodoViewModel.insertViewMadel()
+     /*  var insert=true
+        if(!insert){
             insert=false
-        }
+        }*/
+
 
  /*        val bottomNavigationView =
            requireActivity().findViewById<BottomNavigationView>(R.id.bottom_nav_view)
@@ -113,7 +113,7 @@ open class HomeFragment : Fragment() {
             true
         }*/
 
-
+       // dodoViewModel.insertViewMadel()
 
 
 
@@ -128,7 +128,7 @@ open class HomeFragment : Fragment() {
         }
         lifecycleScope.launch {
             delay(500)
-            dodoViewModel.getMaineStores(true).observe(viewLifecycleOwner) {
+            dodoViewModel.getMaineStores(1).observe(viewLifecycleOwner) {
                 adapterStores.submitList(it)
                 Log.d("Storis", "${it.size}")
             }

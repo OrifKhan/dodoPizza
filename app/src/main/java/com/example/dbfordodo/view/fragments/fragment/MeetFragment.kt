@@ -1,4 +1,4 @@
-package islom.din.dodo_ilmhona_proskills.view.fragment
+package islom.din.dodo_ilmhona_proskills.view.fragments.fragment
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.dbfordodo.databinding.FragmentMeetBinding
+import islom.din.dodo_ilmhona_proskills.view.fragment.MeetFragmentDirections
 
 class MeetFragment : Fragment() {
     private lateinit var binding: FragmentMeetBinding

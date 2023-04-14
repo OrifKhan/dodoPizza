@@ -10,10 +10,10 @@ class DodoMadelFactory(val pizzaDao: PizzaDao,
                        val orderDao: OrderDao
 ): ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
-        if (modelClass.isAssignableFrom(DodoViewMadel::class.java)){
+        if (modelClass.isAssignableFrom(DodoViewMadel::class.java)) {
             @Suppress("UNCHECKED_CAST")
             return DodoViewMadel(pizzaDao, orderDao) as T
         }
-        throw IllegalArgumentException("Unknown ViewModel Class")
+         throw IllegalArgumentException("Unknown ViewModel Class")
     }
 }

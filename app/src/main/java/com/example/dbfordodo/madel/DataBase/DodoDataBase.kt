@@ -31,18 +31,19 @@ abstract class DodoDataBase: RoomDatabase() {
     companion object {
 
 
-         /*   fun getInstance(context: Context): DodoDataBase {
+            fun getInstance(context: Context): DodoDataBase {
             return androidx.room.Room.databaseBuilder(
                 context.applicationContext,
                 DodoDataBase::class.java,
                 "dodo_base"
             )
-                .createFromAsset("dodo_base5.db")
+                .createFromAsset("dodo_base3.db")
+                .fallbackToDestructiveMigration()
                 .build()
 
-        }*/
+        }
 
-        var INSTANCE: DodoDataBase? = null
+       /* var INSTANCE: DodoDataBase? = null
         fun getInstance(context: Context): DodoDataBase {
             return INSTANCE ?: synchronized(this) {
                 val instance = Room.databaseBuilder(
@@ -56,7 +57,7 @@ abstract class DodoDataBase: RoomDatabase() {
                 instance
             }
 
-        }
+        }*/
     }
 
 

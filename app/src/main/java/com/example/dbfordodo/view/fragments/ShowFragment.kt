@@ -16,6 +16,8 @@ import androidx.core.view.isGone
 import androidx.core.view.size
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
@@ -104,6 +106,13 @@ class ShowFragment : Fragment() {
             Toast.makeText(requireContext(), "Added to busket", Toast.LENGTH_SHORT).show()
         }
         val binding = view.let { ViewShowFragmentBinding.bind(it) }
+        binding.backButton.setOnClickListener(){
+            Navigation.findNavController(view).popBackStack()
+        }
+       /* binding.toBacketButton.setOnClickListener(){
+            val action=ShowFragmentDirections.actionShowFragment2ToBasketFragment()
+            findNavController().navigate(action)
+        }*/
 
 
         when (pizza.category) {
@@ -115,7 +124,7 @@ class ShowFragment : Fragment() {
                             dodoViewMadel.getIngridient(pizza.id).observe(viewLifecycleOwner) {
                                 for (ingrident in it.withIndex())
                                     if (ingrident.index !in view1.chipGroup.checkedChipIds)
-                                        it[ingrident.index].delete = true
+                                        it[ingrident.index].delete = 1
                                 Log.d("MyERROR", "${pizza.about}")
                                 dialog.dismiss()
                             }
@@ -428,17 +437,17 @@ class ShowFragment : Fragment() {
 
 
             for (item in ingridients.withIndex()) {
-                if (item.value.available) {
+                if (item.value.available == 1) {
                     val chip = createChp(item.value.name)
                     chip.id = item.index
 
                     if (view.chipGroup.contains(chip))
                         view.chipGroup.removeAllViews()
                     view.chipGroup.addView(chip)
-                    chip.isChecked = !item.value.delete
+                    chip.isChecked = !(item.value.delete==1)
 
                     ingridients.map {
-                        if (!it.delete) {
+                        if (it.delete != 1) {
                             chip.isGone
                         }
                     }

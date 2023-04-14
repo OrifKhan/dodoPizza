@@ -27,9 +27,33 @@ class DodoViewMadel(
     fun insertViewMadel() {
         viewModelScope.launch(Dispatchers.IO) {
 
-            Log.d("hello", "errrro")
-            mainApi.getVkus().body()?.forEach {
+          /*  for(it in mainApi.getStores().body()!!){
+                pizzaDao.insertStores(it)
+            }
+            for(it in mainApi.getPizza().body()!!){
+                pizzaDao.insertPizza(it)
+            }
+            for(it in mainApi.getCategory().body()!!){
+                pizzaDao.insertCotegory(it)
+            }
+            for(it in mainApi.getIngredient().body()!!){
+                pizzaDao.insertIngredient(it)
+            }
+            for(it in mainApi.getCombo().body()!!){
+                pizzaDao.insertCombo(it)
+            }
+            for(it in mainApi.getOrder().body()!!){
+                orderDao.newOrder(it)
+            }
+            for(it in mainApi.getVkus().body()!!){
                 pizzaDao.insertVkus(it)
+            }*/
+            Log.d("hello", "errrro")
+            mainApi.getOrder().body()?.forEach {
+                orderDao.newOrder(it)
+            }
+            mainApi.getStores().body()?.forEach {
+                pizzaDao.insertStores(it)
             }
             mainApi.getPizza().body()?.forEach() {
                 pizzaDao.insertPizza(it)
@@ -47,11 +71,8 @@ class DodoViewMadel(
             GetHalfList().getList().forEach {
                 pizzaDao.insertHalfPizza(it)
             }
-            mainApi.getStores().body()?.forEach {
-                pizzaDao.insertStores(it)
-            }
-            mainApi.getOrder().body()?.forEach {
-                orderDao.newOrder(it)
+            mainApi.getVkus().body()?.forEach {
+                pizzaDao.insertVkus(it)
             }
 
 
@@ -85,8 +106,8 @@ class DodoViewMadel(
         return pizzaDao.getAllStores(id)
     }
 
-    fun getMaineStores(maine: Boolean): LiveData<List<StoryData>> {
-        return pizzaDao.getMaineStores(maine)
+    fun getMaineStores(main:Int): LiveData<List<StoryData>> {
+        return pizzaDao.getMaineStores(main)
     }
 
     fun getIngridient(id: Int): LiveData<List<Ingridients>> {

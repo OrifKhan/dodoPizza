@@ -41,7 +41,7 @@ class StoresFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        dodoViewMadel.getMaineStores(true).observe(viewLifecycleOwner) {
+        dodoViewMadel.getMaineStores(1).observe(viewLifecycleOwner) {
             binding.viewPager.currentItem = args.pos
             adapter = VpAdapter(it, requireActivity())
             Log.d("stores", "${args.pos}")

@@ -9,6 +9,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.widget.ViewPager2
 import com.example.dbfordodo.R
 import com.example.dbfordodo.databinding.LayoutDodoconitBinding
+import com.example.dbfordodo.dodoViewMadel.repository.GetPizzaList
 import com.example.dbfordodo.view.HelperClass.HorizontalMarginItemDecoration
 import com.example.dbfordodo.view.adapter.ListAdapters.CoinAdapter
 import java.lang.Math.abs
@@ -31,7 +32,7 @@ class DodoCoinFragment: Fragment() {
         adapter= CoinAdapter()
         viewPager2 =binding.viewPager2
         viewPager2.adapter=adapter
-      //  adapter.submitList(GetPizzaList().getList())
+       adapter.submitList(GetPizzaList().getList())
         adapter.onClick={
             val action =DodoCoinFragmentDirections.actionDodoCoinFragmentToOrderCointFragement()
             findNavController().navigate(action)

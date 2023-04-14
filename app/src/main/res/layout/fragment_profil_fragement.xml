@@ -64,7 +64,7 @@
             android:layout_gravity="bottom"
 
             android:layout_margin="20dp"
-            android:text="додоконый"
+            android:text="додокойн"
             android:textColor="@color/black"
             android:textSize="20sp" />
 

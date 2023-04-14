@@ -45,7 +45,7 @@
         @Query("SELECT * FROM stores WHERE idItem=:id")
          fun getAllStores(id: Int):LiveData<List<StoryData>>
          @Query("SELECT * FROM stores WHERE main =:maine")
-         fun getMaineStores(maine: Boolean):LiveData<List<StoryData>>
+         fun getMaineStores(maine: Int):LiveData<List<StoryData>>
 
 
         @Insert(onConflict = OnConflictStrategy.IGNORE)

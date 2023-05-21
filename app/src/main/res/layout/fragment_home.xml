@@ -203,32 +203,6 @@
                 android:orientation="horizontal"
                 tools:listitem="@layout/interesting_item"/>
 
-            <HorizontalScrollView
-                android:id="@+id/category_container"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingHorizontal="@dimen/medium_mp"
-                android:scrollbars="none"
-                android:clipToPadding="false">
-
-                <com.google.android.material.chip.ChipGroup
-                    android:id="@+id/chip_category_group"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:singleLine="true"
-                    style="@style/Widget.MaterialComponents.Chip.Choice"
-                    app:singleSelection="true"
-                    app:selectionRequired="true">
-
-
-
-                </com.google.android.material.chip.ChipGroup>
-
-            </HorizontalScrollView>
-
-
-
-
 
         </com.google.android.material.appbar.AppBarLayout>
 
@@ -243,4 +217,108 @@
             tools:listitem="@layout/pizza_item" />
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+    <HorizontalScrollView
+        android:id="@+id/category_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:paddingHorizontal="@dimen/medium_mp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:scrollbars="none"
+        android:clipToPadding="false">
+
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/chip_category_group"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:singleLine="true"
+            style="@style/Widget.MaterialComponents.Chip.Choice"
+            app:checkedChip="@id/_pizzza"
+            app:singleSelection="true"
+            app:selectionRequired="true">
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/_pizzza"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:drawableTop="@drawable/selector_home"
+                android:text="Пицца"
+                app:chipBackgroundColor="@color/white"
+                android:textColor="@color/secondaryColor" />
+
+            <com.google.android.material.chip.Chip xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:drawableTop="@drawable/selector_basket"
+                android:text="Комбо"
+                app:chipBackgroundColor="@color/white"
+                android:textColor="@color/grey_darker" />
+
+            <com.google.android.material.chip.Chip xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:drawableTop="@drawable/selector_contact"
+                android:text="Закуски"
+                app:chipBackgroundColor="@color/white"
+                android:textColor="@color/grey_darker" />
+
+            <com.google.android.material.chip.Chip xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:drawableTop="@drawable/selector_profile"
+                android:text="Десерты"
+                app:chipBackgroundColor="@color/white"
+                android:textColor="@color/grey_darker" />
+
+            <com.google.android.material.chip.Chip xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:drawableTop="@drawable/ic_close"
+                android:text="Напитки"
+                app:chipBackgroundColor="@color/white"
+                android:textColor="@color/grey_darker" />
+
+            <com.google.android.material.chip.Chip xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:drawableTop="@drawable/ic_close"
+                android:text="Соусы"
+                app:chipBackgroundColor="@color/white"
+                android:textColor="@color/grey_darker" />
+
+            <com.google.android.material.chip.Chip xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:drawableTop="@drawable/ic_close"
+                android:text="Другие товары"
+                app:chipBackgroundColor="@color/white"
+                android:textColor="@color/grey_darker" />
+
+        </com.google.android.material.chip.ChipGroup>
+
+    </HorizontalScrollView>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

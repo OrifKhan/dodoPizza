@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.content.res.ResourcesCompat
 import androidx.core.view.get
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
@@ -27,11 +28,13 @@ import com.example.dbfordodo.dodoViewMadel.viewModel.HomeViewModel
 import com.example.dbfordodo.dodoViewMadel.viewModel.RoomViewModel
 import com.example.dbfordodo.madel.data.Constants
 import com.example.dbfordodo.view.HelperClass.DataBaseApplication
+import com.example.dbfordodo.view.MainActivity
 import com.example.dbfordodo.view.adapter.ListAdapters.AdepterSores
 import com.example.dbfordodo.view.adapter.ListAdapters.InterestingAdapter
 import com.example.dbfordodo.view.adapter.ListAdapters.PizzaAdapter
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.chip.Chip
+import com.google.android.material.chip.ChipDrawable
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
@@ -183,16 +186,16 @@ open class HomeFragment : Fragment() {
         binding.chipCategoryGroup.setOnCheckedStateChangeListener { group, checkedIds ->
             val checkedId = checkedIds.first()
             val checkedCategoryButton = requireActivity().findViewById<Chip>(checkedId)
+            checkedCategoryButton.setTextColor(resources.getColor(R.color.secondaryColor,null))
             checkedCategoryButton.setOnClickListener {
                 binding.pizzaRv.smoothScrollToPosition(adapterForPizza.currentList.indexOfFirst {
                     it.category == checkedCategoryButton.text
-                } + 1)
+                } + 2)
                 //Expands App Bar layout
                 if (checkedCategoryButton.text == Constants.PIZZA)
                     binding.mainAppBar.setExpanded(true)
                 else binding.mainAppBar.setExpanded(false)
 
-                scrollingChangeListener()
             }
         }
     }
@@ -210,9 +213,13 @@ open class HomeFragment : Fragment() {
 
         //What should happen if I click "V zale" button
         binding.zalFragment2.setOnClickListener {
-            viewModel.changeOrderType(Constants.ZAL)
-            val action = HomeFragmentDirections.actionNavigationHomeToZalFragment()
-            findNavController().navigate(action)
+//            viewModel.changeOrderType(Constants.ZAL)
+//            val action = HomeFragmentDirections.actionNavigationHomeToZalFragment()
+//            findNavController().navigate(action)
+            try {
+             val activity = requireActivity() as MainActivity
+             activity.drawer.close()
+            }catch (_ : java.lang.Exception){}
         }
 
         //What should happen if I click "Dostavka" button
@@ -262,17 +269,20 @@ open class HomeFragment : Fragment() {
     }
 
     private fun setupChip() {
-        for (name in viewModel.categoryList) {
-            val chip = createChip(name)
-            binding.chipCategoryGroup.addView(chip)
-            if (name == Constants.PIZZA)
-                binding.chipCategoryGroup.check(chip.id)
-        }
+//        for (name in viewModel.categoryList) {
+//            val chip = createChip(name)
+//            binding.chipCategoryGroup.addView(chip)
+//            if (name == Constants.PIZZA)
+//                binding.chipCategoryGroup.check(chip.id)
+//        }
     }
 
     private fun createChip(category: String): Chip {
         val chip = ChipItemBinding.inflate(layoutInflater).root
         chip.text = category
+        val dw = ChipDrawable.createFromResource(requireContext(),R.drawable.ic_close)
+        dw.checkedIcon = ResourcesCompat.getDrawable(resources,R.drawable.back,null)
+        chip.setChipDrawable(dw)
         return chip
     }
 

@@ -12,7 +12,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/stories_background_unchecked"
-        android:padding="4dp"
+        android:padding="6dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -24,9 +24,9 @@
 
             <ImageView
                 android:id="@+id/storyPhoto"
-                android:layout_width="80dp"
-                android:layout_height="100dp"
-                android:scaleType="fitXY"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:scaleType="centerCrop"
                 android:src="@drawable/story_for_dodo" />
 
         </androidx.cardview.widget.CardView>

@@ -1,5 +1,7 @@
 package com.example.dbfordodo.madel.data
 
+import com.example.dbfordodo.R
+
 class Constants {
     /*fun formatPriceSmall(): String {
         return "$price  TJS"

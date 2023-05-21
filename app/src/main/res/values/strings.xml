@@ -38,5 +38,9 @@
     <string name="prodalghat">продолжать</string>
     <string name="get_new_kod">получить новый код</string>
     <string name="korzina_empty_btn">\"Меню\"</string>
+    <string name="_pizza">Пицца</string>
+    <string name="_combo">Комбо</string>
+    <string name="open">Open Drawer Layout</string>
+    <string name="close">Close Drawer Layout</string>
 
 </resources>
